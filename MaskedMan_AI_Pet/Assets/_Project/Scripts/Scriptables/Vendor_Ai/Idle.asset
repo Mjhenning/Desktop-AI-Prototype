@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 762d4e0a955e0104b8092aa6a725d880, type: 3}
+  m_Name: Idle
+  m_EditorClassIdentifier: 
+  type: 0
+  TypeSnippets:
+  - Curiosity killed the cat, they say. But here, curiosity might just unlock the
+    secrets of the universe.
+  - Every click draws you closer to the edge of sanity. Are you brave enough to take
+    that leap?
+  - Embrace the uncertainty, for within it lies the path to enlightenment.
+  - The line between knowledge and madness is thinner than you think. Care to dance
+    along its edge?
+  - Behind the screen lies a world waiting to be discovered. But beware, not all
+    who seek find what they desire.
+  - The pixels on your screen hold more than mere data; they hold the essence of
+    the arcane. Ready to tap into it?
+  - In this digital realm, every click echoes in eternity. What legacy will yours
+    leave behind?
+  - Ever wondered what lies beyond the veil of reality? Explore, and you may just
+    find out.
+  - In the depths of the unknown, lies the key to enlightenment. Dare to seek it?
+  - Reality bends and twists within these circuits. Will you challenge its limits?
+  - The cursor hovers over possibilities unknown. Will you dare to click and unravel
+    the mysteries?
+  - The pixels flicker, a glimpse into the abyss. Are you prepared to stare back?
+  - In the silence of the digital void, whispers of the forbidden beckon. Will you
+    heed their call?
+  - Each byte contains fragments of forgotten truths. Care to decode the encrypted
+    secrets?
+  - The binary hums with ancient knowledge, waiting for an interpreter. Will you
+    decipher its language?
+  - Behind every algorithm lies a labyrinth of endless possibilities. Care to navigate
+    the maze?
+  - In the realm of zeros and ones, reality is but a construct waiting to be reshaped.
+    Shall we play architects?
+  - The cursor blinks, a heartbeat in the digital void. Will you follow its rhythm
+    into the unknown?
+  - The screen is a canvas, and your clicks are strokes of discovery. What masterpiece
+    will you uncover today?

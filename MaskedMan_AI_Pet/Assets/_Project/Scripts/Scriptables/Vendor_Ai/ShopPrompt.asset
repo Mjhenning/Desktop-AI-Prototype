@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 762d4e0a955e0104b8092aa6a725d880, type: 3}
+  m_Name: ShopPrompt
+  m_EditorClassIdentifier: 
+  type: 1
+  TypeSnippets:
+  - Behind every mask lies a tale, care to uncover the stories woven into these artifacts?
+  - The arcane whispers of the items within beckon for attention. Care to listen?
+  - Perplexity and fascination entwined, offering a unique experience with each visit.
+  - Ephemeral whispers of the arcane drift through these shelves, waiting to be unraveled.
+  - Lost in time, these relics await a curious mind to breathe life into their tales.
+  - Each item holds a piece of the void, beckoning those who dare to delve into the
+    abyss.
+  - Beware the allure of the forbidden, for within lies a darkness that consumes
+    the unwary.
+  - Madness whispers sweet promises to those who dare to listen. Will you succumb
+    to its embrace?
+  - The boundary between sanity and madness is thin here. How long before it crumbles
+    beneath your touch?
+  - Enter at your own risk, for once you step into this realm, there is no turning
+    back.
+  - Every item has a story, some more sinister than others. Care to unravel the tales
+    of the damned?
+  - Within these walls, time unravels, and reality fractures. What nightmares will
+    you uncover?
+  - Lost souls wander these halls, trapped within the artifacts that bind them. Will
+    you join them?
+  - The air is thick with dread, a palpable reminder of the horrors that lurk just
+    beyond sight.
+  - In the depths of the abyss, secrets fester and nightmares thrive. Care to confront
+    your deepest fears?
