@@ -9,15 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e250804de31f05a4887ba78994810ece, type: 3}
-  m_Name: SpeakingSet
+  m_Script: {fileID: 11500000, guid: 82f30dc3fe3dbdd46bab94f9ce256155, type: 3}
+  m_Name: Beating_Locket
   m_EditorClassIdentifier: 
-  MainSet: 4
-  ItemType: 3
+  MainSet: 5
+  ItemType: 0
   ITEM_Sprite: {fileID: 0}
-  ItemName: Spectacles of Insight
+  ItemName: Beating Locket
   ItemDesc: 
   Obtained: 0
-  SetParts: 000000000100000002000000
-  SetItemDatabase: []
-  SetPartsObtained: 

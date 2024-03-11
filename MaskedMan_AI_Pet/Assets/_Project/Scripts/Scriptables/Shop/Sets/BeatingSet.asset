@@ -15,7 +15,7 @@ MonoBehaviour:
   MainSet: 5
   ItemType: 3
   ITEM_Sprite: {fileID: 0}
-  ItemName: 
+  ItemName: Locket of Fate
   ItemDesc: 
   Obtained: 0
   SetParts: 000000000100000002000000

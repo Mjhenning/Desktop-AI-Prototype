@@ -225,6 +225,7 @@ GameObject:
   - component: {fileID: 7548781338358677886}
   - component: {fileID: 6873218979300616976}
   - component: {fileID: 1285093266455928497}
+  - component: {fileID: 7827976971940446438}
   m_Layer: 5
   m_Name: Shop_Item
   m_TagString: Untagged
@@ -291,3 +292,17 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7827976971940446438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6163371493404838536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dad72e44b60a204c8dc23d5cbc18b76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 1227669939877204658}
+  Text: {fileID: 568241718193484830}

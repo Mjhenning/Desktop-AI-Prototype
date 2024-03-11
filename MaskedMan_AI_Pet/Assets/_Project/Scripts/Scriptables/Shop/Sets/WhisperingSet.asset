@@ -15,9 +15,9 @@ MonoBehaviour:
   MainSet: 3
   ItemType: 3
   ITEM_Sprite: {fileID: 0}
-  ItemName: 
+  ItemName: Matryoshka of Secrets
   ItemDesc: 
   Obtained: 0
-  SetParts: 000000000100000000000000
+  SetParts: 000000000100000002000000
   SetItemDatabase: []
   SetPartsObtained: 

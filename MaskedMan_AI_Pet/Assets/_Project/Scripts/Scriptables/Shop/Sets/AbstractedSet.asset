@@ -15,7 +15,7 @@ MonoBehaviour:
   MainSet: 0
   ItemType: 3
   ITEM_Sprite: {fileID: 0}
-  ItemName: 
+  ItemName: Canvas of Nightmares
   ItemDesc: 
   Obtained: 0
   SetParts: 000000000100000002000000

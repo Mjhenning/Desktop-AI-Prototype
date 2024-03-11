@@ -15,7 +15,7 @@ MonoBehaviour:
   MainSet: 2
   ItemType: 3
   ITEM_Sprite: {fileID: 0}
-  ItemName: 
+  ItemName: Tome of Madness
   ItemDesc: 
   Obtained: 0
   SetParts: 000000000100000002000000

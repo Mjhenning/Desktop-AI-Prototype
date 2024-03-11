@@ -15,7 +15,7 @@ MonoBehaviour:
   MainSet: 6
   ItemType: 3
   ITEM_Sprite: {fileID: 0}
-  ItemName: 
+  ItemName: Key of Memories
   ItemDesc: 
   Obtained: 0
   SetParts: 000000000100000002000000
