@@ -40,7 +40,7 @@ public class HourlyTimeCheck : MonoBehaviour
 
         // Define the start and end times for the desired range
         DateTime startTime = DateTime.Today.AddHours(6); // 06:00
-        DateTime endTime = DateTime.Today.AddHours(18); // 18:00
+        DateTime endTime = DateTime.Today.AddHours(22); // 22:00
 
         // Check if the current time falls within the range
         bool shopOpen = currentTime >= startTime && currentTime < endTime;

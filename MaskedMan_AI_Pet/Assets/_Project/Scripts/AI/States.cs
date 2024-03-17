@@ -178,6 +178,7 @@ public class State_ShopPrompt : State { //Open Jacket State
         Controller.ChangeState (Controller.stateShopping);
         EventsManager.DialogueDetermine (DialogueType.ShopPrompt);
         EventsManager.OpenedShop (); //tells event manager to fire off event to tell main system that the shop can be opened successfully
+        EventsManager.RandomizeShop ();
     }
     
     

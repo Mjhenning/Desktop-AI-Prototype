@@ -12,12 +12,11 @@ public class ItemGenerator : MonoBehaviour {
 
     [SerializeField]bool HasGeneratedSets;
     [SerializeField]ItemDatabase database;
-    [SerializeField]List<Item> ShopItems = new List<Item>();
     [SerializeField] List<Descriptions> ItemDescriptions;
 
     [SerializeField]Item tempItem;
 
-
+    [SerializeField]List<Item> ActiveShopItems;
     [SerializeField]List<ItemSprites> SpriteCollections = new List<ItemSprites> ();
 
 
@@ -29,6 +28,8 @@ public class ItemGenerator : MonoBehaviour {
         } else {
             return;
         }
+
+        EventsManager.RetrieveList.AddListener (ClearAnPopulateShop);
     }
 
     void GenerateSets () {
@@ -43,7 +44,6 @@ public class ItemGenerator : MonoBehaviour {
 
     public Item GrabGeneratedItem () { //gets called to populate Item_Instances
         GenerateItemSetPair ();
-        ShopItems.Add (tempItem);
         return tempItem;
     }
     
@@ -71,18 +71,45 @@ public class ItemGenerator : MonoBehaviour {
         }
     }
 
-    void CheckInDatabase (ItemTypes type, SetTypes set) { //double checks generated combo if it doesn't already exist
+    void CheckInDatabase(ItemTypes type, SetTypes set)
+    {
+        bool itemExistsInDatabase = false;
+        bool itemExistsInActiveShop = false;
 
-        for (int i = 0; i < database.Sets.ListOfSets.Length; i++) {
-            for (int j = 0; j < 3; j++) { //if it exists regenerate
-                if (database.Sets.ListOfSets[i].items.Count>0 && database.Sets.ListOfSets[i].items[j] != null && database.Sets.ListOfSets[i].items[j].ItemType == type && database.Sets.ListOfSets[i].items[j].MainSet == set ) {
-                    GenerateItemSetPair ();
-                    Debug.Log ("Check failed regenerating");
-                } else { //if it doesn't exist create a new item
-                    GenerateItemBasedOffItemSetPair (type, set);
-                    Debug.Log ("Check succeeded generating");
+        // Check if the combination already exists in the database
+        foreach (NewDictItem itemSet in database.Sets.ListOfSets)
+        {
+            foreach (Item item in itemSet.items)
+            {
+                if (item != null && item.ItemType == type && item.MainSet == set)
+                {
+                    itemExistsInDatabase = true;
+                    break;
                 }
             }
+        }
+
+        // Check if the combination already exists in the active shop items list
+        foreach (Item item in ActiveShopItems)
+        {
+            if (item.ItemType == type && item.MainSet == set)
+            {
+                itemExistsInActiveShop = true;
+                break;
+            }
+        }
+
+        if (itemExistsInDatabase || itemExistsInActiveShop)
+        {
+            // If the item already exists, do not generate a new one
+            Debug.Log("Item already exists in the database or active shop");
+            GenerateItemSetPair();
+        }
+        else
+        {
+            // Generate a new item
+            Debug.Log("Generating a new item");
+            GenerateItemBasedOffItemSetPair(type, set);
         }
     }
 
@@ -101,9 +128,14 @@ public class ItemGenerator : MonoBehaviour {
         CheckInDatabase (itemtype, set);
     }
 
-    void ClearShopList () {
-        ShopItems.Clear ();
+    void ClearAnPopulateShop (List<Item> shopitems) {
+        ActiveShopItems.Clear ();
+        for (int i = 0; i < shopitems.Count; i++) {
+            ActiveShopItems.Add (shopitems[i]);
+        }
+
     }
+    
 }
 
 
