@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectPool : MonoBehaviour {
+public class ObjectPool : MonoBehaviour { //basic object pooling script with added logic (most of added logic is currently broken)
     public static ObjectPool instance;
 
     public GameObject prefab; 

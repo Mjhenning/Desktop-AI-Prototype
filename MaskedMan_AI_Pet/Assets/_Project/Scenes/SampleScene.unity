@@ -974,7 +974,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 53fd4d2d61fd81b45b529bb52265e5b7, type: 2}
   HasGeneratedSets: 0
   database: {fileID: 11400000, guid: ac4c0c3700a51b84b8af6239ee3bbb1d, type: 2}
-  ShopItems: []
   ItemDescriptions:
   - {fileID: 11400000, guid: b22d6669925dbb74d9aabae2a759e490, type: 2}
   - {fileID: 11400000, guid: 7bf9a56e7d874fc4cbb756bb6ea2d66b, type: 2}
@@ -984,6 +983,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9a3bf0497137cf645873e68fe5e0587a, type: 2}
   - {fileID: 11400000, guid: d7e68763ad5a36542944e23638db74b3, type: 2}
   tempItem: {fileID: 0}
+  ActiveShopItems: []
   SpriteCollections: []
 --- !u!114 &2014799403
 MonoBehaviour:

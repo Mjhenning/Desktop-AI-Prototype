@@ -8,13 +8,13 @@ public class Shop_Instance : MonoBehaviour {
     public List<Item> ShopItems;
 
     void Start () {
-        EventsManager.RandomizeShopItems.AddListener (RandomizeItemsInShop);
-        
+        EventsManager.RandomizeShopItems.AddListener (RandomizeItemsInShop); //add a listener to determine when shops should be randomized
         ClearShop ();
         RandomizeItemsInShop ();
     }
     
-    public void RandomizeItemsInShop () {
+    public void RandomizeItemsInShop () { //randomizes the generated items in shop by calling itemgenerator script
+        ClearShop ();
         foreach (Item_Instance _item in ShopSelections) {
             _item.assignedItem = ItemGenerator.instance.GrabGeneratedItem ();
             // if (_item.assignedItem.ITEM_Sprite != null) {
@@ -25,10 +25,10 @@ public class Shop_Instance : MonoBehaviour {
             ShopItems.Add (_item.assignedItem);
         }
 
-        EventsManager.PopulateActiveShopList (ShopItems);
+        EventsManager.PopulateActiveShopList (ShopItems); //populates the active shop list on the item generator
     }
 
-    public void ClearShop () {
+    public void ClearShop () { //clears the shop of items
         ShopItems.Clear ();
     }
 }

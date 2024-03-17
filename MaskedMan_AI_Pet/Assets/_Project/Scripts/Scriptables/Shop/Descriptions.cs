@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/DescriptionSO", order = 1)]
-public class Descriptions: ScriptableObject { //scriptable used to store dialogue
+public class Descriptions: ScriptableObject { //scriptable used to store descriptions
     public SetTypes Set;
     public List<string> Verbs;
     public List<string> Adverbs;

@@ -8,7 +8,7 @@ public class ItemGenerator : MonoBehaviour {
 
     public static ItemGenerator instance;
 
-    [SerializeField] List<Item> Artifacts;
+    [SerializeField] List<Item> Artifacts; //list of predetermined sets
 
     [SerializeField]bool HasGeneratedSets;
     [SerializeField]ItemDatabase database;
@@ -16,15 +16,15 @@ public class ItemGenerator : MonoBehaviour {
 
     [SerializeField]Item tempItem;
 
-    [SerializeField]List<Item> ActiveShopItems;
-    [SerializeField]List<ItemSprites> SpriteCollections = new List<ItemSprites> ();
+    [SerializeField]List<Item> ActiveShopItems; //used to reference current items in generated shop
+    [SerializeField]List<ItemSprites> SpriteCollections = new List<ItemSprites> (); //used to store type/set combos and their corresponding sprites
 
 
     void Awake () {
         instance = this;
         
-        if (!HasGeneratedSets) {
-            GenerateSets ();
+        if (!HasGeneratedSets) { //if sets haven't been populated yet
+            GenerateSets (); //populate them
         } else {
             return;
         }
@@ -32,7 +32,7 @@ public class ItemGenerator : MonoBehaviour {
         EventsManager.RetrieveList.AddListener (ClearAnPopulateShop);
     }
 
-    void GenerateSets () {
+    void GenerateSets () { //populates sets with their items from set scriptables to database
         foreach (NewDictItem _setItem in database.Sets.ListOfSets) {
             _setItem.items = _setItem.set.SetItemDatabase;
         }
@@ -71,7 +71,7 @@ public class ItemGenerator : MonoBehaviour {
         }
     }
 
-    void CheckInDatabase(ItemTypes type, SetTypes set)
+    void CheckInDatabase(ItemTypes type, SetTypes set) //doubles checks if item exists in database / current shop list before generating item
     {
         bool itemExistsInDatabase = false;
         bool itemExistsInActiveShop = false;
@@ -128,7 +128,7 @@ public class ItemGenerator : MonoBehaviour {
         CheckInDatabase (itemtype, set);
     }
 
-    void ClearAnPopulateShop (List<Item> shopitems) {
+    void ClearAnPopulateShop (List<Item> shopitems) { //used to repopulate shops everytime the vendor opens a new instance of the shop
         ActiveShopItems.Clear ();
         for (int i = 0; i < shopitems.Count; i++) {
             ActiveShopItems.Add (shopitems[i]);

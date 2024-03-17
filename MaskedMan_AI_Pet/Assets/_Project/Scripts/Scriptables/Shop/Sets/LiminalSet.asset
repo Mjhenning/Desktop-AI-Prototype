@@ -20,5 +20,4 @@ MonoBehaviour:
     fears and desires, showing glimpses of alternate realities where choices diverged
     and consequences echo through time.
   SetParts: 000000000100000002000000
-  SetItemDatabase:
-  - {fileID: 11400000, guid: acab6ae5811948541950e1efad4701bc, type: 2}
+  SetItemDatabase: []

@@ -26,11 +26,14 @@ public class AIController : MonoBehaviour {
     }
 
     void Start() {
+        //used to setup each state
         stateIdle = new State_Idle (this);
         stateSleep = new State_Sleep (this);
         stateShopPrompt = new State_ShopPrompt (this);
         stateShopping = new State_Shopping (this);
+        stateAgressive = new State_Agressive (this);
         ChangeState (stateIdle);
+        //tells the timer to start checking each hour if the shop should be open or closed
         EventsManager.StartHourlyTimer ();
     }
 

@@ -28,14 +28,19 @@ public class UI_Manager : MonoBehaviour {
     void Awake () {
         input = new PlayerController ();
         input.Enable ();
-        input.Player.Click.performed += ClickOnperformed;
+        input.Player.Click.performed += ClickOnperformed; //if the player clicks
     }
 
     void ClickOnperformed (InputAction.CallbackContext obj) {
         switch (OverUI) {
             case false:
-                if (activeController.GetCurrentState() == StateType.Shopping) {
-                    EventsManager.ClosedShop ();
+                switch (activeController.GetCurrentState() ) { 
+                   case StateType.Shopping: //if the player is currently shopping and not over ui when they click
+                       EventsManager.ClosedShop (); //close the shop
+                       break;
+                   case StateType.Agressive: //if the vendor is currently agressive and the player clicks while not over ui
+                       ObjectPool.instance.DuplicateObjectFromPool (); //duplicate the current object from the pool of shop windows
+                       break;
                 }
                 break;
         }

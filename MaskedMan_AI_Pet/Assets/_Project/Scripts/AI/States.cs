@@ -6,7 +6,7 @@ using UnityEngine;
 FSM States
 */
 
-//All transitions from idle state done just tweak timers
+//TODO: tweak timers
 #region Idle State
 
 public class State_Idle : State { //Idle State
@@ -27,7 +27,8 @@ public class State_Idle : State { //Idle State
         ResetTextTimer ();
         //timeLeftShop = Random.Range (10f, 300f);
         timeLeftShop = 10f;
-        timeLeftAgressive = 1200f;
+        //timeLeftAgressive = 1200f;
+        timeLeftAgressive = 5f;
     }
     
 
@@ -56,33 +57,36 @@ public class State_Idle : State { //Idle State
                 } else {
                     Controller.ChangeState (Controller.stateShopPrompt);
                 }
+                
+                if (timeLeftAgressive > 0) { //Timer between state change to aggressive behaviour
+                    timeLeftAgressive -= Time.deltaTime;
+                } else {
+                    Controller.ChangeState (Controller.stateAgressive);
+                }
+
                 break;
+             //if the shop is currently closed
             case false:
-                Controller.ChangeState (Controller.stateSleep);
+                Controller.ChangeState (Controller.stateSleep); //force vendor to fall asleep
                 break;
         }
         
        
         
-        // if (timeLeftAgressive > 0) { //Timer between state change to aggressive behaviour
-        //     timeLeftAgressive -= Time.deltaTime;
-        // } else {
-        //     Controller.ChangeState (Controller.stateAgressive);
-        // }
 
     }
 
-    void CheckBeforeResumeUpdate (bool ShopOpen) {
+    void CheckBeforeResumeUpdate (bool ShopOpen) { //used to set bool determining if shop is open equal to event's boolean determining if shop is open or not
         IsShopOpen = ShopOpen;
     }
 
-    void ResetTextTimer () {
-        timeLeftTalk = Random.Range (7f, 30f); //NOT A STATE
+    void ResetTextTimer () { //resets the timer for next dialogue snippet
+        timeLeftTalk = Random.Range (7f, 30f); 
     }
 }
 #endregion
 
-//Wake up function coded so sleep state is done
+
 #region Sleep State
 public class State_Sleep : State { //Sleep State
     bool AddedListeners;
@@ -121,14 +125,14 @@ public class State_Sleep : State { //Sleep State
     public override void Update () {
     }
 
-    void AddListeners () {
+    void AddListeners () { //adds interaction listeners
         EventsManager.BodyClicked.AddListener (Wakeup);
         EventsManager.MaskClicked.AddListener (Wakeup);
         EventsManager.TieClicked.AddListener (Wakeup);
         AddedListeners = true;
     }
 
-    void RemoveListeners () {
+    void RemoveListeners () { //removes interaction listeners
         EventsManager.BodyClicked.RemoveListener (Wakeup);
         EventsManager.MaskClicked.RemoveListener (Wakeup);
         EventsManager.TieClicked.RemoveListener (Wakeup);
@@ -142,7 +146,7 @@ public class State_Sleep : State { //Sleep State
 }
 #endregion
 
-//Transition to shopping state coded and open shop event coded + Added dialogue when first opens coat and when player clicks on vendor : DONE
+
 #region ShopPrompt State
 public class State_ShopPrompt : State { //Open Jacket State
     
@@ -153,10 +157,9 @@ public class State_ShopPrompt : State { //Open Jacket State
         base.Enable ();
 
         EventsManager.BodyClicked.AddListener (OpenShop); //adds listener to open shop
-
+        EventsManager.DialogueDetermine (DialogueType.ShopPrompt); //tells dialogue system to display a shopprompt snippet
+        
         stateName = StateType.ShopPrompt;
-        EventsManager.DialogueDetermine (DialogueType.ShopPrompt);
-
         timeLeftIdle = 20f;
     }
 
@@ -169,23 +172,23 @@ public class State_ShopPrompt : State { //Open Jacket State
     public override void Update () { //timer before coat closes
         if (timeLeftIdle > 0) { //Timer between state change to idle
             timeLeftIdle -= Time.deltaTime;
-        } else {
+        } else { //if timer is done close coat and go back to idle
             Controller.ChangeState(Controller.stateIdle);
         }
     }
 
     public void OpenShop () { //changes state to shopping state
         Controller.ChangeState (Controller.stateShopping);
-        EventsManager.DialogueDetermine (DialogueType.ShopPrompt);
+        EventsManager.DialogueDetermine (DialogueType.ShopPrompt); //tells dialogue system to display a shopprompt snippet
         EventsManager.OpenedShop (); //tells event manager to fire off event to tell main system that the shop can be opened successfully
-        EventsManager.RandomizeShop ();
+        EventsManager.RandomizeShop (); // tells event manager to fire off event to randomize each shop instance in scene
     }
     
     
 }
 #endregion
 
-//NEEDS WORKS
+
 #region Shopping State
 
 public class State_Shopping : State {
@@ -227,6 +230,8 @@ public class State_Shopping : State {
         public override void Enable () {
             base.Enable ();
             stateName = StateType.Agressive;
+            EventsManager.OpenedShop (); //open the shop
+
         }
 
         public override void Update () { }

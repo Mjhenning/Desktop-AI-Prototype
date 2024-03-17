@@ -2,7 +2,7 @@ using System;
 using System.Runtime.InteropServices;
 using UnityEngine;
  
-public class TransparentWindow : MonoBehaviour
+public class TransparentWindow : MonoBehaviour //script I joinked from unity forums used to allow user to click through window and make it transparent when needed
 {
     private struct MARGINS
     {

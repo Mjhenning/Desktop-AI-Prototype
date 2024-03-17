@@ -50,7 +50,7 @@ public static class ItemNameGenerator {
     };
 
     // Method to generate an item name
-    public static string GenerateItemName (SetTypes set,ItemTypes item) {
+    public static string GenerateItemName (SetTypes set,ItemTypes item) { //generates item name based off of fed set and item type
 
         switch (set) {
             case SetTypes.Abstracted: //Abstracted set
@@ -59,9 +59,9 @@ public static class ItemNameGenerator {
                 return GenerateNeutralName (item);
             case SetTypes.Corrupted: //Corrupted set
                 return GenerateNegativeName (item);
-            case SetTypes.Liminal:
+            case SetTypes.Liminal: //Liminal set
                 return GenerateNeutralName (item);
-            case SetTypes.Submerged:
+            case SetTypes.Submerged: //submerged set
                 switch (item) {
                     case ItemTypes.Ephemera:
                         return GenerateNegativeName (item);
@@ -69,7 +69,7 @@ public static class ItemNameGenerator {
                         return GenerateNeutralName (item);
                 }
                 break;
-            case SetTypes.Whispering:
+            case SetTypes.Whispering: //whispering set
                 switch (item) {
                     case ItemTypes.Ephemera:
                         return GenerateNeutralName (item);
@@ -77,7 +77,7 @@ public static class ItemNameGenerator {
                         return GenerateNegativeName (item);
                 }
                 break;
-            case SetTypes.Speaking:
+            case SetTypes.Speaking: //speaking set
                 switch (item) {
                     case ItemTypes.Ephemera:
                         return GenerateNegativeName (item);

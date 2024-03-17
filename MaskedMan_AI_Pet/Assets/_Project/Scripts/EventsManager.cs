@@ -6,7 +6,7 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 
 
-public static class EventsManager
+public static class EventsManager //huge events manager used by whole program to trigger multiple things on multiple scripts
 {
     public static UnityEvent BodyClicked = new UnityEvent();
     public static UnityEvent TieClicked = new UnityEvent();

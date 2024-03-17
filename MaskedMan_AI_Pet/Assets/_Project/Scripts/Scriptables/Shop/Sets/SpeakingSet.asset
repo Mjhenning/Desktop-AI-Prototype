@@ -20,5 +20,4 @@ MonoBehaviour:
     of others, but with each use, they become more attuned to the whispers of unseen
     entities lurking in the shadows, driving the user towards paranoia and despair.
   SetParts: 000000000100000002000000
-  SetItemDatabase:
-  - {fileID: 11400000, guid: 6a3b2d73543f05e41a5de33ea025724a, type: 2}
+  SetItemDatabase: []

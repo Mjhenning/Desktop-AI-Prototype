@@ -26,5 +26,4 @@ MonoBehaviour:
     of Secrets is opened, its whispers never truly fade, lingering in the mind long
     after the dolls are closed.
   SetParts: 000000000100000002000000
-  SetItemDatabase:
-  - {fileID: 11400000, guid: 53fd4d2d61fd81b45b529bb52265e5b7, type: 2}
+  SetItemDatabase: []

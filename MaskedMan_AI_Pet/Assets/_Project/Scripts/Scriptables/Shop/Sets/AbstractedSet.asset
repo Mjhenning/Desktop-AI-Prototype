@@ -20,5 +20,4 @@ MonoBehaviour:
     paint their dreams into reality, blurring the lines between the imagined and
     the tangible.
   SetParts: 000000000100000002000000
-  SetItemDatabase:
-  - {fileID: 11400000, guid: 2a8b2247341cb5243a05c9abdd27d77a, type: 2}
+  SetItemDatabase: []
