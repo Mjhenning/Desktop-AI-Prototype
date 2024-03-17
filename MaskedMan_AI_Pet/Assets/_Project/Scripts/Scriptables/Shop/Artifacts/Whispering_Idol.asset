@@ -16,5 +16,5 @@ MonoBehaviour:
   ItemType: 0
   ITEM_Sprite: {fileID: 0}
   ItemName: Whispering Idol
-  ItemDesc: 
-  Obtained: 0
+  ItemDesc: A Matryoshka doll said to cause whispers to be heard in the head of anyone
+    nearby.

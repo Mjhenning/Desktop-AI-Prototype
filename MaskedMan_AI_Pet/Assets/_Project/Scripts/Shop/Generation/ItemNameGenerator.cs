@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//MAIN NOTE ARTIFACTS AND MAINSET ITEMS ARE NOT RANDOMIZED EXCEPT FOR THEIR DESCRIPTIONS
+//MAIN NOTE ARTIFACTS AND MAINSET ITEMS ARE NOT RANDOMIZED
 
 public static class ItemNameGenerator {
-    private static readonly List<string> NegativePrefixes = new List<string> {
+    public static readonly List<string> NegativePrefixes = new List<string> {
         "Madness",
         "Ethereal",
         "Echoing",
@@ -17,7 +17,7 @@ public static class ItemNameGenerator {
         "Nightmare Inducing"
     };
     
-    static readonly List<string> NeutralPrefixes = new List<string> {
+    public static readonly List<string> NeutralPrefixes = new List<string> {
         "Ancient",
         "Cursed",
         "Enchanted",

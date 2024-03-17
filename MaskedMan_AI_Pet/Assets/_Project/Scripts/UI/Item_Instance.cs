@@ -7,15 +7,8 @@ using UnityEngine.UI;
 
 public class Item_Instance : MonoBehaviour {
 
-    Item assignedItem;
+    public Item assignedItem;
     
-    [SerializeField]Image image;
-    [SerializeField]TextMeshProUGUI Text;
-
-    void Start() {
-
-        assignedItem = ItemGenerator.instance.GrabGeneratedItem ();
-        image.sprite = assignedItem.ITEM_Sprite;
-        Text.text = "Item: " + assignedItem.ItemName + "\n" + "Type: " + assignedItem.ItemType + "\n" + assignedItem.ItemDesc;
-    }
+    public Image image;
+    public TextMeshProUGUI Text;
 }

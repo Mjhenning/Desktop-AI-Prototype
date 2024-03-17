@@ -16,8 +16,15 @@ MonoBehaviour:
   ItemType: 3
   ITEM_Sprite: {fileID: 0}
   ItemName: Matryoshka of Secrets
-  ItemDesc: 
-  Obtained: 0
+  ItemDesc: Nested within each intricately painted doll lies a sinister secret. When
+    the outermost doll is opened, it emits a faint, haunting whisper that draws the
+    listener closer, compelling them to reveal their deepest fears and desires. With
+    each subsequent doll opened, the whispers grow louder and more insistent, delving
+    into darker realms of the subconscious until the final doll is reached. Within
+    this innermost chamber lies a mirror reflecting the listener's true self, echoing
+    their innermost thoughts with chilling clarity. But beware, for once the Matryoshka
+    of Secrets is opened, its whispers never truly fade, lingering in the mind long
+    after the dolls are closed.
   SetParts: 000000000100000002000000
-  SetItemDatabase: []
-  SetPartsObtained: 
+  SetItemDatabase:
+  - {fileID: 11400000, guid: 53fd4d2d61fd81b45b529bb52265e5b7, type: 2}

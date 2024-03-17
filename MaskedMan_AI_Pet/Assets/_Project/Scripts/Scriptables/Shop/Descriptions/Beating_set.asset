@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49f32fee6e79111468891a9a184e4df6, type: 3}
+  m_Name: Beating_set
+  m_EditorClassIdentifier: 
+  Set: 5
+  Verbs:
+  - pulses
+  - throbs
+  - beats
+  - reverberates
+  - ' vibrates'
+  Adverbs:
+  - rhythmically
+  - steadily
+  - strongly
+  - vigorously
+  - powerfully
+  Adjectives:
+  - vibrant
+  - pulsating
+  - rhythmic
+  - vital
+  - resilient
+  Feelings:
+  - destiny
+  - determination
+  - passion
+  - resilience
+  - vitality
+  Eph_Extra:
+  - Its pulse resonates with the heartbeat of the universe, echoing across time and
+    space.
+  - Those who hold it feel the rhythm of creation coursing through their veins, filling
+    them with boundless vitality.
+  - Legends say that it holds the key to unlocking the secrets of the cosmos, granting
+    its bearer untold power over life and death.
+  - 
+  Rel_Extra:
+  - Its heartbeat echoes the rhythm of creation, pulsing with the energy of a universe
+    in flux.
+  - To hold it is to hold the key to life itself, its power coursing through the
+    veins of its bearer.
+  - Legends say that it was forged by gods, who imbued it with the power to shape
+    the destiny of worlds.
+  - 

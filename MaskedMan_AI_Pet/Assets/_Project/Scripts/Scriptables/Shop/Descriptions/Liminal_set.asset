@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49f32fee6e79111468891a9a184e4df6, type: 3}
+  m_Name: Liminal_set
+  m_EditorClassIdentifier: 
+  Set: 1
+  Verbs:
+  - reflects
+  - reveals
+  - transcends
+  - blurs
+  - traverses
+  Adverbs:
+  - subtly
+  - elusively
+  - mysteriously
+  - enigmatically
+  - ethereally
+  Adjectives:
+  - elusive
+  - enigmatic
+  - mysterious
+  - liminal
+  - transcendental
+  Feelings:
+  - curiousity
+  - intrigue
+  - ambiguity
+  - transcendence
+  - revelation
+  Eph_Extra:
+  - Its reflection reveals hidden truths, casting light on the shadows that lurk
+    at the edge of perception.
+  - Those who gaze into it find themselves transported to otherworldly realms, where
+    the boundaries between dream and reality blur.
+  - Its enigmatic nature defies explanation, hinting at secrets that lie beyond the
+    comprehension of mortals.
+  - 
+  Rel_Extra:
+  - Its reflection is a gateway to other realms, its surface a mirror to worlds beyond
+    mortal comprehension.
+  - Those who possess it walk the line between dream and reality, their minds opened
+    to the infinite possibilities of existence.
+  - Legends say that it was created by beings from another dimension, who sought
+    to bridge the gap between worlds.
+  - 

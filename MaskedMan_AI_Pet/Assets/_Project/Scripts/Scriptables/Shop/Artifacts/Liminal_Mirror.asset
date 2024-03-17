@@ -16,5 +16,5 @@ MonoBehaviour:
   ItemType: 0
   ITEM_Sprite: {fileID: 0}
   ItemName: Liminal Mirror
-  ItemDesc: 
-  Obtained: 0
+  ItemDesc: A mirror that, when hung in an empty hall, changes its reflection by
+    the hour to unsettling environments.

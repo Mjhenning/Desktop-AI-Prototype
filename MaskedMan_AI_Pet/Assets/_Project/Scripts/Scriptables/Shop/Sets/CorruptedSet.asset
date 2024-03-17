@@ -16,8 +16,9 @@ MonoBehaviour:
   ItemType: 3
   ITEM_Sprite: {fileID: 0}
   ItemName: Tome of Madness
-  ItemDesc: 
-  Obtained: 0
+  ItemDesc: A cursed tome bound in human skin, its pages filled with forbidden knowledge
+    that corrupts the mind of any who dare to read its eldritch contents, twisting
+    their thoughts into madness.
   SetParts: 000000000100000002000000
-  SetItemDatabase: []
-  SetPartsObtained: 
+  SetItemDatabase:
+  - {fileID: 11400000, guid: 37a9db6cdb8602f49a99f3f7b6bb133f, type: 2}

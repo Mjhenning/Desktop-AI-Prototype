@@ -16,5 +16,6 @@ MonoBehaviour:
   ItemType: 0
   ITEM_Sprite: {fileID: 0}
   ItemName: Speaking Spectacles
-  ItemDesc: 
-  Obtained: 0
+  ItemDesc: A set of silver-rimmed spectacles, the previous owner reported that they
+    belonged to his grandfather, who got bludgeoned to death by the mafia for unknown
+    reasons.

@@ -11,10 +11,13 @@ using Random = UnityEngine.Random;
 
 public class UI_Manager : MonoBehaviour {
 
+    PlayerController input;
+
     [SerializeField]List<Sprite> Masks;
     [SerializeField]AIController activeController;
 
     [SerializeField]TextMeshProUGUI TextBubble;
+    [SerializeField] bool OverUI;
     
     [SerializeField]Image Mask;
     [SerializeField]Image Tie;
@@ -22,14 +25,38 @@ public class UI_Manager : MonoBehaviour {
 
     int currentIndex; //used to go scroll through list of masks
 
+    void Awake () {
+        input = new PlayerController ();
+        input.Enable ();
+        input.Player.Click.performed += ClickOnperformed;
+    }
+
+    void ClickOnperformed (InputAction.CallbackContext obj) {
+        switch (OverUI) {
+            case false:
+                if (activeController.GetCurrentState() == StateType.Shopping) {
+                    EventsManager.ClosedShop ();
+                }
+                break;
+        }
+    }
+    
+
     void Start() {
         currentIndex = 0;
         activeController = AIController.instance; //grabs the only ai controller in scene
         
-        EventsManager.instance.ShopOpened.AddListener (OpenShop); //adds listener to know when shop UI should be displayed
-        EventsManager.instance.ShopClosed.AddListener (CloseShop); //adds listener to know when shop ui should stop being displayed
-        EventsManager.instance.DialogueStringEvent.AddListener (DisplayDialogue); //adds listener that passes along string
+        EventsManager.ShopOpened.AddListener (OpenShop); //adds listener to know when shop UI should be displayed
+        EventsManager.ShopClosed.AddListener (CloseShop); //adds listener to know when shop ui should stop being displayed
+        EventsManager.DialogueStringEvent.AddListener (DisplayDialogue); //adds listener that passes along string
+        EventsManager.DisableMaskInteractions.AddListener (DisableMask); //adds listener that disables the mask go
+        EventsManager.EnableMaskInteractions.AddListener (EnableMask); //adds listener that enables the mask go
     }
+
+    void Update () {
+        OverUI = EventSystem.current.IsPointerOverGameObject ();
+    }
+
 
     public void ClickedMask () { //Used to randomize the mask if the player clicks on it
 
@@ -46,7 +73,7 @@ public class UI_Manager : MonoBehaviour {
         }
 
 
-        EventsManager.instance.ClickedMask (); //tells system mask was clicked
+        EventsManager.ClickedMask (); //tells system mask was clicked
 
     }
     
@@ -64,11 +91,11 @@ public class UI_Manager : MonoBehaviour {
                 break;
         }
         
-        EventsManager.instance.ClickedTie (); //tells system tie was clicked
+        EventsManager.ClickedTie (); //tells system tie was clicked
     }
     
     public void ClickedBody () {
-        EventsManager.instance.ClickedBody (); //fires off event to tell system body has been clicked
+        EventsManager.ClickedBody (); //fires off event to tell system body has been clicked
     }
 
     public void OpenShop () {
@@ -111,9 +138,23 @@ public class UI_Manager : MonoBehaviour {
         StartCoroutine (CountTillDisable(TextBubble,6f));
     }
 
-    IEnumerator CountTillDisable (TextMeshProUGUI textObj, float waitTime) {
+    IEnumerator CountTillDisable (TextMeshProUGUI textObj, float waitTime) { //used to wait 6 seconds before disabling text bubble
         yield return new WaitForSeconds (waitTime);
         textObj.transform.parent.gameObject.SetActive (false);
+    }
+
+    void DisableMask () { //used to disable mask gameobject
+        Mask.gameObject.SetActive (false);
+    }
+
+    void EnableMask () { //used to enable mask gameobject
+        StartCoroutine (WaitBeforeMaskEnable ());
+
+    }
+
+    IEnumerator WaitBeforeMaskEnable () { //used to wait 1 second before enabling mask gameobject
+        yield return new WaitForSeconds (1f);
+        Mask.gameObject.SetActive (true);
     }
 
 }

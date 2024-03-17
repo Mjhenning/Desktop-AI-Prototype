@@ -16,5 +16,4 @@ MonoBehaviour:
   ItemType: 0
   ITEM_Sprite: {fileID: 0}
   ItemName: Submerged Key
-  ItemDesc: 
-  Obtained: 0
+  ItemDesc: A rusted-over aqua-shaded key covered in barnacles.

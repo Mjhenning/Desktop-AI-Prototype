@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49f32fee6e79111468891a9a184e4df6, type: 3}
+  m_Name: Submerged_set
+  m_EditorClassIdentifier: 
+  Set: 6
+  Verbs:
+  - submerges
+  - immerses
+  - envelopes
+  - obscures
+  - conceals
+  Adverbs:
+  - deeply
+  - mysteriously
+  - elusively
+  - eerily
+  - hauntingly
+  Adjectives:
+  - submerged
+  - deep
+  - mysterious
+  - haunting
+  - introspective
+  Feelings:
+  - nostalgia
+  - melancholy
+  - longing
+  - introspection
+  - mystery
+  Eph_Extra:
+  - Its depths hold the memories of a thousand forgotten worlds, waiting to be discovered
+    by brave explorers.
+  - Legends speak of lost civilizations that lie buried beneath its waters, their
+    secrets guarded by ancient guardians.
+  - To unlock its mysteries is to unlock the secrets of the deep, revealing truths
+    that have remained hidden for eons.
+  - 
+  Rel_Extra:
+  - Its whispers are the echoes of lost souls, their voices haunting the minds of
+    all who hear them.
+  - Those who possess it are haunted by its whispers, their dreams filled with visions
+    of worlds beyond imagination.
+  - Legends say that it was created by a sorcerer of great power, who sought to bind
+    the souls of the dead to his will.
+  - 

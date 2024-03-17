@@ -16,8 +16,9 @@ MonoBehaviour:
   ItemType: 3
   ITEM_Sprite: {fileID: 0}
   ItemName: Key of Memories
-  ItemDesc: 
-  Obtained: 0
+  ItemDesc: A rusted key that unlocks the doorway to a submerged realm, where forgotten
+    memories and lost souls drift in the depths of an endless ocean, their whispers
+    haunting the dreams of the living.
   SetParts: 000000000100000002000000
-  SetItemDatabase: []
-  SetPartsObtained: 
+  SetItemDatabase:
+  - {fileID: 11400000, guid: 968cd56bc1ce74d43b3725b340265f10, type: 2}

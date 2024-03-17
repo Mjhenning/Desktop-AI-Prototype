@@ -16,8 +16,9 @@ MonoBehaviour:
   ItemType: 3
   ITEM_Sprite: {fileID: 0}
   ItemName: Canvas of Nightmares
-  ItemDesc: 
-  Obtained: 0
+  ItemDesc: A canvas that absorbs the essence of nightmares, allowing the user to
+    paint their dreams into reality, blurring the lines between the imagined and
+    the tangible.
   SetParts: 000000000100000002000000
-  SetItemDatabase: []
-  SetPartsObtained: 
+  SetItemDatabase:
+  - {fileID: 11400000, guid: 2a8b2247341cb5243a05c9abdd27d77a, type: 2}

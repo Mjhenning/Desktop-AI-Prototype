@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49f32fee6e79111468891a9a184e4df6, type: 3}
+  m_Name: Speaking_set
+  m_EditorClassIdentifier: 
+  Set: 4
+  Verbs:
+  - reveals
+  - uncovers
+  - divulges
+  - deciphers
+  - penetrates
+  Adverbs:
+  - clearly
+  - insightfully
+  - truthfully
+  - profoundly
+  - convincingly
+  Adjectives:
+  - revealing
+  - insightful
+  - profound
+  - clarifying
+  - illuminating
+  Feelings:
+  - revelation
+  - understanding
+  - clarity
+  - insight
+  - wisdom
+  Eph_Extra:
+  - Its words are the keys to unlocking the secrets of the universe, revealing truths
+    that have remained hidden for millennia.
+  - To possess it is to possess the wisdom of the ages, granting its bearer unparalleled
+    insight into the mysteries of existence.
+  - Its gaze pierces the veil of reality, illuminating the darkness with the light
+    of understanding.
+  - 
+  Rel_Extra:
+  - Its words are the keys to unlocking the secrets of the universe, its pages filled
+    with the wisdom of ages past.
+  - To possess it is to possess the knowledge of the gods, its power transcending
+    mortal understanding.
+  - Legends speak of a prophecy that foretells the coming of a chosen one, who will
+    wield its power to shape the destiny of worlds.
+  - 

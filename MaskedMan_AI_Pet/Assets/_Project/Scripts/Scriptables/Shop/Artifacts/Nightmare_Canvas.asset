@@ -16,5 +16,5 @@ MonoBehaviour:
   ItemType: 0
   ITEM_Sprite: {fileID: 0}
   ItemName: Nightmare Canvas
-  ItemDesc: 
-  Obtained: 0
+  ItemDesc: A canvas that morphs any image painted onto it into images of unsettling
+    and eerie otherworldly beings.

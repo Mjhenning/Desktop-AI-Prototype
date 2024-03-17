@@ -16,5 +16,5 @@ MonoBehaviour:
   ItemType: 0
   ITEM_Sprite: {fileID: 0}
   ItemName: Beating Locket
-  ItemDesc: 
-  Obtained: 0
+  ItemDesc: A bronze and silver-tinted locket that, at random intervals, pulses to
+    the rhythm of the holder's heart.

@@ -12,10 +12,13 @@ public class ItemGenerator : MonoBehaviour {
 
     [SerializeField]bool HasGeneratedSets;
     [SerializeField]ItemDatabase database;
-    List<Item> ShopItems = new List<Item>();
+    [SerializeField]List<Item> ShopItems = new List<Item>();
+    [SerializeField] List<Descriptions> ItemDescriptions;
 
     [SerializeField]Item tempItem;
 
+
+    [SerializeField]List<ItemSprites> SpriteCollections = new List<ItemSprites> ();
 
 
     void Awake () {
@@ -30,7 +33,6 @@ public class ItemGenerator : MonoBehaviour {
 
     void GenerateSets () {
         foreach (NewDictItem _setItem in database.Sets.ListOfSets) {
-            // _setItem.set.ItemDesc =GenerateSetDesc (_setItem.set.MainSet);
             _setItem.items = _setItem.set.SetItemDatabase;
         }
     }
@@ -51,6 +53,7 @@ public class ItemGenerator : MonoBehaviour {
         Item createdItem = ScriptableObject.CreateInstance<Item> ();
         
         if (type == ItemTypes.Artifact) { //if the item is a artifact grab from list of predefined artifacts
+            Debug.Log ("Grabbing an artifact");
             for (int i = 0; i < Artifacts.Count; i++) {
                 if (Artifacts[i].MainSet == set) {
                     createdItem = Artifacts[i];
@@ -58,10 +61,11 @@ public class ItemGenerator : MonoBehaviour {
                 }
             }
         } else { //else if not a artifact set the set, item type, randomize the name and description and set the Image
+            Debug.Log ("Creating a new item");
             createdItem.MainSet = set;
             createdItem.ItemType = type;
             createdItem.ItemName = ItemNameGenerator.GenerateItemName (set, type);
-            //createdItem.ItemDesc =
+            createdItem.ItemDesc = ItemDescGenerator.GenerateItemDesc (createdItem, ItemDescriptions);
             
             tempItem = createdItem;
         }
@@ -70,11 +74,13 @@ public class ItemGenerator : MonoBehaviour {
     void CheckInDatabase (ItemTypes type, SetTypes set) { //double checks generated combo if it doesn't already exist
 
         for (int i = 0; i < database.Sets.ListOfSets.Length; i++) {
-            for (int j = 0; j < database.Sets.ListOfSets[i].items.Count; j++) { //if it exists regenerate
-                if (database.Sets.ListOfSets[i].items[j].ItemType == type && database.Sets.ListOfSets[i].items[j].MainSet == set ) {
+            for (int j = 0; j < 3; j++) { //if it exists regenerate
+                if (database.Sets.ListOfSets[i].items.Count>0 && database.Sets.ListOfSets[i].items[j] != null && database.Sets.ListOfSets[i].items[j].ItemType == type && database.Sets.ListOfSets[i].items[j].MainSet == set ) {
                     GenerateItemSetPair ();
+                    Debug.Log ("Check failed regenerating");
                 } else { //if it doesn't exist create a new item
                     GenerateItemBasedOffItemSetPair (type, set);
+                    Debug.Log ("Check succeeded generating");
                 }
             }
         }
@@ -89,6 +95,8 @@ public class ItemGenerator : MonoBehaviour {
         while (itemtype == ItemTypes.MainItem) {
             itemtype = (ItemTypes) Random.Range (0, 3);  
         }
+
+        Debug.Log ("Generate item with" + set + " " + itemtype);
 
         CheckInDatabase (itemtype, set);
     }

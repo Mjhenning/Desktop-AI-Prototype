@@ -31,6 +31,7 @@ public class AIController : MonoBehaviour {
         stateShopPrompt = new State_ShopPrompt (this);
         stateShopping = new State_Shopping (this);
         ChangeState (stateIdle);
+        EventsManager.StartHourlyTimer ();
     }
 
     void Update() {

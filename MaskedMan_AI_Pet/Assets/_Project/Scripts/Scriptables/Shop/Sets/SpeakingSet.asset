@@ -16,8 +16,9 @@ MonoBehaviour:
   ItemType: 3
   ITEM_Sprite: {fileID: 0}
   ItemName: Spectacles of Insight
-  ItemDesc: 
-  Obtained: 0
+  ItemDesc: A pair of spectacles that grant the wearer the ability to hear the thoughts
+    of others, but with each use, they become more attuned to the whispers of unseen
+    entities lurking in the shadows, driving the user towards paranoia and despair.
   SetParts: 000000000100000002000000
-  SetItemDatabase: []
-  SetPartsObtained: 
+  SetItemDatabase:
+  - {fileID: 11400000, guid: 6a3b2d73543f05e41a5de33ea025724a, type: 2}

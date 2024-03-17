@@ -4,42 +4,52 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class DialogueTypeEvent : UnityEvent<DialogueType>{};
-public class StringEvent : UnityEvent<String> { };
 
-public class EventsManager : MonoBehaviour
+
+public static class EventsManager
 {
-    public static EventsManager instance;
-    
-    public UnityEvent BodyClicked;
-    public UnityEvent TieClicked;
-    public UnityEvent MaskClicked;
-    
-    
-    public UnityEvent ShopOpened;
-    public UnityEvent ShopClosed;
-    
-    public DialogueTypeEvent dialogueEvent;
-    public StringEvent DialogueStringEvent;
+    public static UnityEvent BodyClicked = new UnityEvent();
+    public static UnityEvent TieClicked = new UnityEvent();
+    public static UnityEvent MaskClicked = new UnityEvent();
 
-    void Awake () {
-        instance = this;
-        dialogueEvent = new DialogueTypeEvent ();
-        DialogueStringEvent = new StringEvent ();
+    public static UnityEvent DisableMaskInteractions = new UnityEvent();
+    public static UnityEvent EnableMaskInteractions = new UnityEvent();
+
+    public static UnityEvent ShopOpened = new UnityEvent();
+    public static UnityEvent ShopClosed = new UnityEvent();
+
+    public static UnityEvent<DialogueType> dialogueEvent = new UnityEvent<DialogueType>();
+    public static UnityEvent<string> DialogueStringEvent = new UnityEvent<string>();
+
+    public static UnityEvent<bool> CheckIfShopClosed = new UnityEvent<bool> ();
+    static bool lastShopState = true;
+    public static UnityEvent StartHourlyCheck = new UnityEvent ();
+
+    public static void ClickedBody() { BodyClicked.Invoke(); }
+
+    public static void ClickedTie() { TieClicked.Invoke(); }
+
+    public static void ClickedMask() { MaskClicked.Invoke(); }
+
+    public static void OpenedShop() { ShopOpened.Invoke(); }
+
+    public static void ClosedShop() { ShopClosed.Invoke(); }
+
+    public static void DialogueDetermine(DialogueType type) { dialogueEvent.Invoke(type); }
+
+    public static void DialogueFeed(String text) { DialogueStringEvent.Invoke(text); }
+
+    public static void DisableMask() { DisableMaskInteractions.Invoke(); }
+
+    public static void EnableMask() { EnableMaskInteractions.Invoke(); }
+
+    public static void CheckShop (bool open) {
+        lastShopState = open;
+        CheckIfShopClosed.Invoke (open);
     }
-    
-    public void ClickedBody() {BodyClicked.Invoke ();} //Invokes event to tell system body was clicked
-    
-    public void ClickedTie () {TieClicked.Invoke ();} //Invokes event to tell system tie was clicked
-    
-    public void ClickedMask () {MaskClicked.Invoke ();} //Invokes event to tell system mask was clicked
-    
-    public void OpenedShop () {ShopOpened.Invoke ();} //Invokes event to tell system shop has to be opened
-    
-    public void ClosedShop () {ShopClosed.Invoke ();} //Invokes event to tell system shop has to be closed
 
-    public void DialogueDetermine(DialogueType type) { dialogueEvent.Invoke (type); } //invokes event to determine which dialogue snippet will be used
+    public static bool ReturnShopState () { return lastShopState;}
 
-    public void DialogueFeed (String text) { DialogueStringEvent.Invoke (text); } //invokes an event to feed apropriate snippet
+    public static void StartHourlyTimer () { StartHourlyCheck.Invoke (); } //used to only fire off time checker for if shop is completely closed or not after the first state change to idle
 
 }

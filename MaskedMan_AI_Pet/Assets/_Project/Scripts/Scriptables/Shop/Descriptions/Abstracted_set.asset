@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49f32fee6e79111468891a9a184e4df6, type: 3}
+  m_Name: Abstracted_set
+  m_EditorClassIdentifier: 
+  Set: 0
+  Verbs:
+  - resonates
+  - pulsates
+  - emanates
+  - glows
+  - shimmers
+  Adverbs:
+  - subtly
+  - softly
+  - gently
+  - faintly
+  - ethereally
+  Adjectives:
+  - mystical
+  - cosmic
+  - ethereal
+  - transcendent
+  - enigmatic
+  Feelings:
+  - intrigue
+  - mystery
+  - fascination
+  - unease
+  - temptation
+  Eph_Extra:
+  - It flickers like distant starlight, revealing glimpses of cosmic mysteries to
+    those who dare to look.
+  - Those who possess it find themselves lost in a kaleidoscope of shifting realities,
+    each more bewildering than the last.
+  - Its ephemeral nature mirrors the fleeting nature of existence itself, reminding
+    all who encounter it of the impermanence of reality.
+  - 
+  Rel_Extra:
+  - It is said to be the last remnant of a long-forgotten civilization, its true
+    purpose shrouded in mystery.
+  - Legends speak of its creation by ancient beings, who imbued it with the power
+    to shape reality itself.
+  - Those who possess it are granted visions of worlds beyond imagination, their
+    minds opened to the infinite possibilities of existence.
+  - 

@@ -13,29 +13,22 @@ MonoBehaviour:
   m_Name: ShopPrompt
   m_EditorClassIdentifier: 
   type: 1
-  TypeSnippets:
+  DialogueSnippets:
   - Behind every mask lies a tale, care to uncover the stories woven into these artifacts?
+  - In this realm, the ordinary transforms into the extraordinary. Care to witness?
   - The arcane whispers of the items within beckon for attention. Care to listen?
-  - Perplexity and fascination entwined, offering a unique experience with each visit.
-  - Ephemeral whispers of the arcane drift through these shelves, waiting to be unraveled.
   - Lost in time, these relics await a curious mind to breathe life into their tales.
-  - Each item holds a piece of the void, beckoning those who dare to delve into the
-    abyss.
-  - Beware the allure of the forbidden, for within lies a darkness that consumes
-    the unwary.
-  - Madness whispers sweet promises to those who dare to listen. Will you succumb
-    to its embrace?
-  - The boundary between sanity and madness is thin here. How long before it crumbles
-    beneath your touch?
-  - Enter at your own risk, for once you step into this realm, there is no turning
-    back.
-  - Every item has a story, some more sinister than others. Care to unravel the tales
-    of the damned?
-  - Within these walls, time unravels, and reality fractures. What nightmares will
-    you uncover?
-  - Lost souls wander these halls, trapped within the artifacts that bind them. Will
-    you join them?
-  - The air is thick with dread, a palpable reminder of the horrors that lurk just
-    beyond sight.
-  - In the depths of the abyss, secrets fester and nightmares thrive. Care to confront
-    your deepest fears?
+  - The ordinary fades as the extraordinary takes center stage. What will catch your
+    eye today?
+  - Within these confines, mysteries and marvels converge. Will you be the one to
+    unearth them?
+  - Ephemeral whispers of the arcane drift through these halls, waiting to be unraveled.
+  - Anomaly or artifact? Delve into the realm where distinctions blur.
+  - Perplexity and fascination entwined, offering a unique experience with each visit.
+  - Dare to unlock the secrets concealed within these artifacts of wonder.
+  - Step into the realm of the extraordinary, where the mundane is but a distant
+    memory.
+  - Behind every shroud lies a tale yearning to be heard. Which will captivate you
+    today?
+  - The shadows hold more than darkness; they hold the secrets of existence itself.
+    Will you delve into them

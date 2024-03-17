@@ -16,8 +16,9 @@ MonoBehaviour:
   ItemType: 3
   ITEM_Sprite: {fileID: 0}
   ItemName: Locket of Fate
-  ItemDesc: 
-  Obtained: 0
+  ItemDesc: A heart-shaped locket that pulses with an otherworldly rhythm, drawing
+    the attention of malevolent entities from beyond the veil, offering glimpses
+    of the future at the cost of tethering the user's fate to the whims of fate itself.
   SetParts: 000000000100000002000000
-  SetItemDatabase: []
-  SetPartsObtained: 
+  SetItemDatabase:
+  - {fileID: 11400000, guid: 06c2c6e4ebadd12438d77d56f5376b56, type: 2}

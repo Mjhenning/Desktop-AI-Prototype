@@ -16,5 +16,4 @@ MonoBehaviour:
   ItemType: 0
   ITEM_Sprite: {fileID: 0}
   ItemName: Tome of Madness
-  ItemDesc: 
-  Obtained: 0
+  ItemDesc: A book covered with human flesh, engraved with maddening scribbles.

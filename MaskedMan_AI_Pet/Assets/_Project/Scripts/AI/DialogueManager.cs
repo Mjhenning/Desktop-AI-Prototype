@@ -13,11 +13,11 @@ public class DialogueManager : MonoBehaviour
     [SerializeField]List<DialogueStrings> StringTypes;
 
     void Start () {
-        EventsManager.instance.dialogueEvent.AddListener (SendALine);
+        EventsManager.dialogueEvent.AddListener (SendALine);
     }
 
     public void SendALine (DialogueType type) {
-        EventsManager.instance.DialogueFeed (GrabALine (type)); //TODO: DON'T LIKE THIS NOT MODULAR ENOUGH
+        EventsManager.DialogueFeed (GrabALine (type)); //TODO: DON'T LIKE THIS NOT MODULAR ENOUGH
     }
 
     //Assign used dialogue to temp var, double check if picked random.ranger is the same as previous dialogue if it is re re-randomize else use the picked dialogue

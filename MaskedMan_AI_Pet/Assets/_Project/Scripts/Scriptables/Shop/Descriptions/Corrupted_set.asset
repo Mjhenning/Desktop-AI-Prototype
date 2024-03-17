@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49f32fee6e79111468891a9a184e4df6, type: 3}
+  m_Name: Corrupted_set
+  m_EditorClassIdentifier: 
+  Set: 2
+  Verbs:
+  - whispers
+  - murmurs
+  - hisses
+  - seethes
+  - corrupts
+  Adverbs:
+  - ominously
+  - sinisterly
+  - darkly
+  - malevolently
+  - hauntingly
+  Adjectives:
+  - sinister
+  - ominous
+  - malevolent
+  - dark
+  - forbidden
+  Feelings:
+  - dread
+  - horror
+  - madness
+  - despair
+  - corruption
+  Eph_Extra:
+  - Its whispers are the voices of the damned, tempting the unwary with promises
+    of forbidden knowledge.
+  - To possess it is to court madness, as its corrupting influence twists the mind
+    and soul.
+  - Its malevolent aura stains the very fabric of reality, leaving a trail of darkness
+    in its wake.
+  - 
+  Rel_Extra:
+  - Its dark aura whispers of ancient evils, its power tainted by the shadows that
+    lurk at the edge of reality.
+  - Those who seek it risk falling into darkness, their souls consumed by the corrupting
+    influence of its malevolent presence.
+  - Legends speak of a curse that befalls all who possess it, their fates forever
+    bound to its twisted will.
+  - 

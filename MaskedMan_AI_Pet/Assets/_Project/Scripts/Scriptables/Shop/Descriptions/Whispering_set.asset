@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49f32fee6e79111468891a9a184e4df6, type: 3}
+  m_Name: Whispering_set
+  m_EditorClassIdentifier: 
+  Set: 3
+  Verbs:
+  - whispers
+  - echoes
+  - murmurs
+  - beckons
+  - entices
+  Adverbs:
+  - softly
+  - hauntingly
+  - mysteriously
+  - eerily
+  - seductively
+  Adjectives:
+  - haunting
+  - seductive
+  - mysterious
+  - enigmatic
+  - alluring
+  Feelings:
+  - intrigue
+  - mystery
+  - fascination
+  - unease
+  - temptation
+  Eph_Extra:
+  - Its whispers are the voices of the dead, calling out to the living from beyond
+    the grave.
+  - Those who listen too closely are drawn into its embrace, lost to the world forevermore.
+  - Its seductive allure is impossible to resist, tempting even the most steadfast
+    souls with promises of forbidden knowledge.
+  - 
+  Rel_Extra:
+  - Its whispers are the echoes of lost souls, their voices haunting the minds of
+    all who hear them.
+  - Those who possess it are haunted by its whispers, their dreams filled with visions
+    of worlds beyond imagination.
+  - Legends say that it was created by a sorcerer of great power, who sought to bind
+    the souls of the dead to his will.
+  - 

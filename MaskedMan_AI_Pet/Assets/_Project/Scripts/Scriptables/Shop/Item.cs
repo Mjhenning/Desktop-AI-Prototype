@@ -20,6 +20,5 @@ public class Item : ScriptableObject { //scriptable setup for every single item 
     public Sprite ITEM_Sprite;
     public string ItemName;
     public string ItemDesc;
-    public bool Obtained;
 
 }
