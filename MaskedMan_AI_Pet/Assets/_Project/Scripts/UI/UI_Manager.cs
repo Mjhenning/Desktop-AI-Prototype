@@ -39,7 +39,7 @@ public class UI_Manager : MonoBehaviour {
                        EventsManager.ClosedShop (); //close the shop
                        break;
                    case StateType.Agressive: //if the vendor is currently agressive and the player clicks while not over ui
-                       ObjectPool.instance.DuplicateObjectFromPool (); //duplicate the current object from the pool of shop windows
+                       ObjectPool.instance.DuplicateObjectFromPool (ObjectPool.instance.pooledObjects[0]); //duplicate the current object from the pool of shop windows
                        break;
                 }
                 break;

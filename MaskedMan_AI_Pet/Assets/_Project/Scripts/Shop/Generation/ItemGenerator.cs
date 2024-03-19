@@ -19,6 +19,8 @@ public class ItemGenerator : MonoBehaviour {
     [SerializeField]List<Item> ActiveShopItems; //used to reference current items in generated shop
     [SerializeField]List<ItemSprites> SpriteCollections = new List<ItemSprites> (); //used to store type/set combos and their corresponding sprites
 
+    int itemGeneratedCount = 0; //index for shop list
+
 
     void Awake () {
         instance = this;
@@ -69,6 +71,13 @@ public class ItemGenerator : MonoBehaviour {
             
             tempItem = createdItem;
         }
+
+		//Used to only populate the shop list 4 items at a time
+        itemGeneratedCount++;
+        if (itemGeneratedCount > 4) {
+            ActiveShopItems.Clear ();
+            ActiveShopItems.Add (tempItem);
+        } else {ActiveShopItems.Add (tempItem);}
     }
 
     void CheckInDatabase(ItemTypes type, SetTypes set) //doubles checks if item exists in database / current shop list before generating item
@@ -130,9 +139,7 @@ public class ItemGenerator : MonoBehaviour {
 
     void ClearAnPopulateShop (List<Item> shopitems) { //used to repopulate shops everytime the vendor opens a new instance of the shop
         ActiveShopItems.Clear ();
-        for (int i = 0; i < shopitems.Count; i++) {
-            ActiveShopItems.Add (shopitems[i]);
-        }
+        ActiveShopItems = shopitems;
 
     }
     

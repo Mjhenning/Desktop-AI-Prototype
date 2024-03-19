@@ -231,6 +231,7 @@ public class State_Shopping : State {
             base.Enable ();
             stateName = StateType.Agressive;
             EventsManager.OpenedShop (); //open the shop
+            EventsManager.RandomizeShop (); //randomizes shops
 
         }
 
