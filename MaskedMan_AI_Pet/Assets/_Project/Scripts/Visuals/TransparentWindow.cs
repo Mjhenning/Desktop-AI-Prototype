@@ -4,12 +4,12 @@ using UnityEngine;
  
 public class TransparentWindow : MonoBehaviour //script I joinked from unity forums used to allow user to click through window and make it transparent when needed
 {
-    private struct MARGINS
+    private struct Margins
     {
-        public int cxLeftWidth;
-        public int cxRightWidth;
-        public int cyTopHeight;
-        public int cyBottomHeight;
+        public int CxLeftWidth;
+        public int CxRightWidth;
+        public int CyTopHeight;
+        public int CyBottomHeight;
     }
  
     [DllImport("user32.dll")]
@@ -28,12 +28,12 @@ public class TransparentWindow : MonoBehaviour //script I joinked from unity for
     private static extern int SetWindowPos(IntPtr hwnd, int hwndInsertAfter, int x, int y, int cx, int cy, int uFlags);
  
     [DllImport("Dwmapi.dll")]
-    private static extern uint DwmExtendFrameIntoClientArea(IntPtr hWnd, ref MARGINS margins);
+    private static extern uint DwmExtendFrameIntoClientArea(IntPtr hWnd, ref Margins margins);
  
-    const int GWL_STYLE = -16;
-    const uint WS_POPUP = 0x80000000;
-    const uint WS_VISIBLE = 0x10000000;
-    const int HWND_TOPMOST = -1;
+    const int GwlStyle = -16;
+    const uint WsPopup = 0x80000000;
+    const uint WsVisible = 0x10000000;
+    const int HwndTopmost = -1;
  
     void Start()
     {

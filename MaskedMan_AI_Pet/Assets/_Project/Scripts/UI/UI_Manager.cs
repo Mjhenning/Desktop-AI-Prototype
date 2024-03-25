@@ -6,22 +6,23 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-public class UI_Manager : MonoBehaviour {
+public class UIManager : MonoBehaviour {
 
     PlayerController input;
 
-    [SerializeField]List<Sprite> Masks;
+    [FormerlySerializedAs ("Masks")] [SerializeField]List<Sprite> masks;
     [SerializeField]AIController activeController;
 
-    [SerializeField]TextMeshProUGUI TextBubble;
-    [SerializeField] bool OverUI;
+    [FormerlySerializedAs ("TextBubble")] [SerializeField]TextMeshProUGUI textBubble;
+    [FormerlySerializedAs ("OverUI")] [SerializeField] bool overUI;
     
-    [SerializeField]Image Mask;
-    [SerializeField]Image Tie;
-    [SerializeField]Image Body;
+    [FormerlySerializedAs ("Mask")] [SerializeField]Image mask;
+    [FormerlySerializedAs ("Tie")] [SerializeField]Image tie;
+    [FormerlySerializedAs ("Body")] [SerializeField]Image body;
 
     int currentIndex; //used to go scroll through list of masks
 
@@ -32,14 +33,14 @@ public class UI_Manager : MonoBehaviour {
     }
 
     void ClickOnperformed (InputAction.CallbackContext obj) {
-        switch (OverUI) {
+        switch (overUI) {
             case false:
                 switch (activeController.GetCurrentState() ) { 
                    case StateType.Shopping: //if the player is currently shopping and not over ui when they click
                        EventsManager.ClosedShop (); //close the shop
                        break;
                    case StateType.Agressive: //if the vendor is currently agressive and the player clicks while not over ui
-                       ObjectPool.instance.DuplicateObjectFromPool (ObjectPool.instance.pooledObjects[0]); //duplicate the current object from the pool of shop windows
+                       ObjectPool.Instance.DuplicateObjectFromPool (ObjectPool.Instance.pooledObjects[0]); //duplicate the current object from the pool of shop windows
                        break;
                 }
                 break;
@@ -49,7 +50,7 @@ public class UI_Manager : MonoBehaviour {
 
     void Start() {
         currentIndex = 0;
-        activeController = AIController.instance; //grabs the only ai controller in scene
+        activeController = AIController.Instance; //grabs the only ai controller in scene
         
         EventsManager.ShopOpened.AddListener (OpenShop); //adds listener to know when shop UI should be displayed
         EventsManager.ShopClosed.AddListener (CloseShop); //adds listener to know when shop ui should stop being displayed
@@ -59,7 +60,7 @@ public class UI_Manager : MonoBehaviour {
     }
 
     void Update () {
-        OverUI = EventSystem.current.IsPointerOverGameObject ();
+        overUI = EventSystem.current.IsPointerOverGameObject ();
     }
 
 
@@ -104,16 +105,16 @@ public class UI_Manager : MonoBehaviour {
     }
 
     public void OpenShop () {
-        ObjectPool.instance.GetObjectFromPool (); //grabs shop ui from pool
+        ObjectPool.Instance.GetObjectFromPool (); //grabs shop ui from pool
     }
 
     public void CloseShop () {
-        ObjectPool.instance.ReturnAllObjectsToPool (); //returns all shop ui to pool
+        ObjectPool.Instance.ReturnAllObjectsToPool (); //returns all shop ui to pool
 
     }
 
     void RandomizeTieColor () { //randomizes the tie color
-        Tie.color = new Color (
+        tie.color = new Color (
             Random.Range(0f,1f),
             Random.Range(0f,1f),
             Random.Range(0f,1f)
@@ -122,25 +123,25 @@ public class UI_Manager : MonoBehaviour {
 
     void ChangeMaskInOrderd () {
         //Used to run through list of masks in order
-        if (currentIndex != Masks.Count -1) {
+        if (currentIndex != masks.Count -1) {
             currentIndex++;
-            Mask.sprite = Masks[currentIndex];  
+            mask.sprite = masks[currentIndex];  
         } else {
             currentIndex = 0;
-            Mask.sprite = Masks[currentIndex];
+            mask.sprite = masks[currentIndex];
         }
         
         
         //If no mask is selected make it's color clear otherwise keep it white
-        Mask.color = Mask.sprite != null ? Color.white : Color.clear;
+        mask.color = mask.sprite != null ? Color.white : Color.clear;
     }
 
     void DisplayDialogue (String text) { //used to display the grabbed dialogue and the start a counter beore dialogue stops displaying
-        TextBubble.transform.parent.gameObject.SetActive (true);
-        TextBubble.text = text;
+        textBubble.transform.parent.gameObject.SetActive (true);
+        textBubble.text = text;
         Debug.Log ("Displaying text:" + text);
 
-        StartCoroutine (CountTillDisable(TextBubble,6f));
+        StartCoroutine (CountTillDisable(textBubble,6f));
     }
 
     IEnumerator CountTillDisable (TextMeshProUGUI textObj, float waitTime) { //used to wait 6 seconds before disabling text bubble
@@ -149,7 +150,7 @@ public class UI_Manager : MonoBehaviour {
     }
 
     void DisableMask () { //used to disable mask gameobject
-        Mask.gameObject.SetActive (false);
+        mask.gameObject.SetActive (false);
     }
 
     void EnableMask () { //used to enable mask gameobject
@@ -159,7 +160,7 @@ public class UI_Manager : MonoBehaviour {
 
     IEnumerator WaitBeforeMaskEnable () { //used to wait 1 second before enabling mask gameobject
         yield return new WaitForSeconds (1f);
-        Mask.gameObject.SetActive (true);
+        mask.gameObject.SetActive (true);
     }
 
 }

@@ -5,7 +5,7 @@ using CarouselUI.Demo;
 
 namespace CarouselUI
 {
-    public class CarouselUIProcessor_Template : CarouselUI_Processor_Base
+    public class CarouselUIProcessorTemplate : CarouselUIProcessorBase
     {
         //ADDITIONAL VARIABLES HERE TO ALLOW FOR CONTROL (REFER TO CAROUSELUIPROCESSOR_PLAYERPREFS)
 

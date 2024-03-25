@@ -7,22 +7,22 @@ using Random = UnityEngine.Random;
 public class DialogueManager : MonoBehaviour
 {
     string tmpRandomSnippet;
-    string Snippet;
+    string dialogueSnippet;
 
     //Scriptables with strings attatched
-    [SerializeField]List<DialogueStrings> StringTypes;
+    [SerializeField]List<DialogueStrings> stringTypes;
 
     void Start () {
-        EventsManager.dialogueEvent.AddListener (SendALine);
+        EventsManager.DialogueEvent.AddListener (SendALine);
     }
 
-    public void SendALine (DialogueType type) {
+    void SendALine (DialogueType type) {
         EventsManager.DialogueFeed (GrabALine (type)); //TODO: DON'T LIKE THIS NOT MODULAR ENOUGH
     }
 
     //Assign used dialogue to temp var, double check if picked random.ranger is the same as previous dialogue if it is re re-randomize else use the picked dialogue
     
-    public string GrabALine (DialogueType type) {
+    string GrabALine (DialogueType type) {
         switch (type) {
             case DialogueType.Idle:
                 return (DialogueLoop (type));
@@ -41,18 +41,17 @@ public class DialogueManager : MonoBehaviour
     }
 
     string GenerateSnippet (DialogueType type) { //generates a new snippet
-        DialogueStrings Dialogue;
-        Dialogue = StringTypes.Find (x => x.type == type);
-        return Dialogue.DialogueSnippets[Random.Range (0, Dialogue.DialogueSnippets.Count)];
+        DialogueStrings _dialogue = stringTypes.Find (x => x.type == type);
+        return _dialogue.dialogueSnippets[Random.Range (0, _dialogue.dialogueSnippets.Count)];
     }
 
     string DialogueLoop (DialogueType type) { //loops until snippet and previous snippet isn't the same then feeds it to dialogue system
-        while (!CheckSnippetBeforeReturn(tmpRandomSnippet,Snippet)) {
+        while (!CheckSnippetBeforeReturn(tmpRandomSnippet,dialogueSnippet)) {
             tmpRandomSnippet = GenerateSnippet(type);
         }
 
-        Snippet = tmpRandomSnippet;
-        return Snippet;
+        dialogueSnippet = tmpRandomSnippet;
+        return dialogueSnippet;
     }
 
 

@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Serialization;
 
 namespace CarouselUI.Demo
 {
     public class PlayerPrefDisplayer : MonoBehaviour
     {
-        [SerializeField] private CanvasGroup _canvasGroup;
-        [SerializeField] private PreferenceEnum _preferenceToDisplay;
-        [SerializeField] private TextMeshProUGUI _displayText;
+        [FormerlySerializedAs ("_canvasGroup")] [SerializeField] private CanvasGroup canvasGroup;
+        [FormerlySerializedAs ("_preferenceToDisplay")] [SerializeField] private PreferenceEnum preferenceToDisplay;
+        [FormerlySerializedAs ("_displayText")] [SerializeField] private TextMeshProUGUI displayText;
 
         private Coroutine fadeOut;
 
@@ -20,7 +21,7 @@ namespace CarouselUI.Demo
 
         public void RefreshValue()
         {
-            _displayText.text = $"{PlayerPrefs.GetInt(_preferenceToDisplay.ToString())}";
+            displayText.text = $"{PlayerPrefs.GetInt(preferenceToDisplay.ToString())}";
 
             if(fadeOut != null)
             {
@@ -32,11 +33,11 @@ namespace CarouselUI.Demo
 
         private IEnumerator FadeOut()
         {
-            _canvasGroup.alpha = 1;
+            canvasGroup.alpha = 1;
 
             yield return new WaitForSeconds(3);
 
-            _canvasGroup.alpha = 0;
+            canvasGroup.alpha = 0;
 
             yield break;
         }

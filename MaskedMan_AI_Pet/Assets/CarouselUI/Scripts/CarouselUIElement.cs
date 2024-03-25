@@ -1,34 +1,39 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
+
+//PUBLIC SCRIPT
 
 namespace CarouselUI
 {
     public class CarouselUIElement : MonoBehaviour
     {
+        [FormerlySerializedAs ("_optionsObjects")]
         [Header("Carousel Members")]
-        [SerializeField, Tooltip("Array containing gameobjects used for options.")] private GameObject[] _optionsObjects;
+        [SerializeField, Tooltip("Array containing gameobjects used for options.")] private GameObject[] optionsObjects;
 
-        [SerializeField, Tooltip("Button that increments index by 1.")] private GameObject _nextButton;
+        [FormerlySerializedAs ("_nextButton")] [SerializeField, Tooltip("Button that increments index by 1.")] private GameObject nextButton;
 
-        [SerializeField, Tooltip("Button that decrements index by 1.")] private GameObject _prevButton;
+        [FormerlySerializedAs ("_prevButton")] [SerializeField, Tooltip("Button that decrements index by 1.")] private GameObject prevButton;
 
+        [FormerlySerializedAs ("_resetDuration")]
         [Header("Settings")]
-        [SerializeField, Tooltip("Time to deactivate inbetween refires.")] private float _resetDuration = 0.1f;
-        [SerializeField, Tooltip("If true, when the index reaches either limit the next/previous buttons are hidden.")] private bool _doesNotCycleBack = false;
+        [SerializeField, Tooltip("Time to deactivate inbetween refires.")] private float resetDuration = 0.1f;
+        [FormerlySerializedAs ("_doesNotCycleBack")] [SerializeField, Tooltip("If true, when the index reaches either limit the next/previous buttons are hidden.")] private bool doesNotCycleBack = false;
 
-        private int _currentIndex = 0;
+        private int currentIndex = 0;
 
         public int CurrentIndex
         {
-            get { return _currentIndex; }
-            set { _currentIndex = value; }
+            get { return currentIndex; }
+            set { currentIndex = value; }
         }
 
         public delegate void InputDetected();
         public event InputDetected InputEvent = delegate { };
 
-        private bool _isProcessing = false; //HERE TO DELAY REFIRES
-        private WaitForSeconds _resetDelay; //WORKS WITH DELAY COROUTINE
+        private bool isProcessing = false; //HERE TO DELAY REFIRES
+        private WaitForSeconds resetDelay; //WORKS WITH DELAY COROUTINE
 
         private void Start()
         {
@@ -37,43 +42,43 @@ namespace CarouselUI
 
         private void Initialize()
         {
-            if (_optionsObjects.Length == 0 || _optionsObjects == null) //ERROR IF THE OPTIONS ARRAY IS EMPTY
+            if (optionsObjects.Length == 0 || optionsObjects == null) //ERROR IF THE OPTIONS ARRAY IS EMPTY
             {
                 Debug.LogError($"Carousel UI at {this.gameObject.name} has incomplete options array. Please fix.");
 
                 return;
             }
 
-            _resetDelay = new WaitForSeconds(_resetDuration);
+            resetDelay = new WaitForSeconds(resetDuration);
 
             UpdateUI();
         }
 
         private void UpdateUI()
         {
-            foreach (GameObject text in _optionsObjects)
+            foreach (GameObject _text in optionsObjects)
             {
-                text.SetActive(false); //IF ONE OF THE OPTIONS IS NULL IT WILL CREATE AN ERROR HERE
+                _text.SetActive(false); //IF ONE OF THE OPTIONS IS NULL IT WILL CREATE AN ERROR HERE
             }
 
-            _optionsObjects[_currentIndex].SetActive(true);
+            optionsObjects[currentIndex].SetActive(true);
 
-            if (_doesNotCycleBack && _currentIndex == _optionsObjects.Length - 1)
+            if (doesNotCycleBack && currentIndex == optionsObjects.Length - 1)
             {
-                _nextButton.SetActive(false);
+                nextButton.SetActive(false);
             }
             else
             {
-                _nextButton.SetActive(true);
+                nextButton.SetActive(true);
             }
 
-            if (_doesNotCycleBack && _currentIndex == 0)
+            if (doesNotCycleBack && currentIndex == 0)
             {
-                _prevButton.SetActive(false);
+                prevButton.SetActive(false);
             }
             else
             {
-                _prevButton.SetActive(true);
+                prevButton.SetActive(true);
             }
 
         }
@@ -84,11 +89,11 @@ namespace CarouselUI
         /// <returns></returns>
         private IEnumerator LockoutDelay()
         {
-            _isProcessing = true; //PREVENTS BUTTON MASHING
+            isProcessing = true; //PREVENTS BUTTON MASHING
 
-            yield return _resetDelay;
+            yield return resetDelay;
 
-            _isProcessing = false;
+            isProcessing = false;
 
             yield break;
         }
@@ -96,27 +101,27 @@ namespace CarouselUI
         //METHOD ACCESSED BY NEXT BUTTON
         public void PressNext()
         {
-            if (_isProcessing)
+            if (isProcessing)
             {
                 return;
             }
 
-            if (_doesNotCycleBack && _currentIndex == _optionsObjects.Length - 1)
+            if (doesNotCycleBack && currentIndex == optionsObjects.Length - 1)
             {
                 return;
             }
 
             StartCoroutine(LockoutDelay());
 
-            if (_currentIndex < (_optionsObjects.Length - 1))
+            if (currentIndex < (optionsObjects.Length - 1))
             {
-                _currentIndex += 1;
+                currentIndex += 1;
 
                 UpdateUI();
             }
             else
             {
-                _currentIndex = 0;
+                currentIndex = 0;
 
                 UpdateUI();
             }
@@ -127,27 +132,27 @@ namespace CarouselUI
         //METHOD ACCESSED BY PREVIOUS BUTTON
         public void PressPrevious()
         {
-            if (_isProcessing)
+            if (isProcessing)
             {
                 return;
             }
 
-            if (_doesNotCycleBack && _currentIndex == 0)
+            if (doesNotCycleBack && currentIndex == 0)
             {
                 return;
             }
 
             StartCoroutine(LockoutDelay());
 
-            if (_currentIndex > 0)
+            if (currentIndex > 0)
             {
-                _currentIndex -= 1;
+                currentIndex -= 1;
 
                 UpdateUI();
             }
             else
             {
-                _currentIndex = (_optionsObjects.Length - 1);
+                currentIndex = (optionsObjects.Length - 1);
 
                 UpdateUI();
             }
@@ -161,7 +166,7 @@ namespace CarouselUI
         /// <param name="input"></param>
         public void UpdateIndex(int input)
         {
-            _currentIndex = input;
+            currentIndex = input;
             UpdateUI();
         }
     }

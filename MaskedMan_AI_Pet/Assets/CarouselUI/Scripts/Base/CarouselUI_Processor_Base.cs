@@ -1,25 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace CarouselUI
 {
-    public abstract class CarouselUI_Processor_Base : MonoBehaviour
+    public abstract class CarouselUIProcessorBase : MonoBehaviour
     {
-        [SerializeField, Tooltip("Carousel script that this processor tracks.")] private CarouselUIElement _associatedCarousel;
+        [FormerlySerializedAs ("_associatedCarousel")] [SerializeField, Tooltip("Carousel script that this processor tracks.")] private CarouselUIElement associatedCarousel;
 
-        protected int _storedSettingsIndex;
+        protected int StoredSettingsIndex;
 
         private void Start()
         {
             //TRIES TO OBTAIN CAROUSEL SCRIPT
-            if (TryGetComponent<CarouselUIElement>(out var element))
-            { _associatedCarousel = element; }
+            if (TryGetComponent<CarouselUIElement>(out var _element))
+            { associatedCarousel = _element; }
             else
             { Debug.LogError($"Could not find CarouselUIElement on {this.gameObject.name}. Fix this."); }
 
             //SUBSCRIBE TO EVENTS
-            _associatedCarousel.InputEvent += OnInputDetected;
+            associatedCarousel.InputEvent += OnInputDetected;
         }
 
         private void OnEnable() //WHEN GAMEOBJECT IS ENABLED INDICES FOR CAROUSELS ARE IMMEDIATELY UPDATED!
@@ -29,7 +30,7 @@ namespace CarouselUI
 
         private void OnInputDetected() //FIRED ON EVENT
         {
-            DetermineOutput(_associatedCarousel.CurrentIndex);
+            DetermineOutput(associatedCarousel.CurrentIndex);
         }
 
         /// <summary>
@@ -39,9 +40,9 @@ namespace CarouselUI
         {
             //PROCESSING HAPPENS HERE
 
-            if (_associatedCarousel.CurrentIndex != _storedSettingsIndex)
+            if (associatedCarousel.CurrentIndex != StoredSettingsIndex)
             {
-                _associatedCarousel.UpdateIndex(_storedSettingsIndex);
+                associatedCarousel.UpdateIndex(StoredSettingsIndex);
             }
         }
 

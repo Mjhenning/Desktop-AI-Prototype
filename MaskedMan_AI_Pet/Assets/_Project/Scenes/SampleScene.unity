@@ -916,7 +916,7 @@ GameObject:
   - component: {fileID: 2014799402}
   - component: {fileID: 2014799403}
   m_Layer: 0
-  m_Name: Game & Event Manager
+  m_Name: Systems Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -949,7 +949,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f217b1e33241c52478ed7a0dcc4ebfa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StringTypes:
+  stringTypes:
   - {fileID: 11400000, guid: c4c4d9cdc77a5644fb3856402bda9cec, type: 2}
   - {fileID: 11400000, guid: dae2bbb9c25109d4ea4756bc98a5f6a2, type: 2}
 --- !u!114 &2014799402
@@ -1264,11 +1264,27 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8771419798799694839, guid: 8cd6e94a58359c34c97070603cb01fcf,
+        type: 3}
+      propertyPath: tieAnimator
+      value: 
+      objectReference: {fileID: 7417189753183068819}
+    - target: {fileID: 8771419798799694839, guid: 8cd6e94a58359c34c97070603cb01fcf,
+        type: 3}
+      propertyPath: vendorAnimator
+      value: 
+      objectReference: {fileID: 7417189753183068819}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8cd6e94a58359c34c97070603cb01fcf, type: 3}
+--- !u!95 &7417189753183068819 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3970317856396841165, guid: 8cd6e94a58359c34c97070603cb01fcf,
+    type: 3}
+  m_PrefabInstance: {fileID: 7417189753183068818}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

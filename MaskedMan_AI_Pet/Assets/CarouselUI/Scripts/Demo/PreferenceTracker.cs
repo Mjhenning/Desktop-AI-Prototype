@@ -28,8 +28,8 @@ namespace CarouselUI.Demo
             if (!PlayerPrefs.HasKey(PreferenceEnum.LanguageSub.ToString()))
             { PlayerPrefs.SetInt(PreferenceEnum.LanguageSub.ToString(), 0); }
 
-            if (!PlayerPrefs.HasKey(PreferenceEnum.LanguageVO.ToString()))
-            { PlayerPrefs.SetInt(PreferenceEnum.LanguageVO.ToString(), 0); }
+            if (!PlayerPrefs.HasKey(PreferenceEnum.LanguageVo.ToString()))
+            { PlayerPrefs.SetInt(PreferenceEnum.LanguageVo.ToString(), 0); }
         }
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace CarouselUI.Demo
             print($"{PreferenceEnum.DeveloperComm.ToString()} is {GetValues(PreferenceEnum.DeveloperComm)}");
             print($"{PreferenceEnum.DifficultyMode.ToString()} is {GetValues(PreferenceEnum.DifficultyMode)}");
             print($"{PreferenceEnum.LanguageSub.ToString()} is {GetValues(PreferenceEnum.LanguageSub)}");
-            print($"{PreferenceEnum.LanguageVO.ToString()} is {GetValues(PreferenceEnum.LanguageVO)}");
+            print($"{PreferenceEnum.LanguageVo.ToString()} is {GetValues(PreferenceEnum.LanguageVo)}");
         }
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace CarouselUI.Demo
             PlayerPrefs.DeleteKey(PreferenceEnum.DeveloperComm.ToString());
             PlayerPrefs.DeleteKey(PreferenceEnum.DifficultyMode.ToString());
             PlayerPrefs.DeleteKey(PreferenceEnum.LanguageSub.ToString());
-            PlayerPrefs.DeleteKey(PreferenceEnum.LanguageVO.ToString());
+            PlayerPrefs.DeleteKey(PreferenceEnum.LanguageVo.ToString());
         }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace CarouselUI.Demo
             SetValues(PreferenceEnum.DeveloperComm, 0);
             SetValues(PreferenceEnum.DifficultyMode, 0);
             SetValues(PreferenceEnum.LanguageSub, 0);
-            SetValues(PreferenceEnum.LanguageVO, 0);
+            SetValues(PreferenceEnum.LanguageVo, 0);
         }
 
         public int GetValues(PreferenceEnum preference)

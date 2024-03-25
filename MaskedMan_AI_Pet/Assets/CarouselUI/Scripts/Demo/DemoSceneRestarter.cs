@@ -3,23 +3,24 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 namespace CarouselUI.Demo
 {
     public class DemoSceneRestarter : MonoBehaviour
     {
-        [SerializeField] private PreferenceTracker _preferenceTracker;
-        [SerializeField] private GameObject _uiCanvas;
+        [FormerlySerializedAs ("_preferenceTracker")] [SerializeField] private PreferenceTracker preferenceTracker;
+        [FormerlySerializedAs ("_uiCanvas")] [SerializeField] private GameObject uiCanvas;
 
         public async void ResetScene()
         {
-            _uiCanvas.SetActive(false);
+            uiCanvas.SetActive(false);
 
-            _preferenceTracker.ResetAllPeferenceToZero(); //RESETS ALL TO ZERO
+            preferenceTracker.ResetAllPeferenceToZero(); //RESETS ALL TO ZERO
 
             await Task.Delay(250);
 
-            _uiCanvas.SetActive(true); //RESETS SHOWN VALUES
+            uiCanvas.SetActive(true); //RESETS SHOWN VALUES
         }
 
         public void EndGame()

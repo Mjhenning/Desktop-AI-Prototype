@@ -3,12 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class Item_Instance : MonoBehaviour { //each item in ui uses this script to store it's item before it gets saved to databse if bought
+public class ItemInstance : MonoBehaviour { //each item in ui uses this script to store it's item before it gets saved to databse if bought
 
     public Item assignedItem;
     
     public Image image;
-    public TextMeshProUGUI Text;
+    [FormerlySerializedAs ("Text")] public TextMeshProUGUI text;
+    public void BuyItem () {
+        EventsManager.BoughtItem (assignedItem);
+    }
 }

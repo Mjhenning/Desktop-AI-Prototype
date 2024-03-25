@@ -6,32 +6,32 @@ using UnityEngine;
 
 public class AIController : MonoBehaviour {
 
-    public static AIController instance;
+    public static AIController Instance;
     
-    public Animator VendorAnimator;
-    public Animator TieAnimator;
+    public Animator vendorAnimator;
+    public Animator tieAnimator;
     
     [SerializeReference]State currentState;
     [SerializeReference] StateType currentStateEnum;
 
-    public State_Idle stateIdle;
-    public State_Sleep stateSleep;
-    public State_ShopPrompt stateShopPrompt;
-    public State_Shopping stateShopping;
+    public StateIdle stateIdle;
+    public StateSleep stateSleep;
+    public StateShopPrompt stateShopPrompt;
+    public StateShopping stateShopping;
     
-    public State_Agressive stateAgressive;
+    public StateAgressive stateAgressive;
 
     void Awake () {
-        instance = this;
+        Instance = this;
     }
 
     void Start() {
         //used to setup each state
-        stateIdle = new State_Idle (this);
-        stateSleep = new State_Sleep (this);
-        stateShopPrompt = new State_ShopPrompt (this);
-        stateShopping = new State_Shopping (this);
-        stateAgressive = new State_Agressive (this);
+        stateIdle = new StateIdle (this);
+        stateSleep = new StateSleep (this);
+        stateShopPrompt = new StateShopPrompt (this);
+        stateShopping = new StateShopping (this);
+        stateAgressive = new StateAgressive (this);
         ChangeState (stateIdle);
         //tells the timer to start checking each hour if the shop should be open or closed
         EventsManager.StartHourlyTimer ();
@@ -50,11 +50,11 @@ public class AIController : MonoBehaviour {
         currentState.Enable();
         
         //after enabling set the enum to this state's enum
-        currentStateEnum = currentState.stateName;
+        currentStateEnum = currentState.StateName;
 
         //set integer on animator acordingly to determine state of animators
-        VendorAnimator.SetInteger ("StateEnum", (int)currentStateEnum);
-        TieAnimator.SetInteger ("StateEnum", (int) currentStateEnum);
+        vendorAnimator.SetInteger ("StateEnum", (int)currentStateEnum);
+        tieAnimator.SetInteger ("StateEnum", (int) currentStateEnum);
 
     }
 

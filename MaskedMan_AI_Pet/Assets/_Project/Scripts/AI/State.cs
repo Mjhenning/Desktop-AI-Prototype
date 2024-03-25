@@ -14,13 +14,13 @@ FSM Base Class
 
 public abstract class State { //Blueprint for each state
     
-    public StateType stateName; //Enum for ui_manager
+    public StateType StateName; //Enum for ui_manager
 
-    public bool stateEnabled = false;
+    bool stateEnabled = false;
     public AIController Controller; //Connection to call utility functions within states
 
-    protected State (AIController Controller) { //Protected is for all inherited classes, private is protected for that specific instance of the class
-        this.Controller = Controller;
+    protected State (AIController controller) { //Protected is for all inherited classes, private is protected for that specific instance of the class
+        this.Controller = controller;
     }
    
     public virtual void Enable () {

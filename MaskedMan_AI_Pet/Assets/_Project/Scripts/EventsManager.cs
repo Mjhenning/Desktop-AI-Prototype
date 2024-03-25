@@ -8,25 +8,26 @@ using UnityEngine.UI;
 
 public static class EventsManager //huge events manager used by whole program to trigger multiple things on multiple scripts
 {
-    public static UnityEvent BodyClicked = new UnityEvent();
-    public static UnityEvent TieClicked = new UnityEvent();
-    public static UnityEvent MaskClicked = new UnityEvent();
+    public static readonly UnityEvent BodyClicked = new UnityEvent();
+    public static readonly UnityEvent TieClicked = new UnityEvent();
+    public static readonly UnityEvent MaskClicked = new UnityEvent();
 
-    public static UnityEvent DisableMaskInteractions = new UnityEvent();
-    public static UnityEvent EnableMaskInteractions = new UnityEvent();
+    public static readonly UnityEvent DisableMaskInteractions = new UnityEvent();
+    public static readonly UnityEvent EnableMaskInteractions = new UnityEvent();
 
-    public static UnityEvent ShopOpened = new UnityEvent();
-    public static UnityEvent ShopClosed = new UnityEvent();
+    public static readonly UnityEvent ShopOpened = new UnityEvent(); //OnSomethingClicked
+    public static readonly UnityEvent ShopClosed = new UnityEvent();
 
-    public static UnityEvent<DialogueType> dialogueEvent = new UnityEvent<DialogueType>();
-    public static UnityEvent<string> DialogueStringEvent = new UnityEvent<string>();
+    public static readonly UnityEvent<DialogueType> DialogueEvent = new UnityEvent<DialogueType>();
+    public static readonly UnityEvent<string> DialogueStringEvent = new UnityEvent<string>();
 
-    public static UnityEvent<bool> CheckIfShopClosed = new UnityEvent<bool> ();
+    public static readonly UnityEvent<bool> CheckIfShopClosed = new UnityEvent<bool> ();
     static bool lastShopState = true;
     
-    public static UnityEvent StartHourlyCheck = new UnityEvent ();
-    public static UnityEvent RandomizeShopItems = new UnityEvent ();
-    public static UnityEvent<List<Item>> RetrieveList = new UnityEvent<List<Item>> ();
+    public static readonly UnityEvent StartHourlyCheck = new UnityEvent ();
+    public static readonly UnityEvent RandomizeShopItems = new UnityEvent ();
+    public static readonly UnityEvent<List<Item>> RetrieveList = new UnityEvent<List<Item>> ();
+    public static readonly UnityEvent<Item> AddToDatabase = new UnityEvent<Item> ();
 
     public static void ClickedBody() { BodyClicked.Invoke(); } //used to tell system vendor body was clicked
 
@@ -38,7 +39,7 @@ public static class EventsManager //huge events manager used by whole program to
 
     public static void ClosedShop() { ShopClosed.Invoke(); } //used to tell system shop should be closed
 
-    public static void DialogueDetermine(DialogueType type) { dialogueEvent.Invoke(type); } //used to tell dialogue manager what dialogue type should be passed along
+    public static void DialogueDetermine(DialogueType type) { DialogueEvent.Invoke(type); } //used to tell dialogue manager what dialogue type should be passed along
 
     public static void DialogueFeed(String text) { DialogueStringEvent.Invoke(text); } //used to tell dialogue manager what string from the type should be shown
 
@@ -58,5 +59,7 @@ public static class EventsManager //huge events manager used by whole program to
     public static void RandomizeShop () { RandomizeShopItems.Invoke (); } ///used to randomize the inventory of the shop
 
     public static void PopulateActiveShopList (List<Item> shopItems) { RetrieveList.Invoke (shopItems); }
+
+    public static void BoughtItem (Item item) { AddToDatabase.Invoke (item); } 
 
 }

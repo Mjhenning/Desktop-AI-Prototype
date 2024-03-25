@@ -5,7 +5,7 @@ using UnityEngine;
 //MAIN NOTE ARTIFACTS AND MAINSET ITEMS ARE NOT RANDOMIZED
 
 public static class ItemNameGenerator {
-    public static readonly List<string> NegativePrefixes = new List<string> {
+    static readonly List<string> NegativePrefixes = new List<string> {
         "Madness",
         "Ethereal",
         "Echoing",
@@ -17,7 +17,7 @@ public static class ItemNameGenerator {
         "Nightmare Inducing"
     };
     
-    public static readonly List<string> NeutralPrefixes = new List<string> {
+    static readonly List<string> NeutralPrefixes = new List<string> {
         "Ancient",
         "Cursed",
         "Enchanted",

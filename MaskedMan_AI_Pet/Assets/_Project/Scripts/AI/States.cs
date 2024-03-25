@@ -6,35 +6,36 @@ using UnityEngine;
 FSM States
 */
 
+//less timer based interactions and more influence based interactions?
+
 //TODO: tweak timers
 #region Idle State
 
-public class State_Idle : State { //Idle State
+public class StateIdle : State { //Idle State
     float timeLeftSleep;
     float timeLeftTalk;
     float timeLeftShop;
     float timeLeftAgressive;
-    bool IsShopOpen;
+    bool isShopOpen;
     
-    public State_Idle (AIController Controller) : base (Controller) { } //required
+    public StateIdle (AIController controller) : base (controller) { } //required
 
     public override void Enable () {
         base.Enable (); //Fires off the log of the base abstract function (everything already inside abstract class fires when base.enable is called)
-        stateName = StateType.Idle;
+        StateName = StateType.Idle;
         EventsManager.CheckIfShopClosed.AddListener (CheckBeforeResumeUpdate);
         
         timeLeftSleep = Random.Range(30f,60f);
         ResetTextTimer ();
-        //timeLeftShop = Random.Range (10f, 300f);
-        timeLeftShop = 10f;
+        timeLeftShop = Random.Range (10f, 300f);
         //timeLeftAgressive = 1200f;
-        timeLeftAgressive = 5f;
+        timeLeftAgressive = 2f;
     }
     
 
     public override void Update () {
 
-        switch (IsShopOpen) {
+        switch (isShopOpen) {
             case true:
                 if (timeLeftTalk > 0) {
                     //Timer between dialogue 
@@ -76,8 +77,8 @@ public class State_Idle : State { //Idle State
 
     }
 
-    void CheckBeforeResumeUpdate (bool ShopOpen) { //used to set bool determining if shop is open equal to event's boolean determining if shop is open or not
-        IsShopOpen = ShopOpen;
+    void CheckBeforeResumeUpdate (bool shopOpen) { //used to set bool determining if shop is open equal to event's boolean determining if shop is open or not
+        isShopOpen = shopOpen;
     }
 
     void ResetTextTimer () { //resets the timer for next dialogue snippet
@@ -88,14 +89,14 @@ public class State_Idle : State { //Idle State
 
 
 #region Sleep State
-public class State_Sleep : State { //Sleep State
-    bool AddedListeners;
-    public State_Sleep (AIController Controller) : base (Controller) { } //required
+public class StateSleep : State { //Sleep State
+    bool addedListeners;
+    public StateSleep (AIController controller) : base (controller) { } //required
 
     public override void Enable () {
         base.Enable ();
         EventsManager.CheckIfShopClosed.AddListener (CheckShopState);
-        stateName = StateType.Sleep;
+        StateName = StateType.Sleep;
 
         if (EventsManager.ReturnShopState()) { //if shop is open
             AddListeners ();
@@ -106,16 +107,16 @@ public class State_Sleep : State { //Sleep State
         }
     }
 
-    void CheckShopState (bool ShopOpen) { //TODO: think of ways to fire off shop close and open logic properly currently gets stuck in uninteractable state
-        switch (ShopOpen) {
+    void CheckShopState (bool shopOpen) { //TODO: think of ways to fire off shop close and open logic properly currently gets stuck in uninteractable state
+        switch (shopOpen) {
             case true:
-                if (!AddedListeners) { //if never added listeners and shop gets opened during sleep state add wakeup listeners
+                if (!addedListeners) { //if never added listeners and shop gets opened during sleep state add wakeup listeners
                     //adds listeners for any form of interaction towards vendor to wake them up
                     AddListeners ();
                 }
                 break;
             case false:
-                if (AddedListeners) { //else if listeners have been added and the shop is currently closed remove listeners
+                if (addedListeners) { //else if listeners have been added and the shop is currently closed remove listeners
                     RemoveListeners ();
                 }
                 break;
@@ -129,14 +130,14 @@ public class State_Sleep : State { //Sleep State
         EventsManager.BodyClicked.AddListener (Wakeup);
         EventsManager.MaskClicked.AddListener (Wakeup);
         EventsManager.TieClicked.AddListener (Wakeup);
-        AddedListeners = true;
+        addedListeners = true;
     }
 
     void RemoveListeners () { //removes interaction listeners
         EventsManager.BodyClicked.RemoveListener (Wakeup);
         EventsManager.MaskClicked.RemoveListener (Wakeup);
         EventsManager.TieClicked.RemoveListener (Wakeup);
-        AddedListeners = false;
+        addedListeners = false;
     }
 
     public void Wakeup () { //changes state back to idle (wakes up vendor)
@@ -148,10 +149,10 @@ public class State_Sleep : State { //Sleep State
 
 
 #region ShopPrompt State
-public class State_ShopPrompt : State { //Open Jacket State
+public class StateShopPrompt : State { //Open Jacket State
     
     float timeLeftIdle;
-    public State_ShopPrompt (AIController Controller) : base (Controller) { } //required
+    public StateShopPrompt (AIController controller) : base (controller) { } //required
 
     public override void Enable () {
         base.Enable ();
@@ -159,7 +160,7 @@ public class State_ShopPrompt : State { //Open Jacket State
         EventsManager.BodyClicked.AddListener (OpenShop); //adds listener to open shop
         EventsManager.DialogueDetermine (DialogueType.ShopPrompt); //tells dialogue system to display a shopprompt snippet
         
-        stateName = StateType.ShopPrompt;
+        StateName = StateType.ShopPrompt;
         timeLeftIdle = 20f;
     }
 
@@ -191,18 +192,18 @@ public class State_ShopPrompt : State { //Open Jacket State
 
 #region Shopping State
 
-public class State_Shopping : State {
+public class StateShopping : State {
     //Open Shop State
 
     float timeLeftIdle;
-    public State_Shopping (AIController Controller) : base (Controller) { } //required
+    public StateShopping (AIController controller) : base (controller) { } //required
 
     public override void Enable () {
         base.Enable ();
 
         EventsManager.ShopClosed.AddListener (CloseShop); //adds listener to close shop
 
-        stateName = StateType.Shopping;
+        StateName = StateType.Shopping;
     }
 
     public override void Disable () {
@@ -223,13 +224,13 @@ public class State_Shopping : State {
 
 #region Agressive State
 
-    public class State_Agressive : State {
+    public class StateAgressive : State {
         //Open Jacket State
-        public State_Agressive (AIController Controller) : base (Controller) { } //required
+        public StateAgressive (AIController controller) : base (controller) { } //required
 
         public override void Enable () {
             base.Enable ();
-            stateName = StateType.Agressive;
+            StateName = StateType.Agressive;
             EventsManager.OpenedShop (); //open the shop
             EventsManager.RandomizeShop (); //randomizes shops
 

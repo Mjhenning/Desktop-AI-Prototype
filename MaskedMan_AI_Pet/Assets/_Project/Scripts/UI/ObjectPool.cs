@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ObjectPool : MonoBehaviour { //basic object pooling script with added logic (most of added logic is currently broken)
-    public static ObjectPool instance;
+    public static ObjectPool Instance;
 
     public GameObject prefab; 
     public int maxPoolSize = 5;
@@ -11,7 +11,7 @@ public class ObjectPool : MonoBehaviour { //basic object pooling script with add
     public List<GameObject> pooledObjects = new List<GameObject>();
 
     void Awake () {
-        instance = this;
+        Instance = this;
     }
 
     private void Start() {
@@ -19,37 +19,37 @@ public class ObjectPool : MonoBehaviour { //basic object pooling script with add
     }
 
     private void InitializePool() {
-        for (int i = 0; i < maxPoolSize; i++) {
+        for (int _i = 0; _i < maxPoolSize; _i++) {
             CreateNewObject();
         }
     }
 
     private GameObject CreateNewObject() {
-        GameObject obj = Instantiate(prefab, this.transform);
-        if (obj.GetComponent<Shop_Instance>()) { //if obj has a shop instance script
-            obj.GetComponent<Shop_Instance> ().AddListener(); //For each instantiated shop object add a listener   
+        GameObject _obj = Instantiate(prefab, this.transform);
+        if (_obj.GetComponent<ShopInstance>()) { //if obj has a shop instance script
+            _obj.GetComponent<ShopInstance> ().AddListener(); //For each instantiated shop object add a listener   
         }
-        obj.SetActive(false);
-        pooledObjects.Add(obj);
-        return obj;
+        _obj.SetActive(false);
+        pooledObjects.Add(_obj);
+        return _obj;
     }
 
     public GameObject GetObjectFromPool() {
-        foreach (GameObject obj in pooledObjects) {
-            if (!obj.activeInHierarchy) {
-                obj.SetActive(true);
+        foreach (GameObject _obj in pooledObjects) {
+            if (!_obj.activeInHierarchy) {
+                _obj.SetActive(true);
                 // Move the object to the front of the list
-                pooledObjects.Remove(obj);
-                pooledObjects.Insert(0, obj);
-                return obj;
+                pooledObjects.Remove(_obj);
+                pooledObjects.Insert(0, _obj);
+                return _obj;
             }
         }
 
         // If no inactive object is found, create a new one
         if (pooledObjects.Count < maxPoolSize) {
-            GameObject newObj = CreateNewObject();
-            newObj.SetActive(true);
-            return newObj;
+            GameObject _newObj = CreateNewObject();
+            _newObj.SetActive(true);
+            return _newObj;
         }
 
         return null; // Pool is full and no inactive objects available
@@ -57,39 +57,40 @@ public class ObjectPool : MonoBehaviour { //basic object pooling script with add
 
     public void ReturnAllObjectsToPool() {
         // Create a copy of the pooledObjects list to iterate over
-        List<GameObject> objectsToReturn = new List<GameObject>(pooledObjects);
+        List<GameObject> _objectsToReturn = new List<GameObject>(pooledObjects);
 
         // Iterate over the copied list and deactivate objects
-        foreach (GameObject obj in objectsToReturn) {
-            obj.SetActive(false);
+        foreach (GameObject _obj in _objectsToReturn) {
+            _obj.SetActive(false);
         }
 
         // Clear the original pooledObjects list
         pooledObjects.Clear();
 
         // Add all objects back to the original pooledObjects list
-        pooledObjects.AddRange(objectsToReturn);
+        pooledObjects.AddRange(_objectsToReturn);
     }
 
     //Method to duplicate an object from the pool
-    public GameObject DuplicateObjectFromPool(GameObject origonal_obj) {
-        GameObject obj = GetObjectFromPool(); // Get an inactive object from the pool
+    public GameObject DuplicateObjectFromPool(GameObject originalObj) {
+        GameObject _obj = GetObjectFromPool(); // Get an inactive object from the pool
 
-        Shop_Instance newObj = obj.GetComponent<Shop_Instance>(); //set new obj shop instnace to set data to
-        Shop_Instance og_obj = origonal_obj.GetComponent<Shop_Instance>(); //set origonal object to grab data from
+        ShopInstance _newObj = _obj.GetComponent<ShopInstance>(); //set new obj shop instance to set data to
+        ShopInstance _ogObj = originalObj.GetComponent<ShopInstance>(); //set original object to grab data from
+        _newObj.randomizedShop = false;
 
-        newObj.ShopItems.Clear (); //clear new shop's item list
+        _newObj.shopItems.Clear (); //clear new shop's item list
         
         //for every instance of shop_item
-        for (int i = 0; i < og_obj.ShopSelections.Count; i++) {
-            newObj.ShopSelections[i].assignedItem = og_obj.ShopItems[i]; //assign the item from shop items list
+        for (int _i = 0; _i < _ogObj.shopSelections.Count; _i++) {
+            _newObj.shopSelections[_i].assignedItem = _ogObj.shopItems[_i]; //assign the item from shop items list
             
-            newObj.ShopItems.Add(og_obj.ShopItems[i]); //adds items from og list to new list
+            _newObj.shopItems.Add(_ogObj.shopItems[_i]); //adds items from og list to new list
         }
 
-        newObj.setText (); //sets the text descriptions of the new shop
+        _newObj.SetText (); //sets the text descriptions of the new shop
         
-        obj.SetActive(true); // Activate the new copy
-        return obj;
+        _obj.SetActive(true); // Activate the new copy
+        return _obj;
     }
 }
