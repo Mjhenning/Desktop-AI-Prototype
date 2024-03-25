@@ -9,6 +9,14 @@ public class ShopInstance : MonoBehaviour {
     public List<Item> shopItems;
     public bool randomizedShop = true; //used to determine if a shop is supposed to be randomized or if it's a duplicate window
 
+    void OnEnable () {
+        EventsManager.ShopClosed.AddListener (ResetBool);
+    }
+
+    void OnDisable () {
+        EventsManager.ShopClosed.RemoveListener (ResetBool);
+    }
+
     void Start () {
         if (randomizedShop) 
             EventsManager.PopulateActiveShopList (shopItems); //populates the active shop list on the item generator
@@ -39,6 +47,12 @@ public class ShopInstance : MonoBehaviour {
     public void SetText () { //sets the text for the item
         foreach (ItemInstance _item in shopSelections) {
             _item.text.text = "Item: " + _item.assignedItem.itemName + "\n" + "Type: " + _item.assignedItem.itemType + "\n" + _item.assignedItem.itemDesc;
+        }
+    }
+
+    public void ResetBool () { //used to reset bool so that pooled objects that were duplicated over can be randomized once again
+        if (!randomizedShop) {
+            randomizedShop = true;  
         }
     }
 }

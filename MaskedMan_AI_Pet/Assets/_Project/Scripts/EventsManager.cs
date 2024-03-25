@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UI;
 
 
 public static class EventsManager //huge events manager used by whole program to trigger multiple things on multiple scripts
@@ -15,8 +14,10 @@ public static class EventsManager //huge events manager used by whole program to
     public static readonly UnityEvent DisableMaskInteractions = new UnityEvent();
     public static readonly UnityEvent EnableMaskInteractions = new UnityEvent();
 
-    public static readonly UnityEvent ShopOpened = new UnityEvent(); //OnSomethingClicked
+    public static readonly UnityEvent ShopOpened = new UnityEvent(); 
     public static readonly UnityEvent ShopClosed = new UnityEvent();
+    public static readonly UnityEvent<int> AddGoop = new UnityEvent<int> ();
+    public static readonly UnityEvent<int> RemoveGoop = new UnityEvent<int> ();
 
     public static readonly UnityEvent<DialogueType> DialogueEvent = new UnityEvent<DialogueType>();
     public static readonly UnityEvent<string> DialogueStringEvent = new UnityEvent<string>();
@@ -28,6 +29,10 @@ public static class EventsManager //huge events manager used by whole program to
     public static readonly UnityEvent RandomizeShopItems = new UnityEvent ();
     public static readonly UnityEvent<List<Item>> RetrieveList = new UnityEvent<List<Item>> ();
     public static readonly UnityEvent<Item> AddToDatabase = new UnityEvent<Item> ();
+    
+    
+    
+    //Void functions to fire events
 
     public static void ClickedBody() { BodyClicked.Invoke(); } //used to tell system vendor body was clicked
 
@@ -39,9 +44,9 @@ public static class EventsManager //huge events manager used by whole program to
 
     public static void ClosedShop() { ShopClosed.Invoke(); } //used to tell system shop should be closed
 
-    public static void DialogueDetermine(DialogueType type) { DialogueEvent.Invoke(type); } //used to tell dialogue manager what dialogue type should be passed along
+    public static void DialogueDetermine(DialogueType type) { DialogueEvent.Invoke(type); } //used to tell dialogue manager what dialogue type should be passed along, type is determined via states
 
-    public static void DialogueFeed(String text) { DialogueStringEvent.Invoke(text); } //used to tell dialogue manager what string from the type should be shown
+    public static void DialogueFeed(String text) { DialogueStringEvent.Invoke(text); } //used to tell dialogue manager what string from the type should be shown, string is determined via dialogue manager and fed to ui manager
 
     public static void DisableMask() { DisableMaskInteractions.Invoke(); } //used to disable mask gameobject
 
@@ -60,6 +65,8 @@ public static class EventsManager //huge events manager used by whole program to
 
     public static void PopulateActiveShopList (List<Item> shopItems) { RetrieveList.Invoke (shopItems); }
 
-    public static void BoughtItem (Item item) { AddToDatabase.Invoke (item); } 
+    public static void BoughtItem (Item item) { AddToDatabase.Invoke (item); }
+
+    public static void AddCurrency (int amount) { AddGoop.Invoke (amount); }
 
 }

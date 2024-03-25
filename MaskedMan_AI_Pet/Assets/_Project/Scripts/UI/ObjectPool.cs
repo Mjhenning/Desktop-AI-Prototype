@@ -69,6 +69,8 @@ public class ObjectPool : MonoBehaviour { //basic object pooling script with add
 
         // Add all objects back to the original pooledObjects list
         pooledObjects.AddRange(_objectsToReturn);
+
+        EventsManager.ClosedShop ();
     }
 
     //Method to duplicate an object from the pool
