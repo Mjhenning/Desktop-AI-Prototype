@@ -27,9 +27,9 @@ public class StateIdle : State { //Idle State
         
         timeLeftSleep = Random.Range(30f,60f);
         ResetTextTimer ();
-        timeLeftShop = Random.Range (10f, 300f);
-        //timeLeftAgressive = 1200f;
-        timeLeftAgressive = 2f;
+        // timeLeftShop = Random.Range (10f, 300f);
+        timeLeftAgressive = 1200f;
+        timeLeftShop = 2f;
     }
     
 

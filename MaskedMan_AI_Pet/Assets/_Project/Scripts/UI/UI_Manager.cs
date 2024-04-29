@@ -10,7 +10,8 @@ using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-public class UIManager : MonoBehaviour {
+public class UI_Manager : MonoBehaviour {
+    public static UI_Manager instance;
 
     PlayerController input;
 
@@ -27,6 +28,7 @@ public class UIManager : MonoBehaviour {
     int currentIndex; //used to go scroll through list of masks
 
     void Awake () {
+        instance = this;
         input = new PlayerController ();
         input.Enable ();
         input.Player.Click.performed += ClickOnperformed; //if the player clicks

@@ -7,8 +7,8 @@ public class CurrencyManager : MonoBehaviour {
   public int goopAmount;
 
   void OnEnable () {
-    EventsManager.AddGoop.AddListener (IncreaseGoop);
-    EventsManager.RemoveGoop.AddListener (DecreaseGoop);
+    EventsManager.AddCurrency.AddListener (IncreaseGoop);
+    EventsManager.RemoveCurrency.AddListener (DecreaseGoop);
   }
 
   void DecreaseGoop (int amount) {

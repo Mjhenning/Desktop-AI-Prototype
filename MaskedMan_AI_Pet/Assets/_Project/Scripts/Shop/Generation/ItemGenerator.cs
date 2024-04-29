@@ -61,6 +61,9 @@ public class ItemGenerator : MonoBehaviour {
                 if (artifacts[_i].mainSet == set) {
                     _createdItem = artifacts[_i];
                     tempItem = _createdItem;
+                    
+                    _createdItem.itemGoopCost = GenerateGoopCost (_createdItem);
+                    _createdItem.itemSprite = GrabCorrespondingSprite (_createdItem);
                 }
             }
         } else { //else if not a artifact set the set, item type, randomize the name and description and set the Image
@@ -69,7 +72,9 @@ public class ItemGenerator : MonoBehaviour {
             _createdItem.itemType = type;
             _createdItem.itemName = ItemNameGenerator.GenerateItemName (set, type);
             _createdItem.itemDesc = ItemDescGenerator.GenerateItemDesc (_createdItem, itemDescriptions);
-            
+            _createdItem.itemGoopCost = GenerateGoopCost (_createdItem);
+            _createdItem.itemSprite = GrabCorrespondingSprite (_createdItem);
+
             tempItem = _createdItem;
         }
 
@@ -143,6 +148,29 @@ public class ItemGenerator : MonoBehaviour {
         activeShopItems.Clear ();
         activeShopItems = shopitems;
 
+    }
+
+    int GenerateGoopCost (Item generateditem) { //generates a goop cost based on the item's type
+        switch (generateditem.itemType) {
+            case ItemTypes.Artifact:
+                return Random.Range (1500, 2501);
+            case ItemTypes.Ephemera:
+                return Random.Range (200, 1001);
+            case ItemTypes.Relic:
+                return Random.Range (600, 1501);
+            default: return 0;
+        }
+    }
+
+    Sprite GrabCorrespondingSprite (Item generateditem) { //evaluates the generated item's type and set combo and then grabs a corresponding sprite from the list of classes
+        for (int i = 0; i < spriteCollections.Count; i++) {
+            if (generateditem.itemType == spriteCollections[i].itemTypes && generateditem.mainSet == spriteCollections[i].set) {
+                Debug.Log ("Grabbed sprite for " + generateditem.mainSet + " " + generateditem.itemType);
+                return spriteCollections[i].itemsprite;
+            }
+        }
+
+        return null;
     }
     
 }

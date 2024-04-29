@@ -21,5 +21,6 @@ public class Item : ScriptableObject { //scriptable setup for every single item 
     [FormerlySerializedAs ("ITEM_Sprite")] public Sprite itemSprite;
     [FormerlySerializedAs ("ItemName")] public string itemName;
     [FormerlySerializedAs ("ItemDesc")] public string itemDesc;
+    public int itemGoopCost;
 
 }

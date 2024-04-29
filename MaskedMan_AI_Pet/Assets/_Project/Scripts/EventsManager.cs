@@ -16,8 +16,8 @@ public static class EventsManager //huge events manager used by whole program to
 
     public static readonly UnityEvent ShopOpened = new UnityEvent(); 
     public static readonly UnityEvent ShopClosed = new UnityEvent();
-    public static readonly UnityEvent<int> AddGoop = new UnityEvent<int> ();
-    public static readonly UnityEvent<int> RemoveGoop = new UnityEvent<int> ();
+    public static readonly UnityEvent<int> AddCurrency = new UnityEvent<int> ();
+    public static readonly UnityEvent<int> RemoveCurrency = new UnityEvent<int> ();
 
     public static readonly UnityEvent<DialogueType> DialogueEvent = new UnityEvent<DialogueType>();
     public static readonly UnityEvent<string> DialogueStringEvent = new UnityEvent<string>();
@@ -67,6 +67,6 @@ public static class EventsManager //huge events manager used by whole program to
 
     public static void BoughtItem (Item item) { AddToDatabase.Invoke (item); }
 
-    public static void AddCurrency (int amount) { AddGoop.Invoke (amount); }
+    public static void AddGoop (int amount) { AddCurrency.Invoke (amount); }
 
 }
