@@ -1,4 +1,7 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -10,7 +13,7 @@ namespace CarouselUI
     {
         [FormerlySerializedAs ("_optionsObjects")]
         [Header("Carousel Members")]
-        [SerializeField, Tooltip("Array containing gameobjects used for options.")] private GameObject[] optionsObjects;
+        [SerializeField, Tooltip("Array containing gameobjects used for options.")] public List<GameObject> optionsObjects = new List<GameObject>();
 
         [FormerlySerializedAs ("_nextButton")] [SerializeField, Tooltip("Button that increments index by 1.")] private GameObject nextButton;
 
@@ -21,7 +24,7 @@ namespace CarouselUI
         [SerializeField, Tooltip("Time to deactivate inbetween refires.")] private float resetDuration = 0.1f;
         [FormerlySerializedAs ("_doesNotCycleBack")] [SerializeField, Tooltip("If true, when the index reaches either limit the next/previous buttons are hidden.")] private bool doesNotCycleBack = false;
 
-        private int currentIndex = 0;
+        [HideInInspector]public int currentIndex = 0;
 
         public int CurrentIndex
         {
@@ -35,6 +38,7 @@ namespace CarouselUI
         private bool isProcessing = false; //HERE TO DELAY REFIRES
         private WaitForSeconds resetDelay; //WORKS WITH DELAY COROUTINE
 
+        
         private void Start()
         {
             Initialize();
@@ -42,7 +46,7 @@ namespace CarouselUI
 
         private void Initialize()
         {
-            if (optionsObjects.Length == 0 || optionsObjects == null) //ERROR IF THE OPTIONS ARRAY IS EMPTY
+            if (optionsObjects.Count == 0 || optionsObjects == null) //ERROR IF THE OPTIONS ARRAY IS EMPTY
             {
                 Debug.LogError($"Carousel UI at {this.gameObject.name} has incomplete options array. Please fix.");
 
@@ -63,7 +67,7 @@ namespace CarouselUI
 
             optionsObjects[currentIndex].SetActive(true);
 
-            if (doesNotCycleBack && currentIndex == optionsObjects.Length - 1)
+            if (doesNotCycleBack && currentIndex == optionsObjects.Count - 1)
             {
                 nextButton.SetActive(false);
             }
@@ -106,14 +110,14 @@ namespace CarouselUI
                 return;
             }
 
-            if (doesNotCycleBack && currentIndex == optionsObjects.Length - 1)
+            if (doesNotCycleBack && currentIndex == optionsObjects.Count - 1)
             {
                 return;
             }
 
             StartCoroutine(LockoutDelay());
 
-            if (currentIndex < (optionsObjects.Length - 1))
+            if (currentIndex < (optionsObjects.Count - 1))
             {
                 currentIndex += 1;
 
@@ -152,7 +156,7 @@ namespace CarouselUI
             }
             else
             {
-                currentIndex = (optionsObjects.Length - 1);
+                currentIndex = (optionsObjects.Count - 1);
 
                 UpdateUI();
             }

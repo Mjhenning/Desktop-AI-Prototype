@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using CarouselUI;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -12,9 +14,19 @@ public class ShopInstance : MonoBehaviour {
     
     public bool randomizedShop = true; //used to determine if a shop is supposed to be randomized or if it's a duplicate window
     public GameObject carousel;
+    
 
     void OnEnable () {
         EventsManager.ShopClosed.AddListener (ResetBool);
+        EventsManager.RemoveItem.AddListener(RemoveItemFromShops);
+        
+        //populates carousel
+        carousel.GetComponent<CarouselUIElement> ().optionsObjects.Clear ();
+        for (int i = 0; i < shopSelections.Count; i++) {
+            carousel.GetComponent<CarouselUIElement> ().optionsObjects.Add (shopSelections[i].gameObject);
+        }
+
+        Debug.Log ("Populated array");
     }
 
     void OnDisable () {
@@ -77,7 +89,34 @@ public class ShopInstance : MonoBehaviour {
             if (shopItems[i].itemSprite != null) {
                 shopItemDisplays[i].spriteObj.sprite = shopItems[i].itemSprite;  
             }
+
+            if (shopItemDisplays[i].gameObject.activeSelf == false) {
+                shopItemDisplays[i].gameObject.SetActive (true);
+            }
             
         }
+    }
+
+    public void RemoveItemFromShops (ItemInstance instance) {
+        
+        //Removes item from Caraousel lists
+        
+        CarouselUIElement _carouselscript = carousel.GetComponent<CarouselUIElement> ();
+        
+        if (_carouselscript.currentIndex == _carouselscript.optionsObjects.IndexOf(instance.gameObject)) { //TODO: Needs a check if it's the final item so that it closes shop instead of doing Pressnext
+            _carouselscript.PressNext ();
+
+        }
+        _carouselscript.optionsObjects.Remove (instance.gameObject);
+
+        //Remove item from ShopItems list
+        shopItems.Remove (instance.assignedItem);
+        
+        
+        //Removes item from sprite displays
+
+        int _indexselection = shopSelections.IndexOf (instance);
+        shopItemDisplays[_indexselection].gameObject.SetActive (false);
+
     }
 }

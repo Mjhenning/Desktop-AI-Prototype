@@ -16,6 +16,8 @@ public class GoopGeneration : MonoBehaviour {
  [SerializeField] float maxSpawnDelay = 3f; // Maximum time between spawns
  [SerializeField] int maxGoopPerClusterExclusive;
  [SerializeField] int minGoopPerClusterInclusive;
+ 
+ [SerializeField] RectTransform canvasRect;
 
  void Start() {
      // Start spawning goop
@@ -24,7 +26,7 @@ public class GoopGeneration : MonoBehaviour {
 
  IEnumerator SpawnGoopWithRandomDelay() {
      while (true) {
-         SpawnGoop(/*Random.Range(minGoopPerClusterInclusive, maxGoopPerClusterExclusive)*/ 3); // Spawn goop
+         SpawnGoop(Random.Range(minGoopPerClusterInclusive, maxGoopPerClusterExclusive)); // Spawn goop
          float _delay = Random.Range(minSpawnDelay, maxSpawnDelay);
          yield return new WaitForSeconds(_delay); // Wait for a random delay before spawning again
      }
@@ -48,22 +50,22 @@ public class GoopGeneration : MonoBehaviour {
                  break;
          }
          
-         goopPrefab.transform.localScale = new Vector3 (_scale, _scale, 1f);
+         
+         goopPrefab.transform.localScale = new Vector3(_scale, _scale, 1f);
 
-         // Generate a random x-coordinate within the screen width
-         float _randomX = Random.Range (0, Screen.width);
+         // Generate a random x-coordinate within the canvas width
+         float _randomX = Random.Range(0, canvasRect.rect.width);
 
-         // Calculate the position for the goopPrefab at the top of the screen with the random x-coordinate
-         Vector3 _desiredPosition = new Vector3 (_randomX, Screen.height, 0f);
-         Vector3 _screenPosition = Camera.main.ScreenToWorldPoint (_desiredPosition);
+         // Calculate the position for the goopPrefab at the top of the canvas with the random x-coordinate
+         Vector3 _desiredPosition = new Vector3(_randomX, canvasRect.rect.height, 0f);
 
-         // Adjust the position to keep the goopPrefab within screen bounds
-         float _screenWidth = Screen.width;
-         float _elementWidth = goopPrefab.GetComponent<SpriteRenderer> ().bounds.size.x * _scale;
+         // Adjust the position to keep the goopPrefab within canvas bounds
+         float _canvasWidth = canvasRect.rect.width;
+         float _elementWidth = goopPrefab.GetComponent<RectTransform>().rect.width * _scale;
 
-         float _adjustedX = Mathf.Clamp (_screenPosition.x, _elementWidth / 2, _screenWidth - _elementWidth / 2);
+         float _adjustedX = Mathf.Clamp(_desiredPosition.x, _elementWidth / 2, _canvasWidth - _elementWidth / 2);
 
-         Vector3 _adjustedPosition = new Vector3 (_adjustedX, _screenPosition.y, 0f);
+         Vector3 _adjustedPosition = new Vector3(_adjustedX, _desiredPosition.y, 0f);
 
          // Instantiate the goopPrefab at the adjusted position
          Goop_Instance _spawnedGoop = Instantiate (goopPrefab, _adjustedPosition, Quaternion.identity,UI_Manager.instance.transform).GetComponent<Goop_Instance>();

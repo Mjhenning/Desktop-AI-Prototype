@@ -708,7 +708,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5429473990595648772}
   m_Layer: 5
-  m_Name: Shop_Items
+  m_Name: Shop_Displays
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1441,11 +1441,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shop_Item1
       objectReference: {fileID: 0}
-    - target: {fileID: 6163371493404838536, guid: 1bc14242804328042a290255661a7752,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7548781338358677886, guid: 1bc14242804328042a290255661a7752,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1586,7 +1581,7 @@ PrefabInstance:
     - target: {fileID: 173007366815083076, guid: c1e357faab0128f42b72930ba831a049,
         type: 3}
       propertyPath: optionsObjects.Array.size
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 173007366815083076, guid: c1e357faab0128f42b72930ba831a049,
         type: 3}
@@ -1636,7 +1631,7 @@ PrefabInstance:
     - target: {fileID: 173007366815083078, guid: c1e357faab0128f42b72930ba831a049,
         type: 3}
       propertyPath: m_Name
-      value: Shop_Selection_Carousel
+      value: Shop_Items
       objectReference: {fileID: 0}
     - target: {fileID: 173007366815083078, guid: c1e357faab0128f42b72930ba831a049,
         type: 3}

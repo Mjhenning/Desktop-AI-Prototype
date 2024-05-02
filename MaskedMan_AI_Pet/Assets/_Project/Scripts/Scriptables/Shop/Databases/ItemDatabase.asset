@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23485cc55a4479545b661e102af7070f, type: 3}
   m_Name: ItemDatabase
   m_EditorClassIdentifier: 
-  Sets:
-    ListOfSets:
+  sets:
+    listOfSets:
     - set: {fileID: 11400000, guid: c113b355248c0854cbad11656dbef451, type: 2}
       items: []
     - set: {fileID: 11400000, guid: 5003c9cf41ea7d1499bcdb05744c30dd, type: 2}

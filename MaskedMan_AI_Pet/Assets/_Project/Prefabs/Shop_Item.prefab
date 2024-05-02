@@ -358,7 +358,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 471414398992833619}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7827976971940446438}
+        m_TargetAssemblyTypeName: ItemInstance, Assembly-CSharp
+        m_MethodName: DiscardItem
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3715343068454397466
 GameObject:
   m_ObjectHideFlags: 0
@@ -596,6 +608,7 @@ MonoBehaviour:
   image: {fileID: 1227669939877204658}
   descriptionText: {fileID: 568241718193484830}
   costText: {fileID: 7505847032583228457}
+  buyBtn: {fileID: 6946957389411104279}
 --- !u!1 &6242654058296706017
 GameObject:
   m_ObjectHideFlags: 0

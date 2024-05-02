@@ -28,6 +28,7 @@ public class ObjectPool : MonoBehaviour { //basic object pooling script with add
         GameObject _obj = Instantiate(prefab, this.transform);
         if (_obj.GetComponent<ShopInstance>()) { //if obj has a shop instance script
             _obj.GetComponent<ShopInstance> ().AddListener(); //For each instantiated shop object add a listener   
+            _obj.GetComponent<ShopInstance> ().enabled = true;
         }
         _obj.SetActive(false);
         pooledObjects.Add(_obj);
