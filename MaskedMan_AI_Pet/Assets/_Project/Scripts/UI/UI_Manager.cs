@@ -139,10 +139,10 @@ public class UI_Manager : MonoBehaviour {
     }
 
     void DisplayDialogue (String text) { //used to display the grabbed dialogue and the start a counter beore dialogue stops displaying
-        textBubble.transform.parent.gameObject.SetActive (true);
         textBubble.text = text;
+        textBubble.transform.parent.gameObject.SetActive (true);
         Debug.Log ("Displaying text:" + text);
-
+        
         StartCoroutine (CountTillDisable(textBubble,6f));
     }
 

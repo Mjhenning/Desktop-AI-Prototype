@@ -26,7 +26,7 @@ public class InventoryManager : MonoBehaviour {
 
     void AddToDatabase(ItemInstance instance) {
         for (int i = 0; i < inventory.sets.listOfSets.Length; i++) {
-            if (instance.assignedItem.mainSet == inventory.sets.listOfSets[i].set.mainSet) {
+            if (instance.assignedItem.mainSet == inventory.sets.listOfSets[i].set.mainSet && instance.assignedItem.itemType != ItemTypes.Artifact) {
                 // Ensure that the folder path does not end with a slash
                 string folderPath = "Assets/_Project/Scripts/Scriptables/Shop/Bought_Items";
                 if (!folderPath.EndsWith("/"))
@@ -41,6 +41,11 @@ public class InventoryManager : MonoBehaviour {
                 AssetDatabase.CreateAsset(instance.assignedItem, assetPath);
                 AssetDatabase.SaveAssets();
 
+                inventory.sets.listOfSets[i].items.Add(instance.assignedItem);
+                EventsManager.RemoveGoop(instance.assignedItem.itemGoopCost);
+                EventsManager.RemoveFromLists(instance);
+            }
+            else if (instance.assignedItem.mainSet == inventory.sets.listOfSets[i].set.mainSet && instance.assignedItem.itemType == ItemTypes.Artifact) {
                 inventory.sets.listOfSets[i].items.Add(instance.assignedItem);
                 EventsManager.RemoveGoop(instance.assignedItem.itemGoopCost);
                 EventsManager.RemoveFromLists(instance);

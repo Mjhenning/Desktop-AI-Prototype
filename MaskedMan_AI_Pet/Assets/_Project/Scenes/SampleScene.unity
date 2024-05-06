@@ -521,7 +521,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &418957973
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1032,6 +1032,7 @@ GameObject:
   - component: {fileID: 1949897541}
   - component: {fileID: 1949897543}
   - component: {fileID: 1949897542}
+  - component: {fileID: 1949897544}
   m_Layer: 0
   m_Name: Player Manager
   m_TagString: Untagged
@@ -1080,6 +1081,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goopAmount: 2000
+--- !u!114 &1949897544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1949897540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ae4fd3d1658df2439c39b43c885fd67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  corruptionPercentage: 10
 --- !u!114 &1954861882 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 437337908914412692, guid: 8cd6e94a58359c34c97070603cb01fcf,
@@ -1183,6 +1197,7 @@ GameObject:
   - component: {fileID: 2049565034}
   - component: {fileID: 2049565036}
   - component: {fileID: 2049565035}
+  - component: {fileID: 2049565037}
   m_Layer: 5
   m_Name: Dialogue Text
   m_TagString: Untagged
@@ -1306,6 +1321,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2049565033}
   m_CullTransparentMesh: 1
+--- !u!114 &2049565037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2049565033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17d751080aa7e94479825dea2245fbc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textComponents:
+  - {fileID: 2049565035}
 --- !u!1001 &7417189753183068818
 PrefabInstance:
   m_ObjectHideFlags: 0

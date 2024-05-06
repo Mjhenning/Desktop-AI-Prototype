@@ -59,20 +59,19 @@ public class ObjectPool : MonoBehaviour { //basic object pooling script with add
     public void ReturnAllObjectsToPool() {
         // Create a copy of the pooledObjects list to iterate over
         List<GameObject> _objectsToReturn = new List<GameObject>(pooledObjects);
-
+    
         // Iterate over the copied list and deactivate objects
         foreach (GameObject _obj in _objectsToReturn) {
             _obj.SetActive(false);
         }
-
+    
         // Clear the original pooledObjects list
         pooledObjects.Clear();
-
+    
         // Add all objects back to the original pooledObjects list
         pooledObjects.AddRange(_objectsToReturn);
-
-        EventsManager.ClosedShop ();
     }
+    
 
     //Method to duplicate an object from the pool
     public GameObject DuplicateObjectFromPool(GameObject originalObj) {
