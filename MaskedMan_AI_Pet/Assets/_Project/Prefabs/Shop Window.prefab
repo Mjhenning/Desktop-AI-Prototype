@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 2374282276933974584}
   - component: {fileID: 4630182113685674622}
   - component: {fileID: 7402368307384707310}
-  - component: {fileID: 2473085104214252240}
+  - component: {fileID: 715002684914326147}
   m_Layer: 5
   m_Name: Item_2
   m_TagString: Untagged
@@ -226,7 +226,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteObj: {fileID: 0}
   textObj: {fileID: 5033274079921360276}
---- !u!114 &2473085104214252240
+--- !u!114 &715002684914326147
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -235,53 +235,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 3665439958899941038}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 4630182113685674622}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5277954555232603516}
-        m_TargetAssemblyTypeName: ShopInstance, Assembly-CSharp
-        m_MethodName: ShowCarousel
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5277954555232603516}
+          m_TargetAssemblyTypeName: ShopInstance, Assembly-CSharp
+          m_MethodName: ShowCarousel
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 7402368307384707310}
+            m_ObjectArgumentAssemblyTypeName: ItemSprite_Instance, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &4837078766669986116
 GameObject:
   m_ObjectHideFlags: 0
@@ -294,7 +267,7 @@ GameObject:
   - component: {fileID: 6741999029000506954}
   - component: {fileID: 451299198311050249}
   - component: {fileID: 2708374009804112463}
-  - component: {fileID: 5435696879755175194}
+  - component: {fileID: 733805224027683689}
   m_Layer: 5
   m_Name: Item_1
   m_TagString: Untagged
@@ -374,7 +347,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteObj: {fileID: 0}
   textObj: {fileID: 8591591642329925327}
---- !u!114 &5435696879755175194
+--- !u!114 &733805224027683689
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -383,53 +356,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 4837078766669986116}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 451299198311050249}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5277954555232603516}
-        m_TargetAssemblyTypeName: ShopInstance, Assembly-CSharp
-        m_MethodName: ShowCarousel
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5277954555232603516}
+          m_TargetAssemblyTypeName: ShopInstance, Assembly-CSharp
+          m_MethodName: ShowCarousel
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 2708374009804112463}
+            m_ObjectArgumentAssemblyTypeName: ItemSprite_Instance, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &6024106417120892170
 GameObject:
   m_ObjectHideFlags: 0
@@ -707,13 +653,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5429473990595648772}
+  - component: {fileID: 4958489906111834156}
   m_Layer: 5
   m_Name: Shop_Displays
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5429473990595648772
 RectTransform:
   m_ObjectHideFlags: 0
@@ -737,6 +684,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &4958489906111834156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8145176044324652110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf5f605face532c4a895c7cf118c4f2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shopItemDisplays:
+  - {fileID: 2708374009804112463}
+  - {fileID: 7402368307384707310}
+  - {fileID: 8072369579823737725}
+  - {fileID: 572229856359925411}
 --- !u!1 &8377190303153183809
 GameObject:
   m_ObjectHideFlags: 0
@@ -749,7 +713,7 @@ GameObject:
   - component: {fileID: 1112325656577485618}
   - component: {fileID: 4222151744946361407}
   - component: {fileID: 572229856359925411}
-  - component: {fileID: 8602380230268360557}
+  - component: {fileID: 2064704537166921984}
   m_Layer: 5
   m_Name: Item_4
   m_TagString: Untagged
@@ -829,7 +793,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteObj: {fileID: 0}
   textObj: {fileID: 8864429076097502495}
---- !u!114 &8602380230268360557
+--- !u!114 &2064704537166921984
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -838,53 +802,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 8377190303153183809}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 4222151744946361407}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5277954555232603516}
-        m_TargetAssemblyTypeName: ShopInstance, Assembly-CSharp
-        m_MethodName: ShowCarousel
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5277954555232603516}
+          m_TargetAssemblyTypeName: ShopInstance, Assembly-CSharp
+          m_MethodName: ShowCarousel
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 572229856359925411}
+            m_ObjectArgumentAssemblyTypeName: ItemSprite_Instance, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &8646845194436307038
 GameObject:
   m_ObjectHideFlags: 0
@@ -923,7 +860,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -86, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1000, y: 700}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7674769504009891493
@@ -982,11 +919,7 @@ MonoBehaviour:
   - {fileID: 6288903272046481100}
   - {fileID: 2708511403458444652}
   shopItems: []
-  shopItemDisplays:
-  - {fileID: 2708374009804112463}
-  - {fileID: 7402368307384707310}
-  - {fileID: 8072369579823737725}
-  - {fileID: 572229856359925411}
+  parent: {fileID: 4958489906111834156}
   randomizedShop: 1
   carousel: {fileID: 3038352102401873546}
 --- !u!114 &2196474165258230288
@@ -1016,7 +949,7 @@ GameObject:
   - component: {fileID: 6237609523603455555}
   - component: {fileID: 8086026893605094115}
   - component: {fileID: 8072369579823737725}
-  - component: {fileID: 4509821877468976673}
+  - component: {fileID: 5665650390146202511}
   m_Layer: 5
   m_Name: Item_3
   m_TagString: Untagged
@@ -1096,7 +1029,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteObj: {fileID: 0}
   textObj: {fileID: 547814963081684268}
---- !u!114 &4509821877468976673
+--- !u!114 &5665650390146202511
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1105,53 +1038,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 8840768818904921492}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 8086026893605094115}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5277954555232603516}
-        m_TargetAssemblyTypeName: ShopInstance, Assembly-CSharp
-        m_MethodName: ShowCarousel
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5277954555232603516}
+          m_TargetAssemblyTypeName: ShopInstance, Assembly-CSharp
+          m_MethodName: ShowCarousel
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 8072369579823737725}
+            m_ObjectArgumentAssemblyTypeName: ItemSprite_Instance, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &8861339410263920163
 GameObject:
   m_ObjectHideFlags: 0
@@ -1299,6 +1205,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shop_Item2
       objectReference: {fileID: 0}
+    - target: {fileID: 6163371493404838536, guid: 1bc14242804328042a290255661a7752,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7548781338358677886, guid: 1bc14242804328042a290255661a7752,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1440,6 +1351,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Shop_Item1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6163371493404838536, guid: 1bc14242804328042a290255661a7752,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7548781338358677886, guid: 1bc14242804328042a290255661a7752,
         type: 3}
@@ -1636,7 +1552,7 @@ PrefabInstance:
     - target: {fileID: 173007366815083078, guid: c1e357faab0128f42b72930ba831a049,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 173007366815083079, guid: c1e357faab0128f42b72930ba831a049,
         type: 3}
@@ -1834,6 +1750,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shop_Item3
       objectReference: {fileID: 0}
+    - target: {fileID: 6163371493404838536, guid: 1bc14242804328042a290255661a7752,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7548781338358677886, guid: 1bc14242804328042a290255661a7752,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1975,6 +1896,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Shop_Item4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6163371493404838536, guid: 1bc14242804328042a290255661a7752,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7548781338358677886, guid: 1bc14242804328042a290255661a7752,
         type: 3}

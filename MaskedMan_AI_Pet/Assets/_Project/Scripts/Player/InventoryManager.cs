@@ -1,68 +1,35 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class InventoryManager : MonoBehaviour {
-    [SerializeField] ItemDatabase inventory;
-
-    void Awake () {
+    ItemDatabase inventory;
+    
+    void Start () {
         EventsManager.CheckDatabase.AddListener (EvaluateBool);
-    }
 
- 
-
-    void EvaluateBool (ItemInstance instance, bool buy) {
-        switch (buy) {
-            case true:
-                AddToDatabase (instance);
-                break;
-            case false:
-                RemoveFromShop (instance);
-                break;
-        }
-    }
-
-    void AddToDatabase(ItemInstance instance) {
-        for (int i = 0; i < inventory.sets.listOfSets.Length; i++) {
-            if (instance.assignedItem.mainSet == inventory.sets.listOfSets[i].set.mainSet && instance.assignedItem.itemType != ItemTypes.Artifact) {
-                // Ensure that the folder path does not end with a slash
-                string folderPath = "Assets/_Project/Scripts/Scriptables/Shop/Bought_Items";
-                if (!folderPath.EndsWith("/"))
-                    folderPath += "/";
-
-                // Sanitize the item name to remove any potential issues
-                string sanitizedItemName = SanitizeFileName(instance.assignedItem.itemName);
-
-                // Generate a unique asset path within the specified folder using interpolation
-                string assetPath = $"{folderPath}{sanitizedItemName}.asset";
-                // Create the asset at the generated path
-                AssetDatabase.CreateAsset(instance.assignedItem, assetPath);
-                AssetDatabase.SaveAssets();
-
-                inventory.sets.listOfSets[i].items.Add(instance.assignedItem);
-                EventsManager.RemoveGoop(instance.assignedItem.itemGoopCost);
-                EventsManager.RemoveFromLists(instance);
-            }
-            else if (instance.assignedItem.mainSet == inventory.sets.listOfSets[i].set.mainSet && instance.assignedItem.itemType == ItemTypes.Artifact) {
-                inventory.sets.listOfSets[i].items.Add(instance.assignedItem);
-                EventsManager.RemoveGoop(instance.assignedItem.itemGoopCost);
-                EventsManager.RemoveFromLists(instance);
-            }
-        }
+        inventory = SaveLoadManager.instance.inventory;
     }
     
-    string SanitizeFileName(string fileName) {
-        foreach (char c in System.IO.Path.GetInvalidFileNameChars()) {
-            fileName = fileName.Replace(c.ToString(), "");
+    void EvaluateBool (ItemInstance _instance, bool buy) {
+        if (buy) {
+            AddToDatabase (_instance);
+        } else {
+            RemoveFromShop (_instance);
         }
-        return fileName;
+    }
+
+    void AddToDatabase(ItemInstance instance) { //adds item to database scriptable and removes it from lists and removes cost from player goop count
+         for (int i = 0; i < inventory.setDB.setList.Length; i++) {
+             if (inventory.setDB.setList[i].set.mainSet == instance.assignedItem.mainSet) {
+                 inventory.setDB.setList[i].items.Add(instance.assignedItem);
+                 EventsManager.RemoveGoop(instance.assignedItem.itemGoopCost);
+                 RemoveFromShop (instance);
+             }
+         }
     }
 
     void RemoveFromShop (ItemInstance instance) {
         EventsManager.RemoveFromLists (instance);
     }
     
-    
+
 }

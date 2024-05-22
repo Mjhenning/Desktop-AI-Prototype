@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82f30dc3fe3dbdd46bab94f9ce256155, type: 3}
   m_Name: Submerged_Key
   m_EditorClassIdentifier: 
-  MainSet: 6
-  ItemType: 0
-  ITEM_Sprite: {fileID: 0}
-  ItemName: Submerged Key
-  ItemDesc: A rusted-over aqua-shaded key covered in barnacles.
+  mainSet: 6
+  itemType: 0
+  itemSprite: {fileID: 0}
+  itemName: Submerged Key
+  itemDesc: A rusted-over aqua-shaded key covered in barnacles.
+  itemGoopCost: 1681

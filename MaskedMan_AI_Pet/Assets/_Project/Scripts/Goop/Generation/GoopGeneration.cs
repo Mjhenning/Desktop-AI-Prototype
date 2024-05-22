@@ -50,17 +50,17 @@ public class GoopGeneration : MonoBehaviour {
                  break;
          }
          
+         float _canvasWidth = canvasRect.rect.width;
          
          goopPrefab.transform.localScale = new Vector3(_scale, _scale, 1f);
 
          // Generate a random x-coordinate within the canvas width
-         float _randomX = Random.Range(0, canvasRect.rect.width);
+         float _randomX = Random.Range(0, _canvasWidth);
 
          // Calculate the position for the goopPrefab at the top of the canvas with the random x-coordinate
          Vector3 _desiredPosition = new Vector3(_randomX, canvasRect.rect.height, 0f);
 
          // Adjust the position to keep the goopPrefab within canvas bounds
-         float _canvasWidth = canvasRect.rect.width;
          float _elementWidth = goopPrefab.GetComponent<RectTransform>().rect.width * _scale;
 
          float _adjustedX = Mathf.Clamp(_desiredPosition.x, _elementWidth / 2, _canvasWidth - _elementWidth / 2);

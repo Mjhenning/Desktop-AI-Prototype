@@ -7,17 +7,22 @@ using UnityEngine.Serialization;
 [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/DatabaseSO", order = 1)]
 
 public class ItemDatabase : ScriptableObject {
-    [FormerlySerializedAs ("Sets")] public NewDict sets; //Dictionary containing sets
+    [FormerlySerializedAs ("Sets")] public AllSets setDB; //Dictionary containing sets
 }
 
 [Serializable]
-public class NewDict : Dictionary<ItemSet, List<Item>> { //class containing array of sets
-    [FormerlySerializedAs ("ListOfSets")] public NewDictItem[] listOfSets;
+public class AllSets : Dictionary<ItemSet, List<Item>> { //class containing array of sets
+    [FormerlySerializedAs ("ListOfSets")] public SetItemCombo[] setList;
 }
 
 [Serializable]
-public class NewDictItem { //class containing sets and items under set
+public class SetItemCombo{ //class containing sets and items under set
     public ItemSet set;
-    public List<Item> items;
+    public List<Item> items = new List<Item>();
+
+    public void ClearItems () {
+        items.Clear ();
+    }
 }
+
 

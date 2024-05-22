@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 //PUBLIC SCRIPT
 
@@ -24,7 +25,7 @@ namespace CarouselUI
         [SerializeField, Tooltip("Time to deactivate inbetween refires.")] private float resetDuration = 0.1f;
         [FormerlySerializedAs ("_doesNotCycleBack")] [SerializeField, Tooltip("If true, when the index reaches either limit the next/previous buttons are hidden.")] private bool doesNotCycleBack = false;
 
-        [HideInInspector]public int currentIndex = 0;
+        public int currentIndex = 0;
 
         public int CurrentIndex
         {
@@ -37,6 +38,14 @@ namespace CarouselUI
 
         private bool isProcessing = false; //HERE TO DELAY REFIRES
         private WaitForSeconds resetDelay; //WORKS WITH DELAY COROUTINE
+
+
+        void OnEnable () { //on-enable so that it detects index change while inactive properly and android section so that swipes will work and player doesn't have to press buttons
+#if UNITY_ANDROID
+            EventsManager.OnSwipeDirection.AddListener (EvaluateSwipe);
+#endif
+            UpdateUI ();
+        }
 
         
         private void Start()
@@ -55,7 +64,17 @@ namespace CarouselUI
 
             resetDelay = new WaitForSeconds(resetDuration);
 
+            //Custom Edit for android compatibility and tp
+            
+#if UNITY_EDITOR || UNITY_STANDALONE_WIN
             UpdateUI();
+            
+#elif UNITY_ANDROID //de-activates both buttons if played on android
+            nextButton.GetComponent<Button> ().interactable = false;
+            prevButton.GetComponent<Button> ().interactable = false;
+#endif
+
+
         }
 
         private void UpdateUI()
@@ -86,6 +105,19 @@ namespace CarouselUI
             }
 
         }
+
+#if UNITY_ANDROID //used to grab swipe direction and press next / previous according to that direction
+        public void EvaluateSwipe (DraggedDirection direction) {
+            switch (direction) {
+                case DraggedDirection.Right:
+                    PressNext ();
+                    break;
+                case DraggedDirection.Left:
+                    PressPrevious ();
+                    break;
+            }
+        }
+#endif
 
         /// <summary>
         /// Prevents further refires until duration ends.

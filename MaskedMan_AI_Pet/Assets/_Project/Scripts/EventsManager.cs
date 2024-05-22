@@ -1,7 +1,5 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -31,6 +29,8 @@ public static class EventsManager //huge events manager used by whole program to
     public static readonly UnityEvent<List<Item>> RetrieveList = new UnityEvent<List<Item>> ();
     public static readonly UnityEvent<ItemInstance, bool> CheckDatabase = new UnityEvent<ItemInstance, bool> ();
     public static readonly UnityEvent<ItemInstance> RemoveItem = new UnityEvent<ItemInstance> ();
+    
+    public static readonly UnityEvent<DraggedDirection> OnSwipeDirection = new UnityEvent<DraggedDirection>();
 
 
     //Void functions to fire events
@@ -63,17 +63,43 @@ public static class EventsManager //huge events manager used by whole program to
 
     public static void StartHourlyTimer () { StartHourlyCheck.Invoke (); } //used to only fire off time checker for if shop is completely closed or not after the first state change to idle
 
-    public static void RandomizeShop () { RandomizeShopItems.Invoke (); }
+    public static void RandomizeShop () { RandomizeShopItems.Invoke ();
+        Debug.Log ("Randomizing shops");
+    } ///used to randomize the inventory of the shop
 
-    ///used to randomize the inventory of the shop
+    public static void PopulateActiveShopList (List<Item> shopItems) { RetrieveList.Invoke (shopItems); } //populates the list that has all the active shop's items
 
-    public static void PopulateActiveShopList (List<Item> shopItems) { RetrieveList.Invoke (shopItems); }
+    public static void BoughtItem (ItemInstance item, bool bought) { CheckDatabase.Invoke (item, bought); } //used to fire off event when an item is bought
 
-    public static void BoughtItem (ItemInstance item, bool bought) { CheckDatabase.Invoke (item, bought); }
+    public static void AddGoop (int amount) { AddCurrency.Invoke (amount); } //used to add goop when a goop object is pressed
+    public static void RemoveGoop (int amount) { RemoveCurrency.Invoke (amount);} //used to remove goop when something is bought
 
-    public static void AddGoop (int amount) { AddCurrency.Invoke (amount); }
-    public static void RemoveGoop (int amount) { RemoveCurrency.Invoke (amount);}
+    public static void RemoveFromLists (ItemInstance instance) { RemoveItem.Invoke (instance); } //removes an item from all possible lists it's on
+    
+    public static void HandleSwipeDirection(DraggedDirection direction) //Logic to handle swipe directions and pass the correct direction
+    {
+        // Handle the swipe direction
+        Debug.Log("Detected swipe direction: " + direction);
 
-    public static void RemoveFromLists (ItemInstance instance) { RemoveItem.Invoke (instance); }
+        // Add your logic here based on the swipe direction
+        switch (direction)
+        {
+            case DraggedDirection.Up:
+                OnSwipeDirection.Invoke (DraggedDirection.Up);
+                break;
+            case DraggedDirection.Down:
+                Debug.Log("Swipe Down");
+                OnSwipeDirection.Invoke (DraggedDirection.Down);
+                break;
+            case DraggedDirection.Right:
+                Debug.Log("Swipe Right");
+                OnSwipeDirection.Invoke (DraggedDirection.Right);
+                break;
+            case DraggedDirection.Left:
+                Debug.Log("Swipe Left");
+                OnSwipeDirection.Invoke (DraggedDirection.Left);
+                break;
+        }
+    }
 
 }

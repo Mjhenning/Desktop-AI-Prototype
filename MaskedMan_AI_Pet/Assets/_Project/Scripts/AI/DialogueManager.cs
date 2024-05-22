@@ -16,8 +16,32 @@ public class DialogueManager : MonoBehaviour
         EventsManager.DialogueEvent.AddListener (SendALine);
     }
 
-    void SendALine (DialogueType type) {
-        EventsManager.DialogueFeed (GrabALine (type)); //TODO: DON'T LIKE THIS NOT MODULAR ENOUGH
+    void SendALine (DialogueType type) { //setup in this manner so api can be used when anything besides a shop prompt is generated
+        if (type != DialogueType.ShopPrompt) {
+            int chance;
+            chance = Random.Range (0, 2);
+            switch (chance) {
+                case 0:
+                    EventsManager.DialogueFeed (GrabALine (type));
+                    Debug.Log ("Displaying dialogue string");
+                    break;
+                case 1:
+                    API_Manager.instance.CallRandomFact(OnFactReceived);
+                    Debug.Log ("Displaying fact");
+                    break;
+            }  
+        } else {
+            EventsManager.DialogueFeed (GrabALine (type));
+        }
+       
+    }
+
+    void OnFactReceived (string fact) {
+        if (fact != null) {
+            EventsManager.DialogueFeed(fact);
+        } else {
+            Debug.LogError("Failed to retrieve a random fact.");
+        }
     }
 
     //Assign used dialogue to temp var, double check if picked random.ranger is the same as previous dialogue if it is re re-randomize else use the picked dialogue

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
+//scriptable used to save various list of strings of a specific type
+
 public enum DialogueType { 
     Idle,
     ShopPrompt,

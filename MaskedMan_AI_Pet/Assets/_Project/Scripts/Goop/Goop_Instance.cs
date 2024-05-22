@@ -7,7 +7,8 @@ public class Goop_Instance : MonoBehaviour {
     public GoopSize size;
 
     void Update () { //used to move goop gradually down the screen when spawned;
-        transform.Translate (Vector3.down * .2f);
+        Vector3 translateDir = Vector3.down * Time.deltaTime;
+        transform.Translate (translateDir * 60f);
     }
 
     public void CollectGoop () { //used to add goop to currency amount based off of size if goop is clicked

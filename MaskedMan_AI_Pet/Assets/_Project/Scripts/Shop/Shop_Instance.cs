@@ -10,8 +10,8 @@ using UnityEngine.UI;
 public class ShopInstance : MonoBehaviour {
     public List<ItemInstance> shopSelections;
     public List<Item> shopItems;
-    public List<ItemSprite_Instance> shopItemDisplays;
-    
+    public DisplayParent parent;
+
     public bool randomizedShop = true; //used to determine if a shop is supposed to be randomized or if it's a duplicate window
     public GameObject carousel;
     
@@ -25,21 +25,17 @@ public class ShopInstance : MonoBehaviour {
         for (int i = 0; i < shopSelections.Count; i++) {
             carousel.GetComponent<CarouselUIElement> ().optionsObjects.Add (shopSelections[i].gameObject);
         }
-
-        Debug.Log ("Populated array");
     }
 
     void OnDisable () {
         EventsManager.ShopClosed.RemoveListener (ResetBool);
+        EventsManager.RemoveItem.RemoveListener(RemoveItemFromShops);
+        shopItems.Clear ();
+        parent.gameObject.SetActive (false);
     }
-
-    void Start () {
-        if (randomizedShop) 
-            EventsManager.PopulateActiveShopList (shopItems); //populates the active shop list on the item generator
-    }
-
+    
     internal void RandomizeItemsInShop () { //randomizes the generated items in shop by calling itemgenerator script
-        ClearShop ();
+        shopItems.Clear ();
         foreach (ItemInstance _item in shopSelections) {
             _item.assignedItem = ItemGenerator.Instance.GrabGeneratedItem ();
             // if (_item.assignedItem.ITEM_Sprite != null) {
@@ -49,21 +45,39 @@ public class ShopInstance : MonoBehaviour {
             shopItems.Add (_item.assignedItem);
         }
 
-        SetText ();
-        PopulateDisplays ();
+        SetItem ();
         CloseCarousel ();
+        DisableItemsBasedOffCorruption ();
+        parent.gameObject.SetActive (true);
     }
-
-    void ClearShop () { //clears the shop of items
-        shopItems.Clear ();
+    
+    void DisableItemsBasedOffCorruption () { //used to limit amount of items player can buy based off of the ai's current corruption percentage
+        if (Corruption_Manager.instance.corruptionPercentage < 25) {
+            
+        } else if (Corruption_Manager.instance.corruptionPercentage >= 25 && Corruption_Manager.instance.corruptionPercentage < 50  ) { //removes last item
+            RemoveItemFromShops (shopSelections[3]);
+        } else if (Corruption_Manager.instance.corruptionPercentage >= 50 && Corruption_Manager.instance.corruptionPercentage < 75) { //removes last 2 items
+            RemoveItemFromShops (shopSelections[3]);
+            RemoveItemFromShops (shopSelections[2]);
+        } else if (Corruption_Manager.instance.corruptionPercentage >= 75 && Corruption_Manager.instance.corruptionPercentage <= 100) { //removes last 3 items
+            RemoveItemFromShops (shopSelections[3]);
+            RemoveItemFromShops (shopSelections[2]);
+            RemoveItemFromShops (shopSelections[1]);
+        }
     }
+    
 
     public void AddListener () {
         EventsManager.RandomizeShopItems.AddListener (RandomizeItemsInShop); //add a listener to determine when shops should be randomized
     }
 
-    public void SetText () { //sets the text for the item
+    public void SetItem () { //sets the text and sprite for the item
         foreach (ItemInstance _item in shopSelections) {
+
+            if (_item.assignedItem.itemSprite != null) {
+                _item.image.sprite = _item.assignedItem.itemSprite;
+            }
+            
             _item.descriptionText.text = "Item: " + _item.assignedItem.itemName + "\n" + "Type: " + _item.assignedItem.itemType + "\n" + "\n" + _item.assignedItem.itemDesc;
             _item.costText.text = _item.assignedItem.itemGoopCost.ToString ();
         }
@@ -75,37 +89,37 @@ public class ShopInstance : MonoBehaviour {
         }
     }
 
-    public void ShowCarousel () {
-        carousel.SetActive (true);
-    }
-
-    public void CloseCarousel () {
-        carousel.SetActive (false);
-    }
-
-    public void PopulateDisplays () {
-        for (int i = 0; i < shopItemDisplays.Count; i++) {
-            shopItemDisplays[i].textObj.text = shopItems[i].itemGoopCost.ToString();
-            if (shopItems[i].itemSprite != null) {
-                shopItemDisplays[i].spriteObj.sprite = shopItems[i].itemSprite;  
-            }
-
-            if (shopItemDisplays[i].gameObject.activeSelf == false) {
-                shopItemDisplays[i].gameObject.SetActive (true);
-            }
-            
-        }
-    }
-
-    public void RemoveItemFromShops (ItemInstance instance) {
-        
-        //Removes item from Caraousel lists
+    public void ShowCarousel (ItemSprite_Instance display) { //shows item shop carousel and specifically change index to selected sprite
         
         CarouselUIElement _carouselscript = carousel.GetComponent<CarouselUIElement> ();
         
-        if (_carouselscript.currentIndex == _carouselscript.optionsObjects.IndexOf(instance.gameObject)) { //TODO: Needs a check if it's the final item so that it closes shop instead of doing Pressnext
-            _carouselscript.PressNext ();
+        Debug.Log ("Index Pre displays " + parent.shopItemDisplays.IndexOf (display));
+        Debug.Log ("Index Pre carousel " + _carouselscript.CurrentIndex);
 
+        _carouselscript.CurrentIndex = parent.shopItemDisplays.IndexOf (display);
+        Debug.Log ("Index Post displays " + parent.shopItemDisplays.IndexOf (display));
+        Debug.Log ("Index Post carousel " +_carouselscript.CurrentIndex);
+        carousel.SetActive (true); 
+        
+    }
+
+    public void CloseCarousel () { //hides item shop carousel
+        carousel.SetActive (false);
+    }
+    
+
+    public void RemoveItemFromShops (ItemInstance instance) { //used to remove a item from every possible location it is currently displayed or accessed
+        
+        //Removes item from Carousel lists
+        
+        CarouselUIElement _carouselscript = carousel.GetComponent<CarouselUIElement> ();
+        
+        if (carousel.activeSelf) { //Goes to next item automatically
+            if (_carouselscript.optionsObjects.Count > 1) {
+                _carouselscript.PressNext ();  
+            } else if (_carouselscript.optionsObjects.Count < 2) { //if there is only one object and it gets bought / discarded close the shop
+                EventsManager.ShopClosed.Invoke ();
+            }
         }
         _carouselscript.optionsObjects.Remove (instance.gameObject);
 
@@ -116,7 +130,8 @@ public class ShopInstance : MonoBehaviour {
         //Removes item from sprite displays
 
         int _indexselection = shopSelections.IndexOf (instance);
-        shopItemDisplays[_indexselection].gameObject.SetActive (false);
+        Debug.Log ("Index " +_indexselection);
+        parent.shopItemDisplays[_indexselection].gameObject.SetActive (false);
 
     }
 }

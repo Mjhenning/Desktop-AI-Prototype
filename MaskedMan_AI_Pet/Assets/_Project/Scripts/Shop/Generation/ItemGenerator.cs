@@ -36,18 +36,19 @@ public class ItemGenerator : MonoBehaviour {
     }
 
     void GenerateSets () { //populates sets with their items from set scriptables to database
-        foreach (NewDictItem _setItem in database.sets.listOfSets) {
+        foreach (SetItemCombo _setItem in database.setDB.setList) {
             _setItem.items = _setItem.set.setItemDatabase;
         }
     }
-
-
-
-
-
+    
     public Item GrabGeneratedItem () { //gets called to populate Item_Instances
+        tempItem = null;
         GenerateItemSetPair ();
-        return tempItem;
+        if (tempItem != null) {
+            return tempItem; 
+        } else {
+            return null;
+        }
     }
     
 
@@ -56,18 +57,14 @@ public class ItemGenerator : MonoBehaviour {
         Item _createdItem = ScriptableObject.CreateInstance<Item> ();
         
         if (type == ItemTypes.Artifact) { //if the item is a artifact grab from list of predefined artifacts
-            Debug.Log ("Grabbing an artifact");
             for (int _i = 0; _i < artifacts.Count; _i++) {
                 if (artifacts[_i].mainSet == set) {
                     _createdItem = artifacts[_i];
                     tempItem = _createdItem;
-                    
-                    _createdItem.itemGoopCost = GenerateGoopCost (_createdItem);
                     _createdItem.itemSprite = GrabCorrespondingSprite (_createdItem);
                 }
             }
         } else { //else if not a artifact set the set, item type, randomize the name and description and set the Image
-            Debug.Log ("Creating a new item");
             _createdItem.mainSet = set;
             _createdItem.itemType = type;
             _createdItem.itemName = ItemNameGenerator.GenerateItemName (set, type);
@@ -93,7 +90,7 @@ public class ItemGenerator : MonoBehaviour {
         bool _itemExistsInActiveShop = false;
 
         // Check if the combination already exists in the database
-        foreach (NewDictItem _itemSet in database.sets.listOfSets)
+        foreach (SetItemCombo _itemSet in database.setDB.setList)
         {
             foreach (Item _item in _itemSet.items)
             {
@@ -124,7 +121,6 @@ public class ItemGenerator : MonoBehaviour {
         else
         {
             // Generate a new item
-            Debug.Log("Generating a new item");
             GenerateItemBasedOffItemSetPair(type, set);
         }
     }
@@ -138,8 +134,7 @@ public class ItemGenerator : MonoBehaviour {
         while (_itemtype == ItemTypes.MainItem) {
             _itemtype = (ItemTypes) Random.Range (0, 3);  
         }
-
-        Debug.Log ("Generate item with" + _set + " " + _itemtype);
+        
 
         CheckInDatabase (_itemtype, _set);
     }
@@ -165,7 +160,6 @@ public class ItemGenerator : MonoBehaviour {
     Sprite GrabCorrespondingSprite (Item generateditem) { //evaluates the generated item's type and set combo and then grabs a corresponding sprite from the list of classes
         for (int i = 0; i < spriteCollections.Count; i++) {
             if (generateditem.itemType == spriteCollections[i].itemTypes && generateditem.mainSet == spriteCollections[i].set) {
-                Debug.Log ("Grabbed sprite for " + generateditem.mainSet + " " + generateditem.itemType);
                 return spriteCollections[i].itemsprite;
             }
         }

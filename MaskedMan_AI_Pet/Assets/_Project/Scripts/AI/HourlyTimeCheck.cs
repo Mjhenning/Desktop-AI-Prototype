@@ -40,12 +40,12 @@ public class HourlyTimeCheck : MonoBehaviour
 
         // Define the start and end times for the desired range
         DateTime _startTime = DateTime.Today.AddHours(6); // 06:00
-        DateTime _endTime = DateTime.Today.AddHours(22); // 22:00
+        DateTime _endTime = DateTime.Today.AddHours(22); // 00:00
 
         // Check if the current time falls within the range
         bool _shopOpen = _currentTime >= _startTime && _currentTime < _endTime;
 
-        Debug.Log(_shopOpen ? "Current time is between 06:00 and 18:00" : "Current time is not between 06:00 and 22:00");
+        Debug.Log(_shopOpen ? "Current time is between 06:00 and 22:00" : "Current time is not between 06:00 and 22:00");
 
         // Invoke the event with the boolean value
         EventsManager.CheckShop(_shopOpen);

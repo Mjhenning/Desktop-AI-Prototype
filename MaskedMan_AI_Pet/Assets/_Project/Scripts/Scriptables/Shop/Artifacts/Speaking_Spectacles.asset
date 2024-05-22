@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82f30dc3fe3dbdd46bab94f9ce256155, type: 3}
   m_Name: Speaking_Spectacles
   m_EditorClassIdentifier: 
-  MainSet: 4
-  ItemType: 0
-  ITEM_Sprite: {fileID: 0}
-  ItemName: Speaking Spectacles
-  ItemDesc: A set of silver-rimmed spectacles, the previous owner reported that they
+  mainSet: 4
+  itemType: 0
+  itemSprite: {fileID: 0}
+  itemName: Speaking Spectacles
+  itemDesc: A set of silver-rimmed spectacles, the previous owner reported that they
     belonged to his grandfather, who got bludgeoned to death by the mafia for unknown
     reasons.
+  itemGoopCost: 2101

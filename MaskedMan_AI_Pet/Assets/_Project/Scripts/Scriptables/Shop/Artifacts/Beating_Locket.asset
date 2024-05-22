@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82f30dc3fe3dbdd46bab94f9ce256155, type: 3}
   m_Name: Beating_Locket
   m_EditorClassIdentifier: 
-  MainSet: 5
-  ItemType: 0
-  ITEM_Sprite: {fileID: 0}
-  ItemName: Beating Locket
-  ItemDesc: A bronze and silver-tinted locket that, at random intervals, pulses to
+  mainSet: 5
+  itemType: 0
+  itemSprite: {fileID: 0}
+  itemName: Beating Locket
+  itemDesc: A bronze and silver-tinted locket that, at random intervals, pulses to
     the rhythm of the holder's heart.
+  itemGoopCost: 1899

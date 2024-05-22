@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82f30dc3fe3dbdd46bab94f9ce256155, type: 3}
   m_Name: Whispering_Idol
   m_EditorClassIdentifier: 
-  MainSet: 3
-  ItemType: 0
-  ITEM_Sprite: {fileID: 0}
-  ItemName: Whispering Idol
-  ItemDesc: A Matryoshka doll said to cause whispers to be heard in the head of anyone
+  mainSet: 3
+  itemType: 0
+  itemSprite: {fileID: 0}
+  itemName: Whispering Idol
+  itemDesc: A Matryoshka doll said to cause whispers to be heard in the head of anyone
     nearby.
+  itemGoopCost: 2126

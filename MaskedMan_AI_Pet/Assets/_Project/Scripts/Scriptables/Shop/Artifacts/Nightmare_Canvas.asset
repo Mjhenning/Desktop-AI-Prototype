@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82f30dc3fe3dbdd46bab94f9ce256155, type: 3}
   m_Name: Nightmare_Canvas
   m_EditorClassIdentifier: 
-  MainSet: 0
-  ItemType: 0
-  ITEM_Sprite: {fileID: 0}
-  ItemName: Nightmare Canvas
-  ItemDesc: A canvas that morphs any image painted onto it into images of unsettling
+  mainSet: 0
+  itemType: 0
+  itemSprite: {fileID: 0}
+  itemName: Nightmare Canvas
+  itemDesc: A canvas that morphs any image painted onto it into images of unsettling
     and eerie otherworldly beings.
+  itemGoopCost: 1619

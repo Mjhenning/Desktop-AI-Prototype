@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
@@ -13,17 +12,19 @@ using Random = UnityEngine.Random;
 public class UI_Manager : MonoBehaviour {
     public static UI_Manager instance;
 
-    PlayerController input;
+    public PlayerController input;
+
 
     [FormerlySerializedAs ("Masks")] [SerializeField]List<Sprite> masks;
     [SerializeField]AIController activeController;
 
     [FormerlySerializedAs ("TextBubble")] [SerializeField]TextMeshProUGUI textBubble;
-    [FormerlySerializedAs ("OverUI")] [SerializeField] bool overUI;
-    
+
     [FormerlySerializedAs ("Mask")] [SerializeField]Image mask;
     [FormerlySerializedAs ("Tie")] [SerializeField]Image tie;
     [FormerlySerializedAs ("Body")] [SerializeField]Image body;
+    [SerializeField] GameObject listObj;
+    [SerializeField] GameObject listBtn;
 
     int currentIndex; //used to go scroll through list of masks
 
@@ -32,21 +33,46 @@ public class UI_Manager : MonoBehaviour {
         input = new PlayerController ();
         input.Enable ();
         input.Player.Click.performed += ClickOnperformed; //if the player clicks
+        input.Player.Escape.performed += EscapeOnperformed;
     }
 
+    
+    void EscapeOnperformed (InputAction.CallbackContext obj) {
+        Application.Quit ();
+    }
+    
     void ClickOnperformed (InputAction.CallbackContext obj) {
-        switch (overUI) {
+#if UNITY_STANDALONE_WIN || UNITY_EDITOR_WIN
+        switch (CheckOverUIWin()) {
             case false:
                 switch (activeController.GetCurrentState() ) { 
-                   case StateType.Shopping: //if the player is currently shopping and not over ui when they click
-                       EventsManager.ClosedShop (); //close the shop
-                       break;
-                   case StateType.Agressive: //if the vendor is currently agressive and the player clicks while not over ui
-                       ObjectPool.Instance.DuplicateObjectFromPool (ObjectPool.Instance.pooledObjects[0]); //duplicate the current object from the pool of shop windows
-                       break;
+                    case StateType.Shopping: //if the player is currently shopping and not over ui when they click
+                        EventsManager.ClosedShop (); //close the shop
+                        break;
+                    case StateType.Agressive: //if the vendor is currently agressive and the player clicks while not over ui
+                        ObjectPool.Instance.DuplicateObjectFromPool (ObjectPool.Instance.pooledObjects[0]); //duplicate the current object from the pool of shop windows
+                        break;
                 }
                 break;
         }
+#elif UNITY_ANDROID
+        Vector2 touchPosition = Pointer.current.position.ReadValue();
+        
+        switch (CheckOverUIAnd(touchPosition)) {
+            case false:
+                switch (activeController.GetCurrentState() ) { 
+                    case StateType.Shopping: //if the player is currently shopping and not over ui when they click
+                        EventsManager.ClosedShop (); //close the shop
+                        break;
+                    case StateType.Agressive: //if the vendor is currently aggressive and the player clicks while not over ui
+                        ObjectPool.Instance.DuplicateObjectFromPool (ObjectPool.Instance.pooledObjects[0]); //duplicate the current object from the pool of shop windows
+                        break;
+                }
+                break;
+        }
+#endif
+
+       
     }
     
 
@@ -61,8 +87,24 @@ public class UI_Manager : MonoBehaviour {
         EventsManager.EnableMaskInteractions.AddListener (EnableMask); //adds listener that enables the mask go
     }
 
-    void Update () {
-        overUI = EventSystem.current.IsPointerOverGameObject ();
+
+    bool CheckOverUIWin () {
+        return EventSystem.current.IsPointerOverGameObject();
+    }
+
+    bool CheckOverUIAnd (Vector2 touchPos) {
+        // Create a pointer event data with the touch position
+        PointerEventData eventData = new PointerEventData(EventSystem.current);
+        eventData.position = touchPos;
+
+        // Create a list to store raycast results
+        var raycastResults = new List<RaycastResult>();
+
+        // Perform a raycast to check if the touch is over a UI element
+        EventSystem.current.RaycastAll(eventData, raycastResults);
+
+        // Return true if any raycast result hits a UI object
+        return raycastResults.Count > 0;
     }
 
 
@@ -141,8 +183,8 @@ public class UI_Manager : MonoBehaviour {
     void DisplayDialogue (String text) { //used to display the grabbed dialogue and the start a counter beore dialogue stops displaying
         textBubble.text = text;
         textBubble.transform.parent.gameObject.SetActive (true);
-        Debug.Log ("Displaying text:" + text);
-        
+        textBubble.GetComponent<Text_Corruption> ().Corrupt ();
+
         StartCoroutine (CountTillDisable(textBubble,6f));
     }
 
@@ -163,6 +205,16 @@ public class UI_Manager : MonoBehaviour {
     IEnumerator WaitBeforeMaskEnable () { //used to wait 1 second before enabling mask gameobject
         yield return new WaitForSeconds (1f);
         mask.gameObject.SetActive (true);
+    }
+
+    public void ShowList () {
+        listObj.SetActive (true);
+        listBtn.SetActive (false);
+    }
+
+    public void CloseList () {
+        listObj.SetActive (false);
+        listBtn.SetActive (true);
     }
 
 }
