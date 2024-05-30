@@ -12,7 +12,7 @@ public class AIController : MonoBehaviour {
     public Animator tieAnimator;
     
     [SerializeReference]State currentState;
-    [SerializeReference] StateType currentStateEnum;
+    [HideInInspector]StateType currentStateEnum;
 
     public StateIdle stateIdle;
     public StateSleep stateSleep;

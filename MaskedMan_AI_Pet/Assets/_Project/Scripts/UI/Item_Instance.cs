@@ -11,15 +11,17 @@ public class ItemInstance : MonoBehaviour { //each item in ui uses this script t
     public TextMeshProUGUI costText;
     public Button buyBtn;
     
-    public void BuyItem () {
+    public void BuyItem () { //used to buy and item and purify corruption
         EventsManager.BoughtItem (this, true);
+        Corruption_Manager.instance.Purify ();
     }
 
-    public void DiscardItem () {
+    public void DiscardItem () { //used to discard an item and corrupt vendor
         EventsManager.BoughtItem (this, false);
+        Corruption_Manager.instance.Corrupt ();
     }
 
-    void Update () {
+    void Update () { //checks if item can be bought otherwise button isn't interactable
 
         if (CurrencyManager.instance.CheckCurrency(assignedItem.itemGoopCost)) {
             buyBtn.interactable = true;

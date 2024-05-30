@@ -21,12 +21,12 @@ public class UI_Manager : MonoBehaviour {
     [FormerlySerializedAs ("TextBubble")] [SerializeField]TextMeshProUGUI textBubble;
 
     [FormerlySerializedAs ("Mask")] [SerializeField]Image mask;
-    [FormerlySerializedAs ("Tie")] [SerializeField]Image tie;
+    [FormerlySerializedAs ("Tie")] public Image tie;
     [FormerlySerializedAs ("Body")] [SerializeField]Image body;
     [SerializeField] GameObject listObj;
     [SerializeField] GameObject listBtn;
 
-    int currentIndex; //used to go scroll through list of masks
+    public int maskIndex; //used to go scroll through list of masks
 
     void Awake () {
         instance = this;
@@ -50,7 +50,7 @@ public class UI_Manager : MonoBehaviour {
                         EventsManager.ClosedShop (); //close the shop
                         break;
                     case StateType.Agressive: //if the vendor is currently agressive and the player clicks while not over ui
-                        ObjectPool.Instance.DuplicateObjectFromPool (ObjectPool.Instance.pooledObjects[0]); //duplicate the current object from the pool of shop windows
+                        ObjectPool.Instance.DuplicateObjectFromPool (ObjectPool.Instance.pooledObjects[0]); //duplicate the current object from the pool of shop windows 
                         break;
                 }
                 break;
@@ -77,7 +77,6 @@ public class UI_Manager : MonoBehaviour {
     
 
     void Start() {
-        currentIndex = 0;
         activeController = AIController.Instance; //grabs the only ai controller in scene
         
         EventsManager.ShopOpened.AddListener (OpenShop); //adds listener to know when shop UI should be displayed
@@ -167,12 +166,12 @@ public class UI_Manager : MonoBehaviour {
 
     void ChangeMaskInOrderd () {
         //Used to run through list of masks in order
-        if (currentIndex != masks.Count -1) {
-            currentIndex++;
-            mask.sprite = masks[currentIndex];  
+        if (maskIndex != masks.Count -1) {
+            maskIndex++;
+            mask.sprite = masks[maskIndex];  
         } else {
-            currentIndex = 0;
-            mask.sprite = masks[currentIndex];
+            maskIndex = 0;
+            mask.sprite = masks[maskIndex];
         }
         
         
@@ -180,12 +179,25 @@ public class UI_Manager : MonoBehaviour {
         mask.color = mask.sprite != null ? Color.white : Color.clear;
     }
 
-    void DisplayDialogue (String text) { //used to display the grabbed dialogue and the start a counter beore dialogue stops displaying
+    public void CallOnLoad (Color color, int index) { //called by save load manager to load custom data
+        tie.color = color;
+        maskIndex = index;
+        if (index != 0) {
+            mask.sprite = masks[index];
+            mask.color = Color.white;  
+        }
+
+    }
+
+    void DisplayDialogue (String text, bool Corruptable) { //used to display the grabbed dialogue and the start a counter before dialogue stops displaying
         textBubble.text = text;
         textBubble.transform.parent.gameObject.SetActive (true);
-        textBubble.GetComponent<Text_Corruption> ().Corrupt ();
+        if (Corruptable) {
+            textBubble.GetComponent<Text_Corruption> ().Corrupt ();   
+        }
+       
 
-        StartCoroutine (CountTillDisable(textBubble,6f));
+        StartCoroutine (CountTillDisable(textBubble,10f));
     }
 
     IEnumerator CountTillDisable (TextMeshProUGUI textObj, float waitTime) { //used to wait 6 seconds before disabling text bubble
@@ -207,12 +219,12 @@ public class UI_Manager : MonoBehaviour {
         mask.gameObject.SetActive (true);
     }
 
-    public void ShowList () {
+    public void ShowList () { //shows bought items (inventory)
         listObj.SetActive (true);
         listBtn.SetActive (false);
     }
 
-    public void CloseList () {
+    public void CloseList () { //stops showing bought items (inventory)
         listObj.SetActive (false);
         listBtn.SetActive (true);
     }

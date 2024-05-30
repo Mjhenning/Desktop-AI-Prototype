@@ -62,7 +62,7 @@ public class CurrencyManager : MonoBehaviour { //script in charge of updating go
         UpdateCurrencyText();
     }
 
-    void DisplayPopup (bool positive, int value) {
+    void DisplayPopup (bool positive, int value) { //shows temporary popup of last amount of goop added/lost
         switch (positive) {
             case true:
                 PopupObj.text = "+ " + value.ToString ("N0");

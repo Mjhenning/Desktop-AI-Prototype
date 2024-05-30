@@ -27,8 +27,7 @@ public class StateIdle : State { //Idle State
         
         timeLeftSleep = Random.Range(30f,60f);
         ResetTextTimer ();
-        //timeLeftShop = Random.Range (10f, 300f);
-        timeLeftShop = 100f;
+        timeLeftShop = Random.Range (10f, 180f);
         timeLeftAgressive = 1200f; //doesn't fire off ever because timer constantly resets
     }
     
@@ -82,8 +81,7 @@ public class StateIdle : State { //Idle State
     }
 
     void ResetTextTimer () { //resets the timer for next dialogue snippet
-        //timeLeftTalk = Random.Range (7f, 30f);
-        timeLeftTalk = 2f;
+        timeLeftTalk = Random.Range (12f, 30f);
     }
 }
 #endregion
@@ -234,9 +232,18 @@ public class StateShopping : State {
             EventsManager.OpenedShop (); //open the shop
             EventsManager.RandomizeShop (); //randomizes shops
 
+            EventsManager.ShopClosed.AddListener (SwapState);
+        }
+
+        public override void Disable () {
+            EventsManager.ShopClosed.RemoveListener (SwapState);
         }
 
         public override void Update () { }
+
+        void SwapState () {
+            Controller.ChangeState (Controller.stateIdle);
+        }
     }
 #endregion
 

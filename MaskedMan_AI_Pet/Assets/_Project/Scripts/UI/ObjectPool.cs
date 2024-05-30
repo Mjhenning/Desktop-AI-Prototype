@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using CarouselUI;
 using UnityEngine;
 
 public class ObjectPool : MonoBehaviour { //basic object pooling script with added logic (most of added logic is currently broken)
@@ -57,20 +58,6 @@ public class ObjectPool : MonoBehaviour { //basic object pooling script with add
     }
 
     public void ReturnAllObjectsToPool() {
-        // // Create a copy of the pooledObjects list to iterate over
-        // List<GameObject> _objectsToReturn = new List<GameObject>(pooledObjects);
-        //
-        // // Iterate over the copied list and deactivate objects
-        // foreach (GameObject _obj in _objectsToReturn) {
-        //     _obj.SetActive(false);
-        // }
-        //
-        // // Clear the original pooledObjects list
-        // pooledObjects.Clear();
-        //
-        // // Add all objects back to the original pooledObjects list
-        // pooledObjects.AddRange(_objectsToReturn);
-
         foreach (GameObject _obj in pooledObjects) {
             _obj.SetActive (false);
         }
@@ -88,15 +75,18 @@ public class ObjectPool : MonoBehaviour { //basic object pooling script with add
         _newObj.shopItems.Clear (); //clear new shop's item list
         
         //for every instance of shop_item
-        for (int _i = 0; _i < _ogObj.shopSelections.Count; _i++) {
+        for (int _i = 0; _i < _ogObj.shopItems.Count; _i++) {
             _newObj.shopSelections[_i].assignedItem = _ogObj.shopItems[_i]; //assign the item from shop items list
             
             _newObj.shopItems.Add(_ogObj.shopItems[_i]); //adds items from og list to new list
         }
 
+        _newObj.DisableItemsBasedOffCorruption (); //used to disable the same amount of options
+        
         _newObj.SetItem (); //sets the text descriptions of the new shop
         
         _obj.SetActive(true); // Activate the new copy
+        _newObj.spritesparent.gameObject.SetActive (true);
         return _obj;
     }
 }

@@ -13,7 +13,7 @@ public class InventoryManager : MonoBehaviour {
         if (buy) {
             AddToDatabase (_instance);
         } else {
-            RemoveFromShop (_instance);
+            RemoveFromShop (_instance, ShopRemoveType.Discard);
         }
     }
 
@@ -22,13 +22,13 @@ public class InventoryManager : MonoBehaviour {
              if (inventory.setDB.setList[i].set.mainSet == instance.assignedItem.mainSet) {
                  inventory.setDB.setList[i].items.Add(instance.assignedItem);
                  EventsManager.RemoveGoop(instance.assignedItem.itemGoopCost);
-                 RemoveFromShop (instance);
+                 RemoveFromShop (instance, ShopRemoveType.Buy);
              }
          }
     }
 
-    void RemoveFromShop (ItemInstance instance) {
-        EventsManager.RemoveFromLists (instance);
+    void RemoveFromShop (ItemInstance instance, ShopRemoveType type) {
+        EventsManager.RemoveFromLists (instance, type);
     }
     
 

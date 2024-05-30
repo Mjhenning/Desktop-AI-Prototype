@@ -8,41 +8,82 @@ public class DialogueManager : MonoBehaviour
 {
     string tmpRandomSnippet;
     string dialogueSnippet;
+    string statPrompt;
 
     //Scriptables with strings attatched
     [SerializeField]List<DialogueStrings> stringTypes;
 
     void Start () {
         EventsManager.DialogueEvent.AddListener (SendALine);
+        EventsManager.StatisticStringEvent.AddListener (ConstructDiaStat);
     }
 
-    void SendALine (DialogueType type) { //setup in this manner so api can be used when anything besides a shop prompt is generated
-        if (type != DialogueType.ShopPrompt) {
-            int chance;
-            chance = Random.Range (0, 2);
-            switch (chance) {
-                case 0:
-                    EventsManager.DialogueFeed (GrabALine (type));
-                    Debug.Log ("Displaying dialogue string");
-                    break;
-                case 1:
-                    API_Manager.instance.CallRandomFact(OnFactReceived);
-                    Debug.Log ("Displaying fact");
-                    break;
-            }  
-        } else {
-            EventsManager.DialogueFeed (GrabALine (type));
-        }
-       
+void SendALine(DialogueType type) {
+    if (type != DialogueType.ShopPrompt) {
+         if (Corruption_Manager.instance.corruptionPercentage >= 80) {
+                    float baseStatChance = 0.1f; // Default chance (10%)
+                    float maxStatChance = 0.5f; // Maximum chance (50%)
+
+                    // Calculate the scaled chance based on corruption percentage
+                    float scaledChance = (float)(baseStatChance + (maxStatChance - baseStatChance) * (Corruption_Manager.instance.corruptionPercentage / 100f));
+                    float cappedChance = Mathf.Min(scaledChance, maxStatChance); // Cap the chance at the maximum
+
+                    bool shouldGrabStat = Random.Range(0f, 1f) <= cappedChance;
+
+                    if (shouldGrabStat) {
+                        // Grab a statistic and display it
+                        statPrompt = API_Prompts.GrabAPrompt();
+                        API_Manager.instance.CallRealTimeStatistics(statPrompt, API_Manager.instance.HandleResponse);
+                        Debug.Log("Displaying stat");
+                    } else {
+                        // If chance-based check fails, do a coin flip
+                        int random = Random.Range(0, 2);
+                        switch (random) {
+                            case 0:
+                                EventsManager.DialogueFeed(GrabALine(type), true);
+                                Debug.Log("Displaying dialogue string");
+                                break;
+                            case 1:
+                                API_Manager.instance.CallRandomFact(OnFactReceived);
+                                Debug.Log("Displaying fact");
+                                break;
+                        }
+                    }
+         } else {
+             // If corruption percentage < 80, redo coin flip
+             int random = Random.Range(0, 2);
+             switch (random) {
+                 case 0:
+                     EventsManager.DialogueFeed(GrabALine(type), true);
+                     Debug.Log("Displaying dialogue string");
+                     break;
+                 case 1:
+                     API_Manager.instance.CallRandomFact(OnFactReceived);
+                     Debug.Log("Displaying fact");
+                     break;
+             }
+         }
+    } else {
+        EventsManager.DialogueFeed (GrabALine (type), true);
     }
+}
+
+
+    void ConstructDiaStat (string stat, string keyword) {
+        EventsManager.DialogueFeed (API_Prompts.ConstructStatResponse (statPrompt, keyword, stat), false);
+    }
+    
+    
 
     void OnFactReceived (string fact) {
         if (fact != null) {
-            EventsManager.DialogueFeed(fact);
+            EventsManager.DialogueFeed(fact, true);
         } else {
             Debug.LogError("Failed to retrieve a random fact.");
         }
     }
+    
+    
 
     //Assign used dialogue to temp var, double check if picked random.ranger is the same as previous dialogue if it is re re-randomize else use the picked dialogue
     
@@ -77,10 +118,4 @@ public class DialogueManager : MonoBehaviour
         dialogueSnippet = tmpRandomSnippet;
         return dialogueSnippet;
     }
-
-
-
-
-
-
 }

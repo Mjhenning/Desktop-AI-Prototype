@@ -10,7 +10,9 @@ public partial class SaveLoadManager : MonoBehaviour {
     
     public static SaveLoadManager instance;
 
-    public Savedata tempSavedata;
+    public Savedata tempSavedata = new Savedata {
+        items = new List<ItemData>(), player = new Playerdata(), vendor = new VendorData()
+    };
 
     private string saveFilePath;
     
@@ -25,10 +27,7 @@ public partial class SaveLoadManager : MonoBehaviour {
             Debug.Log("Creating a new Save/Load Manager");
             instance = this;
         }
-
-        tempSavedata = new Savedata {
-            items = new List<ItemData>()
-        };
+        
 
         // Set the path to save the file
         saveFilePath = Path.Combine(Application.persistentDataPath, "saveData.json");
@@ -46,19 +45,19 @@ public partial class SaveLoadManager : MonoBehaviour {
                 if (tempSavedata == null) {
                     Debug.LogWarning("Failed to deserialize saved data.");
                     tempSavedata = new Savedata {
-                        items = new List<ItemData>()
+                        items = new List<ItemData>(), player = new Playerdata(), vendor = new VendorData()
                     };
                 }
             } else {
                 Debug.LogWarning("No saved data found.");
                 tempSavedata = new Savedata {
-                    items = new List<ItemData>()
+                    items = new List<ItemData>(), player = new Playerdata(), vendor = new VendorData()
                 };
             }
         } else {
             Debug.LogWarning("Save file not found.");
             tempSavedata = new Savedata {
-                items = new List<ItemData>()
+                items = new List<ItemData>(), player = new Playerdata(), vendor = new VendorData()
             };
         }
 
@@ -66,6 +65,7 @@ public partial class SaveLoadManager : MonoBehaviour {
     }
     
     public void LoadGame() {
+        
         // Inventory load
         for (int i = 0; i < instance.inventory.setDB.setList.Length; i++) {
             inventory.setDB.setList[i].ClearItems();
@@ -87,17 +87,27 @@ public partial class SaveLoadManager : MonoBehaviour {
                     }
                 }
             }
+            
+            //Load vendor data
+            UI_Manager.instance.CallOnLoad (tempSavedata.vendor.currentTieColor, tempSavedata.vendor.currentVendorMaskIndex);
+        
+            //Load corruption data
+            Corruption_Manager.instance.currentCorruption = tempSavedata.player.currentCorruption;
+            Corruption_Manager.instance.corruptionPercentage = tempSavedata.player.currentCPercentage;
         }
+        
+      
     }
     
     public void SaveGame() {
         // Clear tempSavedata before saving new data
         tempSavedata.items.Clear();
-
-        int w = 0;
+        
 
         // Debug log to check if tempSavedata is null
         Debug.Log("tempSavedata is null: " + (tempSavedata == null));
+        
+        //Saving of Items
 
         for (int i = 0; i < inventory.setDB.setList.Length; i++) {
             // Check if the items list is not null and not empty
@@ -126,13 +136,18 @@ public partial class SaveLoadManager : MonoBehaviour {
                         } else {
                             Debug.LogWarning("tempSavedata or tempSavedata.items is null");
                         }
-
-                        // Increment w
-                        w++;
                     }
                 }
             }
         }
+        
+        //Saving of Vendor Data
+        tempSavedata.vendor.currentTieColor = UI_Manager.instance.tie.color;
+        tempSavedata.vendor.currentVendorMaskIndex = UI_Manager.instance.maskIndex;
+        
+        //Saving Corruption Status;
+        tempSavedata.player.currentCPercentage = Corruption_Manager.instance.corruptionPercentage;
+        tempSavedata.player.currentCorruption = Corruption_Manager.instance.currentCorruption;
 
         // Save tempSavedata to a file
         string json = JsonUtility.ToJson(tempSavedata);
