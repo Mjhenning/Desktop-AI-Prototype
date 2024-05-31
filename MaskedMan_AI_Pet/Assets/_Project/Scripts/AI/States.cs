@@ -15,7 +15,6 @@ public class StateIdle : State { //Idle State
     float timeLeftSleep;
     float timeLeftTalk;
     float timeLeftShop;
-    float timeLeftAgressive;
     bool isShopOpen;
     
     public StateIdle (AIController controller) : base (controller) { } //required
@@ -28,7 +27,6 @@ public class StateIdle : State { //Idle State
         timeLeftSleep = Random.Range(30f,60f);
         ResetTextTimer ();
         timeLeftShop = Random.Range (10f, 180f);
-        timeLeftAgressive = 1200f; //doesn't fire off ever because timer constantly resets
     }
     
 
@@ -57,13 +55,6 @@ public class StateIdle : State { //Idle State
                 } else {
                     Controller.ChangeState (Controller.stateShopPrompt);
                 }
-                
-                if (timeLeftAgressive > 0) { //Timer between state change to aggressive behaviour
-                    timeLeftAgressive -= Time.deltaTime;
-                } else {
-                    Controller.ChangeState (Controller.stateAgressive);
-                }
-
                 break;
              //if the shop is currently closed
             case false:

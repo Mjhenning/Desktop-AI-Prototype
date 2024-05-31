@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -123,7 +124,6 @@ public class UI_Manager : MonoBehaviour {
 
 
         EventsManager.ClickedMask (); //tells system mask was clicked
-
     }
     
     public void ClickedTie () { //used to randomize the mask's color if the player clicks on it
