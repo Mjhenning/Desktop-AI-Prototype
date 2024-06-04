@@ -39,6 +39,8 @@ public class StateIdle : State { //Idle State
         timeLeftSleep = Random.Range(30f * _sleepIncrease, 60f * _sleepIncrease);
         ResetTextTimer (talkIncrease);
         timeLeftShop = Random.Range(10f * _shopDecrease, 180f * _shopDecrease);
+        
+        Debug.Log ("Shop Time: " + timeLeftShop);
     }
     
 
@@ -85,6 +87,7 @@ public class StateIdle : State { //Idle State
 
     void ResetTextTimer (float talkIncrease) { //resets the timer for next dialogue snippet
         timeLeftTalk = Random.Range(12f * talkIncrease, 30f * talkIncrease);
+        Debug.Log ("Talk Time: " + timeLeftTalk);
     }
 }
 #endregion
