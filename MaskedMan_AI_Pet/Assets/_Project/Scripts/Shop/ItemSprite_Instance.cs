@@ -9,6 +9,4 @@ using UnityEngine.UI;
 public class ItemSprite_Instance : MonoBehaviour {
  public Image spriteObj;
  public TextMeshProUGUI textObj;
- 
- 
 }

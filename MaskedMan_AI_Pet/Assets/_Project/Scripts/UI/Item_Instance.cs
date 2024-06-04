@@ -23,10 +23,9 @@ public class ItemInstance : MonoBehaviour { //each item in ui uses this script t
 
     void Update () { //checks if item can be bought otherwise button isn't interactable
 
-        if (CurrencyManager.instance.CheckCurrency(assignedItem.itemGoopCost)) {
-            buyBtn.interactable = true;
-        } else {
-            buyBtn.interactable = false;
+        if (buyBtn != null) {
+            buyBtn.interactable = CurrencyManager.instance.CheckCurrency(assignedItem.itemGoopCost);
         }
     }
+    
 }

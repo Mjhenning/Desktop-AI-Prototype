@@ -6,11 +6,17 @@ public class Timers : MonoBehaviour {
 
     Coroutine aggressiveTimerCo;
     Coroutine checkAgroSwapCo;
+
+    float corruption;
     void Awake () {
         EventsManager.StartHourlyCheck.AddListener (StartChecks);
         EventsManager.MaskClicked.AddListener (RestartCall);
         EventsManager.BodyClicked.AddListener (RestartCall);
         EventsManager.TieClicked.AddListener (RestartCall);
+    }
+
+    void Start () {
+        corruption = (float)Corruption_Manager.instance.corruptionPercentage;
     }
 
     void StartChecks()
@@ -59,8 +65,8 @@ public class Timers : MonoBehaviour {
     }
 
     IEnumerator AggressiveTimer () {
-
-        yield return new WaitForSeconds (300f);
+        float _aggressionDecrease = 1 - (corruption / 100f * 0.3f);
+        yield return new WaitForSeconds (300f * _aggressionDecrease);
         checkAgroSwapCo = StartCoroutine(CheckAggressiveSwap ());
     }
 

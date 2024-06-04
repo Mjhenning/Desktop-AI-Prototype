@@ -16,6 +16,9 @@ public class StateIdle : State { //Idle State
     float timeLeftTalk;
     float timeLeftShop;
     bool isShopOpen;
+
+    float corruption;
+    float talkIncrease;
     
     public StateIdle (AIController controller) : base (controller) { } //required
 
@@ -24,9 +27,18 @@ public class StateIdle : State { //Idle State
         StateName = StateType.Idle;
         EventsManager.CheckIfShopClosed.AddListener (CheckBeforeResumeUpdate);
         
-        timeLeftSleep = Random.Range(30f,60f);
-        ResetTextTimer ();
-        timeLeftShop = Random.Range (10f, 180f);
+        corruption = (float)Corruption_Manager.instance.corruptionPercentage;
+
+        // Increase talk and sleep timers by up to 30%
+        talkIncrease = 1 + (corruption / 100f * 0.3f);
+        float _sleepIncrease = 1 + (corruption / 100f * 0.3f);
+
+        // Decrease shop time by up to 30%
+        float _shopDecrease = 1 - (corruption / 100f * 0.3f);
+
+        timeLeftSleep = Random.Range(30f * _sleepIncrease, 60f * _sleepIncrease);
+        ResetTextTimer (talkIncrease);
+        timeLeftShop = Random.Range(10f * _shopDecrease, 180f * _shopDecrease);
     }
     
 
@@ -39,7 +51,7 @@ public class StateIdle : State { //Idle State
                     timeLeftTalk -= Time.deltaTime;
                 } else {
                     EventsManager.DialogueDetermine (DialogueType.Idle);
-                    ResetTextTimer ();
+                    ResetTextTimer (talkIncrease);
                 }
 
                 if (timeLeftSleep > 0) {
@@ -71,8 +83,8 @@ public class StateIdle : State { //Idle State
         isShopOpen = shopOpen;
     }
 
-    void ResetTextTimer () { //resets the timer for next dialogue snippet
-        timeLeftTalk = Random.Range (12f, 30f);
+    void ResetTextTimer (float talkIncrease) { //resets the timer for next dialogue snippet
+        timeLeftTalk = Random.Range(12f * talkIncrease, 30f * talkIncrease);
     }
 }
 #endregion

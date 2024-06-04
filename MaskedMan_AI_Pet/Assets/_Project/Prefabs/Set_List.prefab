@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2331604027182831648}
   - component: {fileID: 326319990057406307}
   - component: {fileID: 3346428766294139277}
+  - component: {fileID: 3917721037977029297}
   m_Layer: 5
   m_Name: Sprite
   m_TagString: Untagged
@@ -75,6 +76,35 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3917721037977029297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 805399091299270473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 468567391635781454}
+          m_TargetAssemblyTypeName: Set_Instance, Assembly-CSharp
+          m_MethodName: ChangeDisplay
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 5389912308666109929}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &2810418906152946389
 GameObject:
   m_ObjectHideFlags: 0
@@ -86,6 +116,7 @@ GameObject:
   - component: {fileID: 1715680041522604293}
   - component: {fileID: 8963579117688546700}
   - component: {fileID: 306870708935249476}
+  - component: {fileID: 3668156689751800808}
   m_Layer: 5
   m_Name: Item 4
   m_TagString: Untagged
@@ -210,6 +241,35 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &3668156689751800808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2810418906152946389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 468567391635781454}
+          m_TargetAssemblyTypeName: Set_Instance, Assembly-CSharp
+          m_MethodName: ChangeDisplay
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 2810418906152946389}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &2825830478554947147
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,6 +281,7 @@ GameObject:
   - component: {fileID: 314458096425968887}
   - component: {fileID: 7202231608462221902}
   - component: {fileID: 5270612153101155483}
+  - component: {fileID: 3124892462970317197}
   m_Layer: 5
   m_Name: Item 2
   m_TagString: Untagged
@@ -345,6 +406,35 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &3124892462970317197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2825830478554947147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 468567391635781454}
+          m_TargetAssemblyTypeName: Set_Instance, Assembly-CSharp
+          m_MethodName: ChangeDisplay
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 2825830478554947147}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &5389144712753975349
 GameObject:
   m_ObjectHideFlags: 0
@@ -490,6 +580,7 @@ GameObject:
   - component: {fileID: 8091682151114584331}
   - component: {fileID: 5794065065807153497}
   - component: {fileID: 1152799431417621988}
+  - component: {fileID: 6724858595523799026}
   m_Layer: 5
   m_Name: Item 1
   m_TagString: Untagged
@@ -614,6 +705,35 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &6724858595523799026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5389912308666109929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 468567391635781454}
+          m_TargetAssemblyTypeName: Set_Instance, Assembly-CSharp
+          m_MethodName: ChangeDisplay
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 5389912308666109929}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &6007751850478581494
 GameObject:
   m_ObjectHideFlags: 0
@@ -625,6 +745,7 @@ GameObject:
   - component: {fileID: 3946666813424656541}
   - component: {fileID: 6421605830765241001}
   - component: {fileID: 4830718620763607817}
+  - component: {fileID: 3181076056818685985}
   m_Layer: 5
   m_Name: Item 3
   m_TagString: Untagged
@@ -749,6 +870,35 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &3181076056818685985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6007751850478581494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 468567391635781454}
+          m_TargetAssemblyTypeName: Set_Instance, Assembly-CSharp
+          m_MethodName: ChangeDisplay
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 6007751850478581494}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &6975837830235144854
 GameObject:
   m_ObjectHideFlags: 0
@@ -760,6 +910,7 @@ GameObject:
   - component: {fileID: 1997995795227751538}
   - component: {fileID: 2066167140556865632}
   - component: {fileID: 8249819837424754935}
+  - component: {fileID: 8838233761094959199}
   m_Layer: 5
   m_Name: Sprite
   m_TagString: Untagged
@@ -824,6 +975,35 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8838233761094959199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6975837830235144854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 468567391635781454}
+          m_TargetAssemblyTypeName: Set_Instance, Assembly-CSharp
+          m_MethodName: ChangeDisplay
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 6007751850478581494}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &7850264466752420610
 GameObject:
   m_ObjectHideFlags: 0
@@ -944,6 +1124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85b97d7bc82372f4aabab264980e7f48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemDisplay: {fileID: 0}
   setName: {fileID: 8593708904445283090}
   items:
   - {fileID: 5389912308666109929}
@@ -964,6 +1145,7 @@ GameObject:
   - component: {fileID: 7301247128646521345}
   - component: {fileID: 1957967074344546351}
   - component: {fileID: 5833454133634221733}
+  - component: {fileID: 4822380645981811915}
   m_Layer: 5
   m_Name: Sprite
   m_TagString: Untagged
@@ -1028,6 +1210,35 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4822380645981811915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8521842625217011555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 468567391635781454}
+          m_TargetAssemblyTypeName: Set_Instance, Assembly-CSharp
+          m_MethodName: ChangeDisplay
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 2825830478554947147}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &8827684797637981524
 GameObject:
   m_ObjectHideFlags: 0
@@ -1039,6 +1250,7 @@ GameObject:
   - component: {fileID: 9029164675906569324}
   - component: {fileID: 5685708805127083989}
   - component: {fileID: 3774426563795836914}
+  - component: {fileID: 9072795186264893692}
   m_Layer: 5
   m_Name: Sprite
   m_TagString: Untagged
@@ -1103,3 +1315,32 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &9072795186264893692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8827684797637981524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 468567391635781454}
+          m_TargetAssemblyTypeName: Set_Instance, Assembly-CSharp
+          m_MethodName: ChangeDisplay
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 2810418906152946389}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2

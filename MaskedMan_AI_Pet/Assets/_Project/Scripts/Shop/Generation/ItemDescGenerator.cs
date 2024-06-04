@@ -37,12 +37,12 @@ public static class ItemDescGenerator {
             case ItemTypes.Ephemera:
                 return ("This " + _prefix + " " + _item +" is a " + item.itemType + " that "+ _descriptionstring.verbs[Random.Range(0, _descriptionstring.verbs.Count)] +" with " +
                         _descriptionstring.adverbs[Random.Range(0, _descriptionstring.adverbs.Count)] + " " + _descriptionstring.adjectives[Random.Range(0, _descriptionstring.adjectives.Count)] +" aura. It exudes a sense of " +
-                        _descriptionstring.feelings[Random.Range(0, _descriptionstring.feelings.Count)] +" and " + _descriptionstring.feelings[Random.Range(0, _descriptionstring.feelings.Count)] + "." +
+                        _descriptionstring.feelings[Random.Range(0, _descriptionstring.feelings.Count)] +" and " + _descriptionstring.feelings[Random.Range(0, _descriptionstring.feelings.Count)] + ". " +
                         _descriptionstring.ephExtra[Random.Range(0, _descriptionstring.ephExtra.Count)]);
             case ItemTypes.Relic: //else if item is a relic use a different template to generate descriptions
                 return ("This " + _prefix + " " + _item +" is an " + item.itemType + " that "+ _descriptionstring.verbs[Random.Range(0, _descriptionstring.verbs.Count)] +" with " +
                         _descriptionstring.adverbs[Random.Range(0, _descriptionstring.adverbs.Count)] + " " + _descriptionstring.adjectives[Random.Range(0, _descriptionstring.adjectives.Count)] +" aura. It evokes a sense of " +
-                        _descriptionstring.feelings[Random.Range(0, _descriptionstring.feelings.Count)] +" and " + _descriptionstring.feelings[Random.Range(0, _descriptionstring.feelings.Count)] + "." +
+                        _descriptionstring.feelings[Random.Range(0, _descriptionstring.feelings.Count)] +" and " + _descriptionstring.feelings[Random.Range(0, _descriptionstring.feelings.Count)] + ". " +
                         _descriptionstring.relExtra[Random.Range(0, _descriptionstring.relExtra.Count)]);
         }
         

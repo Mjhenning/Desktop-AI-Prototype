@@ -15,6 +15,7 @@ public class UI_Manager : MonoBehaviour {
 
     public PlayerController input;
 
+    public GameObject itemDisplay;
 
     [FormerlySerializedAs ("Masks")] [SerializeField]List<Sprite> masks;
     [SerializeField]AIController activeController;
@@ -28,6 +29,8 @@ public class UI_Manager : MonoBehaviour {
     [SerializeField] GameObject listBtn;
 
     public int maskIndex; //used to go scroll through list of masks
+
+   
 
     void Awake () {
         instance = this;
@@ -227,6 +230,10 @@ public class UI_Manager : MonoBehaviour {
     public void CloseList () { //stops showing bought items (inventory)
         listObj.SetActive (false);
         listBtn.SetActive (true);
+    }
+    
+    public void CloseDisplay () {
+        itemDisplay.SetActive (false);
     }
 
 }
