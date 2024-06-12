@@ -14,10 +14,7 @@ public class Timers : MonoBehaviour {
         EventsManager.BodyClicked.AddListener (RestartCall);
         EventsManager.TieClicked.AddListener (RestartCall);
     }
-
-    void Start () {
-        corruption = (float)Corruption_Manager.instance.corruptionPercentage;
-    }
+    
 
     void StartChecks()
     {
@@ -65,7 +62,11 @@ public class Timers : MonoBehaviour {
     }
 
     IEnumerator AggressiveTimer () {
-        float _aggressionDecrease = 1 - (corruption / 100f * 0.3f);
+        corruption = (float)Corruption_Manager.instance.corruptionPercentage;
+        
+        //Debug.Log (corruption);
+        float _aggressionDecrease = 1 - (corruption / 100f * 0.5f); //50 percent decrease max based on current corruption percentage
+        //Debug.Log ("Agression Timer " + 300f * _aggressionDecrease);
         yield return new WaitForSeconds (300f * _aggressionDecrease);
         checkAgroSwapCo = StartCoroutine(CheckAggressiveSwap ());
     }
@@ -97,7 +98,7 @@ public class Timers : MonoBehaviour {
         StartCoroutine (RestartAgroTimers ());
     }
     
-    IEnumerator RestartAgroTimers() {
+    IEnumerator RestartAgroTimers() { //resets all tamers used to swap aggression state
         Debug.Log ("Restaring Timers");
         
         if (aggressiveTimerCo != null)

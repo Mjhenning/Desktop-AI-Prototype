@@ -26,9 +26,9 @@ public class GoopGeneration : MonoBehaviour {
 
  IEnumerator SpawnGoopWithRandomDelay() {
      while (true) {
-         SpawnGoop(Random.Range(minGoopPerClusterInclusive, maxGoopPerClusterExclusive)); // Spawn goop
          float _delay = Random.Range(minSpawnDelay, maxSpawnDelay);
          yield return new WaitForSeconds(_delay); // Wait for a random delay before spawning again
+         SpawnGoop(Random.Range(minGoopPerClusterInclusive, maxGoopPerClusterExclusive)); // Spawn goop
      }
  }
 
