@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e250804de31f05a4887ba78994810ece, type: 3}
   m_Name: LiminalSet
   m_EditorClassIdentifier: 
-  MainSet: 1
-  ItemType: 3
-  ITEM_Sprite: {fileID: 0}
-  ItemName: Mirror of Echoes
-  ItemDesc: A mirror that reflects not your physical appearance but your deepest
+  mainSet: 1
+  itemType: 3
+  itemSprite: {fileID: 21300000, guid: 22e08498ba1cff1429eefe9b5338582d, type: 3}
+  itemName: Mirror of Echoes
+  itemDesc: A mirror that reflects not your physical appearance but your deepest
     fears and desires, showing glimpses of alternate realities where choices diverged
     and consequences echo through time.
-  SetParts: 000000000100000002000000
-  SetItemDatabase: []
+  itemGoopCost: 0
+  setParts: 000000000100000002000000
+  setItemDatabase: []

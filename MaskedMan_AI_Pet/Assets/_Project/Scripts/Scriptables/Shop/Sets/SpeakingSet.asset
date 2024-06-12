@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e250804de31f05a4887ba78994810ece, type: 3}
   m_Name: SpeakingSet
   m_EditorClassIdentifier: 
-  MainSet: 4
-  ItemType: 3
-  ITEM_Sprite: {fileID: 0}
-  ItemName: Spectacles of Insight
-  ItemDesc: A pair of spectacles that grant the wearer the ability to hear the thoughts
+  mainSet: 4
+  itemType: 3
+  itemSprite: {fileID: 21300000, guid: fce94cd903e336f41939b24ad3608d0d, type: 3}
+  itemName: Spectacles of Insight
+  itemDesc: A pair of spectacles that grant the wearer the ability to hear the thoughts
     of others, but with each use, they become more attuned to the whispers of unseen
     entities lurking in the shadows, driving the user towards paranoia and despair.
-  SetParts: 000000000100000002000000
-  SetItemDatabase: []
+  itemGoopCost: 0
+  setParts: 000000000100000002000000
+  setItemDatabase: []

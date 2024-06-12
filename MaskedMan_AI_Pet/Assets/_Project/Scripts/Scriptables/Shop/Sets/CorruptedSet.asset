@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e250804de31f05a4887ba78994810ece, type: 3}
   m_Name: CorruptedSet
   m_EditorClassIdentifier: 
-  MainSet: 2
-  ItemType: 3
-  ITEM_Sprite: {fileID: 0}
-  ItemName: Tome of Madness
-  ItemDesc: A cursed tome bound in human skin, its pages filled with forbidden knowledge
+  mainSet: 2
+  itemType: 3
+  itemSprite: {fileID: 21300000, guid: 400ea1a40b89140489ab221733419c21, type: 3}
+  itemName: Tome of Madness
+  itemDesc: A cursed tome bound in human skin, its pages filled with forbidden knowledge
     that corrupts the mind of any who dare to read its eldritch contents, twisting
     their thoughts into madness.
-  SetParts: 000000000100000002000000
-  SetItemDatabase: []
+  itemGoopCost: 0
+  setParts: 000000000100000002000000
+  setItemDatabase: []

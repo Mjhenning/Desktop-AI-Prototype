@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e250804de31f05a4887ba78994810ece, type: 3}
   m_Name: AbstractedSet
   m_EditorClassIdentifier: 
-  MainSet: 0
-  ItemType: 3
-  ITEM_Sprite: {fileID: 0}
-  ItemName: Canvas of Nightmares
-  ItemDesc: A canvas that absorbs the essence of nightmares, allowing the user to
+  mainSet: 0
+  itemType: 3
+  itemSprite: {fileID: 21300000, guid: 1fd32d0f99965f54d8b066efbd40f4f5, type: 3}
+  itemName: Canvas of Nightmares
+  itemDesc: A canvas that absorbs the essence of nightmares, allowing the user to
     paint their dreams into reality, blurring the lines between the imagined and
     the tangible.
-  SetParts: 000000000100000002000000
-  SetItemDatabase: []
+  itemGoopCost: 0
+  setParts: 000000000100000002000000
+  setItemDatabase: []

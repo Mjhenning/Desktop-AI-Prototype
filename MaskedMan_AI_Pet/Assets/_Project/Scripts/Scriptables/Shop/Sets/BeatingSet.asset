@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e250804de31f05a4887ba78994810ece, type: 3}
   m_Name: BeatingSet
   m_EditorClassIdentifier: 
-  MainSet: 5
-  ItemType: 3
-  ITEM_Sprite: {fileID: 0}
-  ItemName: Locket of Fate
-  ItemDesc: A heart-shaped locket that pulses with an otherworldly rhythm, drawing
+  mainSet: 5
+  itemType: 3
+  itemSprite: {fileID: 21300000, guid: c1bea63387a4a4e42a2a0ada5ae9b047, type: 3}
+  itemName: Locket of Fate
+  itemDesc: A heart-shaped locket that pulses with an otherworldly rhythm, drawing
     the attention of malevolent entities from beyond the veil, offering glimpses
     of the future at the cost of tethering the user's fate to the whims of fate itself.
-  SetParts: 000000000100000002000000
-  SetItemDatabase: []
+  itemGoopCost: 0
+  setParts: 000000000100000002000000
+  setItemDatabase: []

@@ -61,7 +61,6 @@ public class ItemGenerator : MonoBehaviour {
                 if (artifacts[_i].mainSet == set) {
                     _createdItem = artifacts[_i];
                     tempItem = _createdItem;
-                    _createdItem.itemSprite = GrabCorrespondingSprite (_createdItem);
                 }
             }
         } else { //else if not a artifact set the set, item type, randomize the name and description and set the Image

@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e250804de31f05a4887ba78994810ece, type: 3}
   m_Name: SubmergedSet
   m_EditorClassIdentifier: 
-  MainSet: 6
-  ItemType: 3
-  ITEM_Sprite: {fileID: 0}
-  ItemName: Key of Memories
-  ItemDesc: A rusted key that unlocks the doorway to a submerged realm, where forgotten
+  mainSet: 6
+  itemType: 3
+  itemSprite: {fileID: 21300000, guid: aac6fc71380232347873a717ea239d35, type: 3}
+  itemName: Key of Memories
+  itemDesc: A rusted key that unlocks the doorway to a submerged realm, where forgotten
     memories and lost souls drift in the depths of an endless ocean, their whispers
     haunting the dreams of the living.
-  SetParts: 000000000100000002000000
-  SetItemDatabase: []
+  itemGoopCost: 0
+  setParts: 000000000100000002000000
+  setItemDatabase: []
