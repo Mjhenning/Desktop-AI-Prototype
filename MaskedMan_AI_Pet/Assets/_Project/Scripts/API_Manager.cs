@@ -12,10 +12,6 @@ public class API_Manager : MonoBehaviour {
         instance = this;
     }
 
-    void Start () {
-        
-    }
-
     public void CallRandomFact(System.Action<string> callback) { //used to send through the fact when needed
         StartCoroutine(RandomFactAPI.Grab(callback));
     }
